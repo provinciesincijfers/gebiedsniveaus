@@ -57,10 +57,10 @@ Op deze manier bereiken we een 100% juiste toekenning van sectoren aan "onze" de
  
 In deze methodiek landen we op een unieke sleutel van de deelgemeenten die gebaseerd is op de sleutel van het NGI, en niet een die gebaseerd is op het hopelijk juist zijn van de schrijfwijze van de sector. Daardoor hebben we ook een stap meer in de historiek van de fusies mee. Bijvoorbeeld is Walshoutem nog uitgesplitst:
  
-24059C-I        Walshoutem
-24059C-II        Waasmont
-24059C-III        Walsbets
-24059C-IV        Wezeren
+24059C-I        Walshoutem  
+24059C-II        Waasmont  
+24059C-III        Walsbets  
+24059C-IV        Wezeren  
  
  
  
@@ -71,9 +71,9 @@ Sectoren
 Elke gemeente krijgt één onbekende sector. We volgen de ADSEI logica: deze krijgt de NIScode van de gemeente + ZZZZ. Er is geen verwarring mogelijk met deelgemeente-codes, want die zijn van de vorm NIScode-Z. Voorbeeld: 11002ZZZZ is de onbekende statistische sector van Antwerpen, 11002-Z is de deelgemeente Antwerpen in de Stad Antwerpen.
 Naamgeving: "Gemeente - niet te lokaliseren"
  
-Deelgemeenten
-Per gemeente is een onbekende deelgemeente nodig. Om verwarring met 11002-Z en 11002Z te vermijden, geven we de "onbekende deelgemeente" de code 11002ONBE.
-Naamgeving: "Gemeente - niet te lokaliseren"
+Deelgemeenten  
+Per gemeente is een onbekende deelgemeente nodig. Om verwarring met 11002-Z en 11002Z te vermijden, geven we de "onbekende deelgemeente" de code 11002ONBE.  
+Naamgeving: "Gemeente - niet te lokaliseren"  
  
  
 ## Naamgeving
@@ -88,30 +88,30 @@ De namen zijn evenwel niet uniek. Indien een naam niet uniek is, dan voegen we h
 Vinkem (H-II) bestaat uit twee sectoren, die beide gedeeld zijn met Wulveringen (H-I). Wulveringen heeft daarnaast nog één andere sector.
 Beide gedeelde sectoren liggen nagenoeg gelijk verdeeld over de twee deelgemeenten. Voorstel: HI en HII samenvoegen tot Wulveringen-Vinkem.
  
-38025H009        38025H-I
-38025H009        38025H-II
-38025H099        38025H-I
-38025H099        38025H-II
+38025H009        38025H-I  
+38025H009        38025H-II  
+38025H099        38025H-I  
+38025H099        38025H-II  
  
  
 Sint-Rijkers (A-III), Alveringem (A-II) en Oeren (A-I) hebben meer overlap dan niet-overlap. Voorstel: samenvoegen tot Oeren - Alveringem - Sint-Rijkers.
-38002A089        38002A-II
-38002A089        38002A-III
-38002A099        38002A-I
-38002A099        38002A-II
-38002A181        38002A-II
-38002A181        38002A-III
+38002A089        38002A-II  
+38002A089        38002A-III  
+38002A099        38002A-I  
+38002A099        38002A-II  
+38002A181        38002A-II  
+38002A181        38002A-III  
  
 Hoeke en Oostkerke. Hoeke is onmogelijk te identificeren als deelgemeente. Samenvoegen tot Hoeke-Oostkerke.
-31006C099        31006C-I
-31006C10-        31006C-I
-31006C099        31006C-II
-31006C00-        31006C-II
-31006C012        31006C-II
+31006C099        31006C-I  
+31006C10-        31006C-I  
+31006C099        31006C-II  
+31006C00-        31006C-II  
+31006C012        31006C-II  
  
 Gentbrugge-Ledeberg: de sector is dicht bevolkt in beide delen. Op basis van "wat in de hoofden van de mensen het meest waarschijnlijk is" toegekend aan Gentbrugge.
-44021G200        44021F
-44021G200        44021G
+44021G200        44021F  
+44021G200        44021G  
  
 Enkel een sliver, geen verdwaalde inwoners.
 24066C091

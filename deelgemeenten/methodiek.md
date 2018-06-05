@@ -94,7 +94,7 @@ Beide gedeelde sectoren liggen nagenoeg gelijk verdeeld over de twee deelgemeent
 38025H099        38025H-II  
  
  
-Sint-Rijkers (A-III), Alveringem (A-II) en Oeren (A-I) hebben meer overlap dan niet-overlap. Voorstel: samenvoegen tot Oeren - Alveringem - Sint-Rijkers.
+Sint-Rijkers (A-III), Alveringem (A-II) en Oeren (A-I) hebben meer overlap dan niet-overlap. Voorstel: samenvoegen tot Oeren - Alveringem - Sint-Rijkers.  
 38002A089        38002A-II  
 38002A089        38002A-III  
 38002A099        38002A-I  
@@ -102,18 +102,18 @@ Sint-Rijkers (A-III), Alveringem (A-II) en Oeren (A-I) hebben meer overlap dan n
 38002A181        38002A-II  
 38002A181        38002A-III  
  
-Hoeke en Oostkerke. Hoeke is onmogelijk te identificeren als deelgemeente. Samenvoegen tot Hoeke-Oostkerke.
+Hoeke en Oostkerke. Hoeke is onmogelijk te identificeren als deelgemeente. Samenvoegen tot Hoeke-Oostkerke.  
 31006C099        31006C-I  
 31006C10-        31006C-I  
 31006C099        31006C-II  
 31006C00-        31006C-II  
 31006C012        31006C-II  
  
-Gentbrugge-Ledeberg: de sector is dicht bevolkt in beide delen. Op basis van "wat in de hoofden van de mensen het meest waarschijnlijk is" toegekend aan Gentbrugge.
+Gentbrugge-Ledeberg: de sector is dicht bevolkt in beide delen. Op basis van "wat in de hoofden van de mensen het meest waarschijnlijk is" toegekend aan Gentbrugge.  
 44021G200        44021F  
 44021G200        44021G  
  
-Enkel een sliver, geen verdwaalde inwoners.
+Enkel een sliver, geen verdwaalde inwoners.  
 24066C091
  
  

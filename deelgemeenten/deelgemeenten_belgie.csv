@@ -7292,12 +7292,12 @@ statsec;deelgemeente;gemeente;statsec_naam;gemeente_naam;provincie;statsec_naam_
 37020B00-;37020B;37020;Koolskamp-Kern;Ardooie;30000;Koolskamp-Kern (37020B00-);Koolskamp
 37020B09-;37020B;37020;Koolskamp-Verspreide Bewoning;Ardooie;30000;Koolskamp-Verspreide Bewoning (37020B09-);Koolskamp
 37020ZZZZ;37020ONBE;37020;Ardooie - niet te lokaliseren;Ardooie;30000;Ardooie - niet te lokaliseren (37020ZZZZ);Ardooie - niet te lokaliseren
-38002A00-;38002A-I_II_III;38002;Alveringem-Centrum;Alveringem;30000;Alveringem-Centrum (38002A00-);Wulveringen - Vinkem
-38002A01-;38002A-I_II_III;38002;Fortem;Alveringem;30000;Fortem (38002A01-);Wulveringen - Vinkem
-38002A089;38002A-I_II_III;38002;Sint-Rijkers - Klare Wal;Alveringem;30000;Sint-Rijkers - Klare Wal (38002A089);Wulveringen - Vinkem
-38002A099;38002A-I_II_III;38002;Oostover;Alveringem;30000;Oostover (38002A099);Wulveringen - Vinkem
-38002A181;38002A-I_II_III;38002;Bampoelhoek;Alveringem;30000;Bampoelhoek (38002A181);Wulveringen - Vinkem
-38002A282;38002A-I_II_III;38002;Oeren;Alveringem;30000;Oeren (38002A282);Wulveringen - Vinkem
+38002A00-;38002A-I_II_III;38002;Alveringem-Centrum;Alveringem;30000;Alveringem-Centrum (38002A00-);Oeren - Alveringem - Sint-Rijkers
+38002A01-;38002A-I_II_III;38002;Fortem;Alveringem;30000;Fortem (38002A01-);Oeren - Alveringem - Sint-Rijkers
+38002A089;38002A-I_II_III;38002;Sint-Rijkers - Klare Wal;Alveringem;30000;Sint-Rijkers - Klare Wal (38002A089);Oeren - Alveringem - Sint-Rijkers
+38002A099;38002A-I_II_III;38002;Oostover;Alveringem;30000;Oostover (38002A099);Oeren - Alveringem - Sint-Rijkers
+38002A181;38002A-I_II_III;38002;Bampoelhoek;Alveringem;30000;Bampoelhoek (38002A181);Oeren - Alveringem - Sint-Rijkers
+38002A282;38002A-I_II_III;38002;Oeren;Alveringem;30000;Oeren (38002A282);Oeren - Alveringem - Sint-Rijkers
 38002B00-;38002B;38002;Hoogstade-Kern;Alveringem;30000;Hoogstade-Kern (38002B00-);Hoogstade
 38002B09-;38002B;38002;Hoogstade-Verspreide Bewoning;Alveringem;30000;Hoogstade-Verspreide Bewoning (38002B09-);Hoogstade
 38002C00-;38002C;38002;Leisele-Kern;Alveringem;30000;Leisele-Kern (38002C00-);Leisele
@@ -7420,9 +7420,9 @@ statsec;deelgemeente;gemeente;statsec_naam;gemeente_naam;provincie;statsec_naam_
 38025F0PA;38025F;38025;Steenkerke;Veurne;30000;Steenkerke (38025F0PA);Steenkerke
 38025G000;38025G;38025;Bulskamp-Kern;Veurne;30000;Bulskamp-Kern (38025G000);Bulskamp
 38025G09-;38025G;38025;Bulskamp-Verspreide Bewoning;Veurne;30000;Bulskamp-Verspreide Bewoning (38025G09-);Bulskamp
-38025H009;38025H-I_II;38025;Beauvoorde-Centrum;Veurne;30000;Beauvoorde-Centrum (38025H009);Oeren - Alveringem - Sint-Rijkers
-38025H01-;38025H-I_II;38025;Zwaantje;Veurne;30000;Zwaantje (38025H01-);Oeren - Alveringem - Sint-Rijkers
-38025H099;38025H-I_II;38025;Beauvoorde-Verspreide Bewoning;Veurne;30000;Beauvoorde-Verspreide Bewoning (38025H099);Oeren - Alveringem - Sint-Rijkers
+38025H009;38025H-I_II;38025;Beauvoorde-Centrum;Veurne;30000;Beauvoorde-Centrum (38025H009);Wulveringen - Vinkem
+38025H01-;38025H-I_II;38025;Zwaantje;Veurne;30000;Zwaantje (38025H01-);Wulveringen - Vinkem
+38025H099;38025H-I_II;38025;Beauvoorde-Verspreide Bewoning;Veurne;30000;Beauvoorde-Verspreide Bewoning (38025H099);Wulveringen - Vinkem
 38025J00-;38025J;38025;Houtem-Kern;Veurne;30000;Houtem-Kern (38025J00-);Houtem
 38025J09-;38025J;38025;Houtem-Verspreide Bewoning;Veurne;30000;Houtem-Verspreide Bewoning (38025J09-);Houtem
 38025K099;38025K;38025;De Moeren-Verspreide Bewoning;Veurne;30000;De Moeren-Verspreide Bewoning (38025K099);De Moeren

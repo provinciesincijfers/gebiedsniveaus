@@ -1,4 +1,4 @@
-Vanaf december 2018 zal Provincies in Cijfers wijken bevatten zoals afgebakend door gemeenten. 
+Vanaf juni 2019 zal Provincies in Cijfers wijken bevatten zoals afgebakend door gemeenten. 
 Deze moeten op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren) gebaseerd zijn: elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één sector toegekend.
 Gemeenten waarvan we vóór eind november 2018 een voorstel ontvangen zullen hierin opgenomen worden. Hierna worden verdere aanvullingen of correcties halfjaarlijks verwerkt en jaarlijks aangevuld in Provincies in Cijfers.
 

@@ -10,6 +10,8 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
 - we ontvangen slechts één voorstel van de gemeente. Indien er verschillende voorstellen binnenkomen, moet de gemeente zelf beslissen welk voorstel het haalt.
 - er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden
 
-Naast deze wijken zal de Interprovinciale Werking Data en Analyse ook een eigen wijkindeling maken, die probeert alle gemeenten op een gelijkaardige manier in wijken te verdelen.
+Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze indeling met een "automatische" wijkbenadering. Hiervoor baseren we ons op de structuur van de NIS-code van de statistische sectoren. Deze hebben een zekere logica. De code van een statistische sector (of "nis9") heeft negen tekens, waarbij de eerste vijf tekens voor de gemeente (situatie tot 2018, "nis5") staat. Onze voorlopige wijken zijn gebaseerd op "nis7". Door hervormingen van de sectoren zijn deze codes niet altijd logisch. Daarnaast vermijden we zoveel mogelijk "wijken" die uit meerdere gebieden bestaan die niet op elkaar aansluiten. Voor een klein aantal statistische sectoren hebben we daarom aanpassingen in de indeling gemaakt.
 
-Voor vragen, contacteer joost.schouppe@limburg.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
+We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit een gemeente.
+
+Voor vragen, contacteer joost.schouppe@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)

@@ -9,8 +9,8 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
 -	Wijken zijn doorgaans kleiner dan deelgemeenten. De wijken hoeven echter niet op te tellen tot deelgemeenten
 - Wijken respecteren gemeentegrenzen
 -	We werken met slechts één wijkindeling
-  -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
-  -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn
+    -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
+    -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn
 - de data wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
 - de indeling is gebaseerd op statistische sectoren 2011
 - de indeling kent elke statistische sector toe aan één wijk

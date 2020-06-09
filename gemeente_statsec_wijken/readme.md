@@ -12,9 +12,10 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
     -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
     -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn
 - de data wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
-- de indeling is gebaseerd op statistische sectoren 2011
+- de indeling is gebaseerd op de [statistische sectoren geldig vanaf 2019](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e)
 - de indeling kent elke statistische sector toe aan één wijk
 - de wijk krijgt een unieke code van het format *[niscode van de gemeente][vrij te kiezen]*. Het vrij te kiezen gedeelte bevat enkel letters, cijfers en underscores.
+- de wijken krijgen unieke namen binnen de gemeente. Voor gebruik op provincies.incijfers.be maken wij ze uniek over Vlaanderen door er "Naam wijk X (Gemeente Y)" van te maken.
 - er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden
 
 Een overzicht van de beschikbare gemeenten kan je via dit platform downloaden ([rechtsreekse link](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx))

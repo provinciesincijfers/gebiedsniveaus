@@ -1,0 +1,7 @@
+- is elke statsec slechts éénmaal gedefinieerd
+- zijn er statsec per ongeluk een getal geworden
+- zijn alle statsec gedefinieerd
+- hoort er bij een wijkcode steeds maar één naam
+- hoort er bij een naam steeds maar één code
+- zijn de wijken aaneengesloten
+- zijn de meeste wijken groter dan één sector?

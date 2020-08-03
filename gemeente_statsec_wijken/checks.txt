@@ -5,3 +5,4 @@
 - hoort er bij een naam steeds maar één code
 - zijn de wijken aaneengesloten
 - zijn de meeste wijken groter dan één sector?
+- is er een wijk onbekend?

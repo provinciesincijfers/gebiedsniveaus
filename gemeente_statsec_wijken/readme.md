@@ -5,7 +5,7 @@ Vanaf juni 2019 bevat Provincies in Cijfers wijken gebaseerd op [statistische se
 Voor de lancering in juni 2019 verzamelden we de ons bekende sector-gebaseerde wijkindelingen van gemeenten. Gemeenten kunnen ons vragen om de wijkindeling voor hun gemeente aan te passen. Neem hiervoor contact op met info@provincies.incijfers.be of [Data & Analyse in uw provincie](https://provincies.incijfers.be/databank?report=project_d_en_a&keepworkspace=true). Verdere aanvullingen of correcties worden halfjaarlijks verwerkt en jaarlijks aangevuld in Provincies in Cijfers.
 
 Voorstellen worden opgenomen onder volgende voorwaarden:
--	Wijken bestaan doorgaans uit meerdere statistische sectoren    
+-	Wijken bestaan bijna altijd uit meerdere statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat (bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
 -	Wijken zijn doorgaans kleiner dan deelgemeenten. De wijken hoeven echter niet op te tellen tot deelgemeenten
 - Wijken respecteren gemeentegrenzen
 -	We werken met slechts één wijkindeling

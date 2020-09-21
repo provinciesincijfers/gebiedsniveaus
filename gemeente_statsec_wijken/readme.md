@@ -20,6 +20,8 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
 
 Een overzicht van de beschikbare gemeenten kan je via dit platform downloaden ([rechtsreekse link](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx))
 
+Binnen Swing worden de wijken getoond in volgorde van hun gebiedscode; "wijk onbekend" wordt steeds laatste getoond.
+
 ## Gebiedsdekkend
 
 Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze indeling met een "automatische" wijkbenadering. Hiervoor baseren we ons op de structuur van de NIS-code van de statistische sectoren. Deze hebben een zekere logica. De code van een statistische sector (of "nis9") heeft negen tekens, waarbij de eerste vijf tekens voor de gemeente (situatie tot 2018, "nis5") staat. Onze voorlopige wijken zijn gebaseerd op "nis7".  We passen deze indeling echter lichtjes aan. Door hervormingen van de sectoren zijn deze codes niet altijd logisch. Daarnaast vermijden we zoveel mogelijk "wijken" die uit meerdere gebieden bestaan die niet op elkaar aansluiten. Voor een klein aantal statistische sectoren hebben we daarom aanpassingen in de indeling gemaakt.

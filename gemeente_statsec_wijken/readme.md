@@ -20,7 +20,7 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
 
 Een overzicht van de beschikbare gemeenten kan je via dit platform downloaden ([rechtsreekse link](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx))
 
-Binnen Swing worden de wijken getoond in volgorde van hun gebiedscode; "wijk onbekend" wordt steeds laatste getoond.
+Binnen Swing worden de wijken getoond in alfabetische volgorde op basis van de gebiedscode; "wijk onbekend" wordt steeds laatste getoond. Als je wijken wil groeperen op basis van waar ze liggen (bijvoorbeeld eerst de centrumwijken), dan moeten de gebiedscodes dit reflecteren.
 
 ## Gebiedsdekkend
 

@@ -14,7 +14,7 @@ Voorstellen worden opgenomen onder volgende voorwaarden:
 - de data wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
 - de indeling is gebaseerd op de [statistische sectoren geldig vanaf 2019](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e)
 - de indeling kent elke statistische sector toe aan één wijk
-- de wijk krijgt een unieke code van het format *[niscode van de gemeente][vrij te kiezen]*. Het vrij te kiezen gedeelte bevat enkel letters, cijfers en underscores.
+- de wijk krijgt een unieke code van het format *[niscode van de gemeente][vrij te kiezen]*. Het vrij te kiezen gedeelte bevat enkel hoofdletters, cijfers en underscores.
 - de wijken krijgen unieke namen binnen de gemeente. Voor gebruik op provincies.incijfers.be maken wij ze uniek over Vlaanderen door er "Naam wijk X (Gemeente Y)" van te maken.
 - er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden
 

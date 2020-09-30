@@ -2,10 +2,10 @@
 
 * OPGELET: op dit moment genereert dit ook "wijk onbekend" aan de kust.
 
-* mastertabel van Github afhalen.
+* mastertabel van de gemeentegedragen wijken van Github afhalen.
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\kerntabellen\gemeentegedragen_wijken.xlsx'
+  /FILE='C:\github\gebiedsniveaus\gemeente_statsec_wijken\gemeentegedragen_wijken.xlsx'
   /SHEET=name 'basistabel'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -21,9 +21,10 @@ rename variables codsec=statsec.
 alter type statsec (a9).
 sort cases statsec (a).
 
+* mastertabel van de nis7-variant van Github afhalen.
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\kerntabellen\dena_nis7.xlsx'
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\dena_nis7.xlsx'
   /SHEET=name 'Blad1'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -64,7 +65,7 @@ EXECUTE.
 
 GET DATA
   /TYPE=XLS
-  /FILE='C:\temp\gebiedsniveaus\kerntabellen\kerntabel.xls'
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\kerntabel.xls'
   /SHEET=name 'toewijzingstabel_alles'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -91,31 +92,68 @@ dataset close nis7.
 rename variables naamvandewijk=ggw7_naam.
 rename variables gebiedscodepinc=ggw7.
 
+* onderwerp vervolledigen dat de wijken indeelt volgens type.
+*if missing(type) & provincie~=4000 & lag(gemeente)=gemeente type=lag(type).
+if provincie=4000 type=3.
+EXECUTE.
+add value labels type
+3 'Brussel'.
+rename variables type=type0.
+
+AGGREGATE
+  /OUTFILE=* MODE=ADDVARIABLES
+  /BREAK=gemeente
+  /type=MEAN(type0).
+value labels type
+1 'gemeentegedragen'
+2 'gebaseerd op nis7'
+3 'Brussel'.
+
+
+if char.index(statsec,"ZZZZ")>0 & ggw7_naam="" ggw7_naam = "Wijk onbekend".
+if char.index(statsec,"ZZZZ")>0 & ggw7="" ggw7 = concat(string(gemeente,F5.0),"ONB").
+
 * X?JQ indiceert stranden in de kustgemeenten.
+* indien een gemeente een EIGEN wijkindeling heeft, dan doen we met de strandsectoren wat die gemeente wil.
+* in de andere gemeenten nemen we ze NIET mee en worden ze aan gebied onbekend toegevoegd.
+do if type=2.
 if char.index(statsec,"ZZZZ")>0 | char.index(statsec,"X0JQ")>0 | char.index(statsec,"X1JQ")>0 ggw7_naam = "Wijk onbekend".
 if (char.index(statsec,"ZZZZ")>0 | char.index(statsec,"X0JQ")>0 | char.index(statsec,"X1JQ")>0) & ggw7="" ggw7 = concat(string(gemeente,F5.0),"ONB").
+end if.
 EXECUTE.
 
-
+* zorg dat de wijken steeds gesorteerd staan per gemeente, alfabetisch op wijkcode, met wijk onbekend als laatste.
+if char.index(ggw7,"ONB")>0 | char.index(ggw7,"ZZZZ")>0 | char.index(ggw7,"ONB")>0 | char.index(ggw7_naam,"Wijk onbekend")>0 onbekendgebied=1.
+sort cases gemeente (a) onbekendgebied (a) ggw7 (a).
 
 alter type ggw7 (a15).
 if provincie=4000 & ggw7="" ggw7=deelgemeente.
 if provincie=4000 & ggw7_naam="" ggw7_naam=deelgemeente_naam.
 
+
+* volledige naam.
 string ggw7_naamlang (a150).
 if char.index(statsec,"ZZZZ")>0 ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
 if provincie~=4000 ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
 if provincie=4000 & ggw7_naamlang="" ggw7_naamlang = ggw7_naam.
+if onbekendgebied=1 & gemeente < 99991 ggw7_naamlang = concat("Wijk onbekend - ",gemeente_naam).
+if gemeente > 99990 ggw7_naamlang=gemeente_naam.
 
+* indien er slechts één echte wijk is, dan hoeft er geen wijk onbekend gedefinieerd te worden.
+* vind deze gevallen.
+if $casenum=1 wijkpergemeente=1.
+if lag(gemeente)~=gemeente wijkpergemeente=1.
+if lag(gemeente)=gemeente & ggw7=lag(ggw7) wijkpergemeente=lag(wijkpergemeente).
+if lag(gemeente)=gemeente & ggw7~=lag(ggw7) wijkpergemeente=lag(wijkpergemeente)+1.
+* overschrijf gebied onbekend.
+do if onbekendgebied=1 & wijkpergemeente=2.
+compute ggw7=lag(ggw7).
+compute ggw7_naam=lag(ggw7_naam).
+compute ggw7_naamlang=lag(ggw7_naamlang).
+end if.
 EXECUTE.
 
 
-* onderwerp toevoegen dat de wijken indeelt volgens type.
-if missing(type) & provincie~=4000 & lag(gemeente)=gemeente type=lag(type).
-if provincie=4000 type=3.
-EXECUTE.
-add value labels type
-3 'Brussel'.
 DATASET ACTIVATE aggkerntabel.
 DATASET DECLARE typewijk.
 AGGREGATE
@@ -123,12 +161,13 @@ AGGREGATE
   /BREAK=gemeente gemeente_naam type
   /N_BREAK=N.
 DATASET ACTIVATE typewijk.
-* controleer. Missings doordat gebied onbekend later toegevoegd wordt; misschien ook nog onbekende gemeenten of dubbele gemeenten?
+* controleer. Enkel nog missings doordat gebied onbekend niet echt relevant is hier.
 *verwijder missings.
 FILTER OFF.
 USE ALL.
-SELECT IF (type>-1).
+SELECT IF (type>-1 & gemeente ~= 99992).
 EXECUTE.
+
 
 rename variables gemeente=geoitem.
 string geolevel (a8).
@@ -140,7 +179,7 @@ match files
 /keep=geolevel geoitem period
 v9900_type_ggw7.
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\uploadfiles\ggw7_type.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\ggw7_type.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -151,20 +190,24 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\uploadfiles\ggw7_ty
 * einde aanmaak onderwerp.
 
 dataset activate aggkerntabel.
+dataset close typewijk.
+
+
 DATASET DECLARE definitie.
 AGGREGATE
   /OUTFILE='definitie'
-  /BREAK=ggw7 ggw7_naam ggw7_naamlang
-  /N_BREAK=N.
+  /BREAK=ggw7 ggw7_naam ggw7_naamlang gemeente
+  /volgnummer0=min(wijkpergemeente).
 DATASET ACTIVATE definitie.
-delete variables n_break.
+sort cases gemeente (a) volgnummer0 (a).
 compute volgnummer=$casenum.
+EXECUTE.
+delete variables gemeente volgnummer0.
 rename variables
 (ggw7 ggw7_naam ggw7_naamlang
 =gebiedscode naam_kort naam).
 
-
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\ggw7.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\ggw7.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -189,7 +232,7 @@ AGGREGATE
   /tel=N.
 DATASET ACTIVATE agg.
 delete variables tel.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\statsec_ggw7.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_ggw7.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -205,7 +248,7 @@ AGGREGATE
   /tel=N.
 DATASET ACTIVATE agg.
 delete variables tel.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\ggw7_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\ggw7_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -213,16 +256,16 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties 
   /CELLS=VALUES
 /replace.
 
-
-dataset activate aggkerntabel.
-DATASET DECLARE agg.
-AGGREGATE
+* deze laten we vallen omdat dat niet meer helemaal kan, en Swing misschien in de war gaat zijn.
+*dataset activate aggkerntabel.
+*DATASET DECLARE agg.
+*AGGREGATE
   /OUTFILE='agg'
   /BREAK=ggw7 gemeente
   /tel=N.
-DATASET ACTIVATE agg.
-delete variables tel.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\ggw7_gemeente2018.xlsx'
+*DATASET ACTIVATE agg.
+*delete variables tel.
+*SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\ggw7_gemeente2018.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

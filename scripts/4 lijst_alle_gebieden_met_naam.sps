@@ -4,7 +4,7 @@
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\arrondiss.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\arrondiss.xlsx'
   /SHEET=name 'arrondiss'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -21,7 +21,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\arrondiss2018.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\arrondiss2018.xlsx'
   /SHEET=name 'arrondiss2018'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -38,7 +38,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\deelgemeente.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\deelgemeente.xlsx'
   /SHEET=name 'deelgemeente'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -56,7 +56,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\fo_gem.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\fo_gem.xlsx'
   /SHEET=name 'fo_gem'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -73,7 +73,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\gemeente.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'
   /SHEET=name 'gemeente'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -90,7 +90,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\elz.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\elz.xlsx'
   /SHEET=name 'elz'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -107,7 +107,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\gemeente2018.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente2018.xlsx'
   /SHEET=name 'gemeente2018'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -124,7 +124,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\logo.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\logo.xlsx'
   /SHEET=name 'logo'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -141,7 +141,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\politiezone.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\politiezone.xlsx'
   /SHEET=name 'politiezone'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -158,7 +158,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\provincie.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\provincie.xlsx'
   /SHEET=name 'provincie'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -176,7 +176,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\statsec.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\statsec.xlsx'
   /SHEET=name 'statsec'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -193,7 +193,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\uitrustingsniveau.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\uitrustingsniveau.xlsx'
   /SHEET=name 'uitrustingsniveau'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -211,7 +211,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\vervoerregio.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\vervoerregio.xlsx'
   /SHEET=name 'vervoerregio'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -233,7 +233,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\winkelgebied.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\winkelgebied.xlsx'
   /SHEET=name 'winkelgebied'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -251,7 +251,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\kernwinkelgebied.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kernwinkelgebied.xlsx'
   /SHEET=name 'kernwinkelgebied'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -269,7 +269,7 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\statsec2019.xlsx'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\statsec2019.xlsx'
   /SHEET=name 'statsec2019'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -287,14 +287,49 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\ggw7.xlsx'
-  /SHEET=name 'ggw7'
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\TREG.xlsx'
+  /SHEET=name 'TREG'
   /CELLRANGE=FULL
   /READNAMES=ON
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
 DATASET NAME DataSet20 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="treg".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\TREG_gem.xlsx'
+  /SHEET=name 'TREG_gem'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet21 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="treg_gem".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\ggw7.xlsx'
+  /SHEET=name 'ggw7'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet22 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="ggw7".
@@ -319,7 +354,9 @@ ADD FILES /FILE=*
   /FILE='DataSet17'
   /FILE='DataSet18'
   /FILE='DataSet19'
-  /FILE='DataSet20'.
+  /FILE='DataSet20'
+  /FILE='DataSet21'
+  /FILE='DataSet22'.
 EXECUTE.
 
 dataset close dataset3.
@@ -338,6 +375,8 @@ dataset close dataset17.
 dataset close dataset18.
 dataset close dataset19.
 dataset close dataset20.
+dataset close dataset21.
+dataset close dataset22.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.
@@ -352,7 +391,7 @@ rename variables naam=v9900_gebiedsnaam.
 freq geolevel.
 delete variables volgnr.
 delete variables volgnummer.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\uploadfiles\gebiedsnaam_code.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\gebiedsnaam_code.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

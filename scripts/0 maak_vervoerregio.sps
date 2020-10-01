@@ -3,7 +3,7 @@
 GET DATA
   /TYPE=XLSX
   /FILE=
-    'C:\temp\gebiedsniveaus\kerntabellen\gemeente_vervoerregio.xlsx'
+    'C:\github\gebiedsniveaus\kerntabellen\gemeente_vervoerregio.xlsx'
   /SHEET=name 'Blad1'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -33,7 +33,7 @@ match files
 EXECUTE.
 
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\vervoerregio.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\vervoerregio.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

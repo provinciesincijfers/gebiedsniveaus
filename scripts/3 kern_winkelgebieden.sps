@@ -1,5 +1,7 @@
 * Encoding: windows-1252.
 
+* TODO AANPASSEN AAN NIEUWE MAPPENSTRUCTUUR.
+
 * haal de nodige data af:
 https://share.vlaamsbrabant.be/share/page/site/socialeplanning/documentlibrary#filter=path%7C%2FGegevens%2FLocatus%2520%2528detailhandelspanden%2529%2FGeografische%2520lagen%7C&page=1
 * hint: neem het recentste jaar, met op het einde _def.

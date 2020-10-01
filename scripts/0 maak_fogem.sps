@@ -3,7 +3,7 @@
 
 GET DATA
   /TYPE=XLS
-  /FILE='C:\temp\gebiedsniveaus\kerntabellen\gemeente_fogem.xls'
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gemeente_fogem.xls'
   /SHEET=name 'gemeente_fogem'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -36,7 +36,7 @@ EXECUTE.
 
 
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\fo_gem.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\fo_gem.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

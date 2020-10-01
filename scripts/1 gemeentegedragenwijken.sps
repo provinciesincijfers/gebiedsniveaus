@@ -239,6 +239,13 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\statsec_ggw7_readonly.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
 
 dataset activate aggkerntabel.
 DATASET DECLARE agg.

@@ -3,7 +3,7 @@
 GET DATA
   /TYPE=XLS
   /FILE=
-    'C:\temp\gebiedsniveaus\kerntabellen\kerntabel.xls'
+    'C:\github\gebiedsniveaus\kerntabellen\kerntabel.xls'
   /SHEET=name 'toewijzingstabel_alles'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -41,7 +41,7 @@ match files
 /keep= volgnr gebiedscode naam_kort naam.
 EXECUTE.
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\statsec2019.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\statsec2019.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

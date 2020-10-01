@@ -3,7 +3,7 @@
 
 GET DATA
   /TYPE=XLS
-  /FILE='C:\temp\gebiedsniveaus\kerntabellen\gemeente_arrondiss.xls'
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gemeente_arrondiss.xls'
   /SHEET=name 'gemeente_arrondiss'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -35,7 +35,7 @@ match files
 EXECUTE.
 
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\arrondiss.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\arrondiss.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

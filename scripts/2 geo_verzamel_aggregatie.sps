@@ -1122,6 +1122,27 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
+*treg_po.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=treg_po gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (treg_po ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\treg_po_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
 
 *treg_gem.
 

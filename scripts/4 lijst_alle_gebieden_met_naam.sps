@@ -337,6 +337,24 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\treg_po.xlsx'
+  /SHEET=name 'treg_po'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet23 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="treg_po".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
 DATASET ACTIVATE arrondiss.
 ADD FILES /FILE=*
   /FILE='DataSet3'
@@ -356,7 +374,8 @@ ADD FILES /FILE=*
   /FILE='DataSet19'
   /FILE='DataSet20'
   /FILE='DataSet21'
-  /FILE='DataSet22'.
+  /FILE='DataSet22'
+  /FILE='DataSet23'.
 EXECUTE.
 
 dataset close dataset3.
@@ -377,6 +396,7 @@ dataset close dataset19.
 dataset close dataset20.
 dataset close dataset21.
 dataset close dataset22.
+dataset close dataset23.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

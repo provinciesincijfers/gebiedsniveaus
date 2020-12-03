@@ -1,2 +1,0 @@
-# gebiedsniveaus
-Organiseren van gebiedsniveaus

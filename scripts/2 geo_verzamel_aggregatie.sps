@@ -316,6 +316,31 @@ EXECUTE.
 dataset close treg.
 
 
+
+GET DATA
+  /TYPE=XLSX
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\statsec_treg_po.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME treg WINDOW=FRONT.
+match files
+/file=*
+/keep=statsec treg_po.
+sort cases statsec (a).
+DATASET ACTIVATE kerntabel.
+sort cases statsec (a).
+MATCH FILES /FILE=*
+  /TABLE='treg'
+  /BY statsec.
+EXECUTE.
+dataset close treg.
+
+
 GET DATA
   /TYPE=XLSX
   /FILE=
@@ -341,11 +366,11 @@ dataset close treggem.
 
 
 
-SAVE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\verwerkt_alle_gebiedsniveaus.sav'
+SAVE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle_gebiedsniveaus.sav'
   /COMPRESSED.
 
 
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\verwerkt_alle_gebiedsniveaus.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle_gebiedsniveaus.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -355,6 +380,76 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\verwerkt_alle_gebi
 
 * voor het gebruik van deze tabel, zie "gebiedsindelingen voorstellen.docx", hoofdstuk "toevoegen van gebiedsniveaus".
 
+dataset copy statsec.
+dataset activate statsec.
+
+delete variables statsec2019 gemeente2018 arrondiss2018.
+
+* Identify Duplicate Cases.
+SORT CASES BY statsec(A).
+MATCH FILES
+  /FILE=*
+  /BY statsec
+  /FIRST=PrimaryFirst
+  /LAST=PrimaryLast.
+DO IF (PrimaryFirst).
+COMPUTE  MatchSequence=1-PrimaryLast.
+ELSE.
+COMPUTE  MatchSequence=MatchSequence+1.
+END IF.
+LEAVE  MatchSequence.
+FORMATS  MatchSequence (f7).
+MATCH FILES
+  /FILE=*
+  /DROP=PrimaryFirst  MatchSequence.
+EXECUTE.
+
+FILTER OFF.
+USE ALL.
+SELECT IF (PrimaryLast = 1).
+EXECUTE.
+
+DELETE VARIABLES PrimaryLast.
+
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\statsec_als_basis.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/REPLACE.
+
+dataset activate kerntabel.
+dataset close statsec.
+dataset copy statsec2019.
+dataset activate statsec2019.
+
+* de rij met de kustsector deleten.
+if char.index(statsec,"X0JQ")>0 | char.index(statsec,"X1JQ")>0 delete=1.
+* de lege rij deleten.
+if statsec2019="" delete=1.
+execute.
+
+DATASET ACTIVATE statsec2019.
+FILTER OFF.
+USE ALL.
+SELECT IF (missing(delete)).
+EXECUTE.
+
+delete variables statsec delete.
+
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\statsec2019_als_basis.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/REPLACE.
+
+dataset activate kerntabel.
+dataset close statsec2019.
 
 
 
@@ -1005,6 +1100,29 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 
 
+
+*treg_po.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec treg_po
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (treg_po ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_treg_po.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
 *treg_gem.
 
 DATASET DECLARE ag1.
@@ -1045,4 +1163,3 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-DATASET ACTIVATE kerntabel.

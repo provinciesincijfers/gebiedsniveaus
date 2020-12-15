@@ -13,6 +13,45 @@ GET DATA
   /HIDDEN IGNORE=YES.
 EXECUTE.
 DATASET NAME ggw WINDOW=FRONT.
+
+
+* controleer nog eens opnieuw of de wijkcodes wel uniek zijn.
+DATASET ACTIVATE ggw.
+DATASET DECLARE testuniek.
+AGGREGATE
+  /OUTFILE='testuniek'
+  /BREAK=NAAMvandewijk GebiedscodePinC
+  /N_BREAK=N.
+dataset activate testuniek.
+DATASET ACTIVATE testuniek.
+* Identify Duplicate Cases.
+SORT CASES BY GebiedscodePinC(A).
+MATCH FILES
+  /FILE=*
+  /BY GebiedscodePinC
+  /FIRST=PrimaryFirst
+  /LAST=PrimaryLast.
+DO IF (PrimaryFirst).
+COMPUTE  MatchSequence=1-PrimaryLast.
+ELSE.
+COMPUTE  MatchSequence=MatchSequence+1.
+END IF.
+LEAVE  MatchSequence.
+FORMATS  MatchSequence (f7).
+COMPUTE  InDupGrp=MatchSequence>0.
+SORT CASES InDupGrp(D).
+MATCH FILES
+  /FILE=*
+  /DROP=PrimaryFirst InDupGrp MatchSequence.
+VARIABLE LABELS  PrimaryLast 'Indicator of each last matching case as Primary'.
+VALUE LABELS  PrimaryLast 0 'Duplicate Case' 1 'Primary Case'.
+VARIABLE LEVEL  PrimaryLast (ORDINAL).
+FREQUENCIES VARIABLES=PrimaryLast.
+EXECUTE.
+* manuele check.
+
+dataset activate ggw.
+dataset close testuniek.
 match files
 /file=*
 /keep=codsec naamvandewijk gebiedscodepinc.
@@ -279,7 +318,6 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-
 
 
 

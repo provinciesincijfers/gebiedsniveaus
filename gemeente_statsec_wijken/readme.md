@@ -1,4 +1,5 @@
-Vanaf juni 2019 bevat Provincies in Cijfers wijken gebaseerd op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
+Sinds juni 2019 bevat provincies.incijfers.be wijken gebaseerd op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
+
 
 ## Gemeente-gedragen
 
@@ -40,3 +41,12 @@ In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt
 
 
 Voor vragen, contacteer joost.schouppe@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
+
+
+## Kernbestanden
+
+* [koppeltabel statistische sector aan code en naam van de bijhorende gemeentegedragen wijk](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx)
+* [gemeenten volgens beschikbaarheid wijkindeling](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/uploadfiles/ggw7_type.xlsx)
+* [definitietabel alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/gebiedsdefinities/ggw7.xlsx)
+* [koppeltabel alle wijken](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/aggregatietabellen/statsec_ggw7.xlsx)
+

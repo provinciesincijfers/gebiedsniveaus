@@ -48,5 +48,5 @@ Voor vragen, contacteer joost.schouppe@data-en-analyse.be of [uw provinciaal D&A
 * [koppeltabel statistische sector aan code en naam van de bijhorende gemeentegedragen wijk](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx)
 * [gemeenten volgens beschikbaarheid wijkindeling](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/uploadfiles/ggw7_type.xlsx)
 * [definitietabel alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/gebiedsdefinities/ggw7.xlsx)
-* [koppeltabel alle wijken](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/aggregatietabellen/statsec_ggw7.xlsx)
+* [koppeltabel alle statsec naar alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/aggregatietabellen/statsec_ggw7.xlsx)
 

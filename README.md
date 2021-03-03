@@ -1,7 +1,14 @@
 # gebiedsniveaus
-Organiseren van gebiedsniveaus
+Deze omgeving bevat alles in verband met de organisatie van gebiedsniveaus
+
 
 ## Onderdelen:
+
+[gebiedsniveaus_voorstellen_verwerken.md](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gebiedsniveaus_voorstellen_verwerken.md): uitleg over hoe je een nieuwe gebiedsindeling voor Swing kunt voorstellen. Gevolgd door een praktisch stappenplan dat de databeheerders van Swing volgen om de input te verwerken.
+
+[wijzigende_gebiedsindelingen.md](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/wijzigende_gebiedsindelingen.md): uitleg over hoe we omgaan met wijzigingen in de basisindelingen die we gebruiken. In casu gemeentefusies en een herdefiniëring van de statistische sectoren.
+
+
 ### data_voor_swing
 bestanden in Swing-formaat om aan de toepassing duidelijk te maken hoe de gebiedsniveaus in elkaar zitten 
 

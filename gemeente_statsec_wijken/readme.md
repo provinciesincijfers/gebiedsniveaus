@@ -1,4 +1,5 @@
-Vanaf juni 2019 bevat Provincies in Cijfers wijken gebaseerd op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
+Sinds juni 2019 bevat provincies.incijfers.be wijken gebaseerd op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
+
 
 ## Gemeente-gedragen
 
@@ -24,7 +25,9 @@ Binnen Swing worden de wijken getoond in alfabetische volgorde op basis van de g
 
 ## Gebiedsdekkend
 
-<img src="https://provincies.incijfers.be/jive/JiveInlineImg.aspx?presel=ggw7_kaart" alt="kaart" height="300"/>
+[<img src="https://provincies.incijfers.be/jive/JiveInlineImg.aspx?presel=ggw7_kaart" alt="kaart" height="300"/>](https://provincies.incijfers.be/databank?presel=ggw7_kaart&keepworkspace=true)
+
+
 
 Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze indeling met een "automatische" wijkbenadering. Hiervoor baseren we ons op de structuur van de NIS-code van de statistische sectoren. Deze hebben een zekere logica. De code van een statistische sector (of "nis9") heeft negen tekens, waarbij de eerste vijf tekens voor de gemeente (situatie tot 2018, "nis5") staat. Onze voorlopige wijken zijn gebaseerd op "nis7".  We passen deze indeling echter lichtjes aan. Door hervormingen van de sectoren zijn deze codes niet altijd logisch. Daarnaast vermijden we zoveel mogelijk "wijken" die uit meerdere gebieden bestaan die niet op elkaar aansluiten. Voor een klein aantal statistische sectoren hebben we daarom aanpassingen in de indeling gemaakt.
 
@@ -38,3 +41,12 @@ In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt
 
 
 Voor vragen, contacteer joost.schouppe@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
+
+
+## Kernbestanden
+
+* [koppeltabel statistische sector aan code en naam van de bijhorende gemeentegedragen wijk](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx)
+* [gemeenten volgens beschikbaarheid wijkindeling](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/uploadfiles/ggw7_type.xlsx)
+* [definitietabel alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/gebiedsdefinities/ggw7.xlsx)
+* [koppeltabel alle statsec naar alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/aggregatietabellen/statsec_ggw7.xlsx)
+

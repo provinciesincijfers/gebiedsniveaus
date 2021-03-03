@@ -68,3 +68,8 @@ Naar databeheer is er dus bijna geen probleem.
 - data die op het nieuwe gemeenteniveau wordt geleverd kan gewoon ingelezen worden door te werken met `gemeente`
 
 Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren.
+
+**Zijdelingse impact**
+* Enkele indelingen waren niet mogelijk en werden verwijderd
+* Arrondissementen wijzigden ook, en werden volgens dezelfde logica aangepast
+

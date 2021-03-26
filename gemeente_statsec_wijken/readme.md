@@ -1,4 +1,6 @@
-Sinds juni 2019 bevat provincies.incijfers.be wijken gebaseerd op [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
+De basis van raportage op provincies.incijfers.be zijn de [statistische sectoren](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/statistische-sectoren). Statistische sectoren zijn de basis voor heel wat beschikbare statistische verwerkingen. Op basis van deze sectoren kunnen we wijken en deelgemeenten bouwen. Uiteindelijk tellen ze op tot gemeenten.
+
+Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds juni 2019 bevat provincies.incijfers.be daarom op statistische sectoren gebaseerde wijken. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een eigen wijkindeling.
 
 
 ## Gemeente-gedragen
@@ -6,9 +8,10 @@ Sinds juni 2019 bevat provincies.incijfers.be wijken gebaseerd op [statistische 
 Voor de lancering in juni 2019 verzamelden we de ons bekende sector-gebaseerde wijkindelingen van gemeenten. Gemeenten kunnen ons vragen om de wijkindeling voor hun gemeente aan te passen. Neem hiervoor contact op met info@provincies.incijfers.be of [Data & Analyse in uw provincie](https://provincies.incijfers.be/databank?report=project_d_en_a&keepworkspace=true). Verdere aanvullingen of correcties worden halfjaarlijks verwerkt en jaarlijks aangevuld in Provincies in Cijfers.
 
 Voorstellen worden opgenomen onder volgende voorwaarden:
--	Wijken bestaan bijna altijd uit meerdere statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat (bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
+-	Wijken bestaan bijna altijd uit meerdere, aaneensluitende statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat, bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
 -	Wijken zijn doorgaans kleiner dan deelgemeenten. De wijken hoeven echter niet op te tellen tot deelgemeenten
 - Wijken respecteren gemeentegrenzen
+- Deze wijken zijn vooral bedoeld voor statistieken over de inwoners. Door enkele sectoren samen te voegen, krijgen we vrij grote bevolkingsaantallen waardoor je stabielere cijfers krijgt. Het kan soms wel zinvol zijn om onbewoonde gebieden af te splitsen.
 -	We werken met slechts één wijkindeling
     -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
     -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn

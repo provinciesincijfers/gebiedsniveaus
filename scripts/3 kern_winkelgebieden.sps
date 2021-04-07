@@ -2,57 +2,128 @@
 
 * TODO AANPASSEN AAN NIEUWE MAPPENSTRUCTUUR.
 
-* haal de nodige data af:
-https://share.vlaamsbrabant.be/share/page/site/socialeplanning/documentlibrary#filter=path%7C%2FGegevens%2FLocatus%2520%2528detailhandelspanden%2529%2FGeografische%2520lagen%7C&page=1
+* haal de nodige data af van Teams
 * hint: neem het recentste jaar, met op het einde _def.
-* open in QGIS en gooi de rommel eruit. Dubbelecheck dat het in Lambert 72 staat.
+* open in QGIS en gooi de rommel eruit. Sla op als Lambert72.
 * verwijder winkelgebieden buiten Vlaanderen/Brussel.
+
+
+PRESERVE.
+SET DECIMAL DOT.
+
+GET DATA  /TYPE=TXT
+  /FILE="C:\temp\locatus_gebiedsniveaus\winkelgebied.csv"
+  /DELIMITERS=","
+  /QUALIFIER='"'
+  /ARRANGEMENT=DELIMITED
+  /FIRSTCASE=2
+  /DATATYPEMIN PERCENTAGE=95.0
+  /VARIABLES=
+  ID F6.0
+  WINKELGEBI F6.0
+  WINKELGE_1 A100
+  WINKELGE_2 A100
+  WINKELGE_3 A100
+  /MAP.
+RESTORE.
+CACHE.
+EXECUTE.
+DATASET NAME winkelgebied WINDOW=FRONT.
+rename variables winkelgebi=winkelgebied.
+sort cases  winkelgebied (a).
+delete variables ID.
+
+* BEGIN toevoegen gemeente.
+* we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
+* we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
 
 
 
 
 GET TRANSLATE
-  FILE='C:\temp\gebiedsniveaus\werkbestanden\geolagen swing\winkelgebied.dbf'
+  FILE='F:\data\locatus\dump2021_20210301\verwerkt\saga_xy_statsec.dbf'
   /TYPE=DBF /MAP .
-DATASET NAME winkelgebied WINDOW=FRONT.
+DATASET NAME pandstatsec WINDOW=FRONT.
 match files
 /file=*
-/keep=winkelgebi.
+/keep=unique_id_ codsec.
+sort cases unique_id_ (a).
+
+
+GET TRANSLATE
+  FILE='F:\data\locatus\dump2021_20210301\verwerkt\saga_xy_winkelgebied.dbf'
+  /TYPE=DBF /MAP .
+DATASET NAME pandwinkelgebied WINDOW=FRONT.
+match files
+/file=*
+/keep=unique_id_ winkelgebi.
+sort cases unique_id_ (a).
 rename variables winkelgebi=winkelgebied.
-sort cases  winkelgebied (a).
 
-* we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
-* we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
-GET
-  FILE=
-    'C:\Users\plu3532\Documents\detailhandel\locatus\HERVERWERKING\bestanden\werkbestand_volledig.sav'.
-DATASET NAME locatus WINDOW=FRONT.
-
+DATASET ACTIVATE pandwinkelgebied.
 FILTER OFF.
 USE ALL.
-SELECT IF (JAAR = 2020).
+SELECT IF (winkelgebied ~= 0).
 EXECUTE.
 
-DATASET DECLARE wgb_nis.
+
+DATASET ACTIVATE pandstatsec.
+MATCH FILES /FILE=*
+  /TABLE='pandwinkelgebied'
+  /BY unique_id_.
+EXECUTE.
+FILTER OFF.
+USE ALL.
+SELECT IF (winkelgebied ~= 0).
+EXECUTE.
+dataset close pandwinkelgebied.
+sort cases codsec (a).
+rename variables codsec=statsec.
+
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_gemeente.xlsx'
+  /SHEET=name 'statsec_gemeente'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME statsecgemeente WINDOW=FRONT.
+sort cases statsec (a).
+
+dataset activate pandstatsec.
+MATCH FILES /FILE=*
+  /TABLE='statsecgemeente'
+  /BY statsec.
+EXECUTE.
+dataset close statsecgemeente.
+
+
+DATASET DECLARE winkelgebiedgemeente.
 AGGREGATE
-  /OUTFILE='wgb_nis'
-  /BREAK=winkelgebied_id niscode2019_locatus winkelgebied_naam
-WINKELGEBIEDSHOOFDTYPE
-WINKELGEBIEDSTYPERING
-  /koppeling=N.
-DATASET ACTIVATE wgb_nis.
+  /OUTFILE='winkelgebiedgemeente'
+  /BREAK=winkelgebied gemeente
+  /combi=N.
+dataset activate winkelgebiedgemeente.
+DATASET CLOSE pandstatsec.
 
+DATASET ACTIVATE winkelgebiedgemeente.
 FILTER OFF.
 USE ALL.
-SELECT IF (winkelgebied_id ~= 0).
+SELECT IF (gemeente >0).
 EXECUTE.
+
+
 
 
 * Identify Duplicate Cases.
-SORT CASES BY winkelgebied_id(A) koppeling(A).
+SORT CASES BY winkelgebied(A) combi(D).
 MATCH FILES
   /FILE=*
-  /BY winkelgebied_id
+  /BY winkelgebied
   /FIRST=PrimaryFirst
   /LAST=PrimaryLast.
 DO IF (PrimaryFirst).
@@ -66,69 +137,44 @@ COMPUTE  InDupGrp=MatchSequence>0.
 SORT CASES InDupGrp(D).
 MATCH FILES
   /FILE=*
-  /DROP=PrimaryFirst InDupGrp MatchSequence.
-VARIABLE LABELS  PrimaryLast 'Indicator of each last matching case as Primary'.
-VALUE LABELS  PrimaryLast 0 'Duplicate Case' 1 'Primary Case'.
-VARIABLE LEVEL  PrimaryLast (ORDINAL).
-FREQUENCIES VARIABLES=PrimaryLast.
+  /DROP=PrimaryLast InDupGrp MatchSequence.
+VARIABLE LABELS  PrimaryFirst 'Indicator of each first matching case as Primary'.
+VALUE LABELS  PrimaryFirst 0 'Duplicate Case' 1 'Primary Case'.
+VARIABLE LEVEL  PrimaryFirst (ORDINAL).
 EXECUTE.
 
 FILTER OFF.
 USE ALL.
-SELECT IF (PrimaryLast = 1).
+SELECT IF (PrimaryFirst=1).
 EXECUTE.
 
-DELETE VARIABLES koppeling primarylast.
+match files
+/file=*
+/keep=winkelgebied gemeente.
+sort cases winkelgebied (a).
 
-sort cases winkelgebied_id (a).
-rename variables winkelgebied_id = winkelgebied.
+dataset activate winkelgebied.
+sort cases winkelgebied (a).
 
 DATASET ACTIVATE winkelgebied.
 MATCH FILES /FILE=*
-  /TABLE='wgb_nis'
+  /TABLE='winkelgebiedgemeente'
   /BY winkelgebied.
 EXECUTE.
 
-dataset close wgb_nis.
+dataset close winkelgebiedgemeente.
 
+* EINDE toevoegen gemeente.
 
-GET DATA
-  /TYPE=XLSX
-  /FILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\gemeente.xlsx'
-  /SHEET=name 'gemeente'
-  /CELLRANGE=FULL
-  /READNAMES=ON
-  /DATATYPEMIN PERCENTAGE=95.0
-  /HIDDEN IGNORE=YES.
-EXECUTE.
-DATASET NAME gemeente WINDOW=FRONT.
-match files
-/file=*
-/keep=gebiedscode naam.
-rename variables gebiedscode=niscode2019_locatus.
-alter type niscode2019_locatus (a5).
-sort cases niscode2019_locatus (a).
-rename variables naam=gemeente_naam.
-
-dataset activate winkelgebied.
-sort cases niscode2019_locatus (a).
-MATCH FILES /FILE=*
-  /TABLE='gemeente'
-  /BY niscode2019_locatus.
-EXECUTE.
-
-
-
-
+* swing aggregatietabel.
 DATASET DECLARE agg1.
 AGGREGATE
   /OUTFILE='agg1'
-  /BREAK=winkelgebied niscode2019_locatus
+  /BREAK=winkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
 delete variables n_break.
-rename variables niscode2019_locatus=gemeente.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\winkelgebied_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -138,17 +184,67 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties 
 dataset activate winkelgebied.
 dataset close agg1.
 
+
+* BEGIN namen aanmaken.
 rename variables winkelgebied=gebiedscode.
-rename variables winkelgebied_naam=naam_kort.
+rename variables winkelge_1=naam_kort.
+rename variables winkelge_2=winkelgebiedshoofdtype.
+rename variables winkelge_3=WINKELGEBIEDSTYPERING.
+
+* naam van de gemeente ophalen.
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'
+  /SHEET=name 'gemeente'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME gemeentenaam WINDOW=FRONT.
+match files
+/file=*
+/keep=gebiedscode naam.
+rename variables gebiedscode=gemeente.
+rename variables naam=gemeente_naam.
+sort cases gemeente (a).
+
+dataset activate winkelgebied.
+sort cases gemeente (a).
+
+MATCH FILES /FILE=*
+  /TABLE='gemeentenaam'
+  /BY gemeente.
+EXECUTE.
+DATASET CLOSE gemeentenaam.
+
+
+
 string naam (a150).
-compute naam=concat(ltrim(rtrim(gemeente_naam))," - ",ltrim(rtrim(naam_kort))," (",ltrim(rtrim(WINKELGEBIEDSHOOFDTYPE)),")").
+compute naam=concat(ltrim(rtrim(gemeente_naam))," - ",ltrim(rtrim(naam_kort))," (",ltrim(rtrim(winkelgebiedshoofdtype)),")").
 sort cases gemeente_naam (a).
 compute volgnr=$casenum.
 alter type volgnr (f8.0).
 
 
 dataset copy gebiedsniveau.
+dataset activate gebiedsniveau.
 
+match files
+/file=*
+/keep= volgnr gebiedscode naam_kort naam.
+EXECUTE.
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\winkelgebied.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+dataset activate winkelgebied.
+dataset close gebiedsniveau.
 rename variables gebiedscode=geoitem.
 rename variables WINKELGEBIEDSHOOFDTYPE=v1601_label_wgb_hoofdtype.
 rename variables WINKELGEBIEDSTYPERING=v1601_label_wgb_type.
@@ -182,10 +278,11 @@ recode v1601_label_wgb_type
 ('Wijkcentrum klein'='10')
 ('Grootschalige concentratie'='11')
 ('Shopping center'='12')
-('Speciaal Winkelgebied'='13').
-alter type v1601_label_wgb_type (f1.0).
+('Speciaal Winkelgebied'='13')
+('Speciaal winkelgebied'='13').
+alter type v1601_label_wgb_type (f2.0).
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\uploadfiles\wgb_labels.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\wgb_labels.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -193,20 +290,6 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\uploadfiles\wgb_lab
   /CELLS=VALUES
 /replace.
 
-dataset activate gebiedsniveau.
-dataset close winkelgebied.
-match files
-/file=*
-/keep= volgnr gebiedscode naam_kort naam.
-EXECUTE.
-
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\winkelgebied.xlsx'
-  /TYPE=XLS
-  /VERSION=12
-  /MAP
-  /FIELDNAMES VALUE=NAMES
-  /CELLS=VALUES
-/replace.
 
 
 
@@ -214,127 +297,54 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities s
 * kernwinkelgebieden.
 
 GET TRANSLATE
-  FILE='C:\temp\gebiedsniveaus\werkbestanden\geolagen swing\kernwinkelgebied.dbf'
+  FILE='C:\github\gebiedsniveaus\data_voor_swing\shapefiles\kernwinkelgebied.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME kernwinkelgebied WINDOW=FRONT.
-dataset close gebiedsniveau.
+dataset close winkelgebied.
 match files
 /file=*
-/keep=id.
+/keep=id naam gemeente.
 rename variables id=kernwinkelgebied.
-sort cases  kernwinkelgebied (a).
+rename variables gemeente=gemeente_naam.
+sort cases  gemeente_naam (a).
 
 
-dataset activate locatus.
-
-DATASET DECLARE wgb_nis.
-AGGREGATE
-  /OUTFILE='wgb_nis'
-  /BREAK=kernafbakening_id niscode2019_locatus
-  /koppeling=N.
-DATASET ACTIVATE wgb_nis.
-
-FILTER OFF.
-USE ALL.
-SELECT IF (kernafbakening_id ~= 0).
-EXECUTE.
-
-
-* Identify Duplicate Cases.
-SORT CASES BY kernafbakening_id(A) koppeling(A).
-MATCH FILES
-  /FILE=*
-  /BY kernafbakening_id
-  /FIRST=PrimaryFirst
-  /LAST=PrimaryLast.
-DO IF (PrimaryFirst).
-COMPUTE  MatchSequence=1-PrimaryLast.
-ELSE.
-COMPUTE  MatchSequence=MatchSequence+1.
-END IF.
-LEAVE  MatchSequence.
-FORMATS  MatchSequence (f7).
-COMPUTE  InDupGrp=MatchSequence>0.
-SORT CASES InDupGrp(D).
-MATCH FILES
-  /FILE=*
-  /DROP=PrimaryFirst InDupGrp MatchSequence.
-VARIABLE LABELS  PrimaryLast 'Indicator of each last matching case as Primary'.
-VALUE LABELS  PrimaryLast 0 'Duplicate Case' 1 'Primary Case'.
-VARIABLE LEVEL  PrimaryLast (ORDINAL).
-FREQUENCIES VARIABLES=PrimaryLast.
-EXECUTE.
-
-FILTER OFF.
-USE ALL.
-SELECT IF (PrimaryLast = 1).
-EXECUTE.
-
-DELETE VARIABLES koppeling primarylast.
-
-sort cases kernafbakening_id (a).
-rename variables kernafbakening_id = kernwinkelgebied.
-
-DATASET ACTIVATE kernwinkelgebied.
-MATCH FILES /FILE=*
-  /TABLE='wgb_nis'
-  /BY kernwinkelgebied.
-EXECUTE.
-
-dataset close wgb_nis.
-
-
-sort cases niscode2019_locatus (a).
-MATCH FILES /FILE=*
-  /TABLE='gemeente'
-  /BY niscode2019_locatus.
-EXECUTE.
-dataset close gemeente.
-
-
-PRESERVE.
- SET DECIMAL COMMA.
-
-GET DATA  /TYPE=TXT
-  /FILE=
-    "C:\temp\gebiedsniveaus\werkbestanden\basis geodata\kernwinkelgebieden 2020.csv"
-  /DELIMITERS=","
-  /QUALIFIER='"'
-  /ARRANGEMENT=DELIMITED
-  /FIRSTCASE=2
+* naam van de gemeente ophalen.
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'
+  /SHEET=name 'gemeente'
+  /CELLRANGE=FULL
+  /READNAMES=ON
   /DATATYPEMIN PERCENTAGE=95.0
-  /VARIABLES=
-  kernwinkelgebied AUTO
-  kernwinkelgebied_NAAM AUTO
-  /MAP.
-RESTORE.
-CACHE.
+  /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME kwg_naam WINDOW=FRONT.
-*match files
+DATASET NAME gemeentenaam WINDOW=FRONT.
+match files
 /file=*
-/keep=kernwinkelgebied
-kernwinkelgebied_NAAM.
-sort cases kernwinkelgebied (a).
+/keep=gebiedscode naam.
+rename variables gebiedscode=gemeente.
+rename variables naam=gemeente_naam.
+alter type gemeente_naam (a50).
+sort cases gemeente_naam (a).
 
-DATASET ACTIVATE kernwinkelgebied.
-sort cases kernwinkelgebied (a).
+dataset activate kernwinkelgebied.
+
+
 MATCH FILES /FILE=*
-  /TABLE='kwg_naam'
-  /BY kernwinkelgebied.
+  /TABLE='gemeentenaam'
+  /BY gemeente_naam.
 EXECUTE.
-
-
+DATASET CLOSE gemeentenaam.
 
 DATASET DECLARE agg1.
 AGGREGATE
   /OUTFILE='agg1'
-  /BREAK=kernwinkelgebied niscode2019_locatus
+  /BREAK=kernwinkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
 delete variables n_break.
-rename variables niscode2019_locatus=gemeente.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\kernwinkelgebied_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -348,10 +358,15 @@ dataset close agg1.
 
 rename variables kernwinkelgebied=gebiedscode.
 
-string naam_kort (a45).
-compute naam_kort=kernwinkelgebied_NAAM.
-if char.index(kernwinkelgebied_NAAM,"KWG ")=1 naam_kort=char.substr(naam_kort,5,100).
+compute naam=replace(naam,"_","-").
+compute naam=replace(naam,"Ú","é").
 EXECUTE.
+
+string naam_kort (a45).
+compute naam_kort=naam.
+if char.index(naam,"KWG ")=1 naam_kort=char.substr(naam_kort,5,100).
+EXECUTE.
+RENAME VARIABLES naam=naam_orig.
 string naam (a150).
 compute naam=concat(ltrim(rtrim(gemeente_naam))," - ",ltrim(rtrim(naam_kort))).
 sort cases gemeente_naam (a).
@@ -365,10 +380,14 @@ match files
 /keep= volgnr gebiedscode naam_kort naam.
 EXECUTE.
 
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\kernwinkelgebied.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kernwinkelgebied.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+
+
+
+

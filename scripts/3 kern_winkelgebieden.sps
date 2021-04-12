@@ -1,6 +1,6 @@
 * Encoding: windows-1252.
 
-* TODO AANPASSEN AAN NIEUWE MAPPENSTRUCTUUR.
+* TODO: toevoegen dummy-gebiedsniveau dat een extra stap introduceert tussen de (K)WG en de gemeente. Dit om te voorkomen dat de data geaggregeerd zou worden naar gemeenteniveau.
 
 * haal de nodige data af van Teams
 * hint: neem het recentste jaar, met op het einde _def.

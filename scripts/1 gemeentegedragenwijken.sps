@@ -248,6 +248,14 @@ rename variables
 (ggw7 ggw7_naam ggw7_naamlang
 =gebiedscode naam_kort naam).
 
+
+
+DATASET ACTIVATE nieuw.
+COMPUTE lengte=length(ltrim(rtrim(naam_kort))).
+if lengte>50 naam_kort=concat(char.substr(naam_kort,1,47),"...").
+EXECUTE.
+delete variables lengte.
+
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\ggw7.xlsx'
   /TYPE=XLS
   /VERSION=12

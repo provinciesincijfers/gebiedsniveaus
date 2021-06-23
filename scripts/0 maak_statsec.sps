@@ -33,6 +33,13 @@ match files
 /keep= volgnr gebiedscode naam_kort naam.
 EXECUTE.
 
+DATASET ACTIVATE nieuw.
+COMPUTE lengte=length(ltrim(rtrim(naam_kort))).
+if lengte>50 naam_kort=concat(char.substr(naam_kort,1,47),"...").
+EXECUTE.
+delete variables lengte.
+
+
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\statsec.xlsx'
   /TYPE=XLS
   /VERSION=12
@@ -43,3 +50,5 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefiniti
 
 dataset activate kerntabel.
 dataset close nieuw.
+
+

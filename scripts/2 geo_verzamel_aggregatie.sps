@@ -364,7 +364,9 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close treggem.
 
-
+alter type vervoerregio (a2).
+compute vervoerregio=ltrim(rtrim(vervoerregio)).
+EXECUTE.
 
 SAVE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle_gebiedsniveaus.sav'
   /COMPRESSED.
@@ -411,7 +413,6 @@ EXECUTE.
 
 DELETE VARIABLES PrimaryLast.
 
-
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\statsec_als_basis.xlsx'
   /TYPE=XLS
   /VERSION=12
@@ -419,6 +420,26 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\statsec_als_b
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /REPLACE.
+
+* versie voor geometrie.
+string ggwtonbekendtest (a3).
+compute ggwtonbekendtest=CHAR.SUBSTR(ggw7,6,3).
+EXECUTE.
+string DGCHECK (a4).
+COMPUTE DGCHECK=CHAR.SUBSTR(deelgemeente,6,4).
+
+if ggwtonbekendtest="ONB" ggw7="NULL".
+if DGCHECK="ONBE" deelgemeente="NULL".
+
+SAVE TRANSLATE OUTFILE='C:\temp\statsec_voor_geo.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/REPLACE.
+
+
 
 dataset activate kerntabel.
 dataset close statsec.
@@ -1184,3 +1205,6 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+
+DATASET ACTIVATE kerntabel.
+dataset close ag1.

@@ -132,11 +132,12 @@ rename variables naamvandewijk=ggw7_naam.
 rename variables gebiedscodepinc=ggw7.
 
 * onderwerp vervolledigen dat de wijken indeelt volgens type.
+* dit stuk is gedesactiveerd, omdat Brussel nu ook wijken heeft.
 *if missing(type) & provincie~=4000 & lag(gemeente)=gemeente type=lag(type).
-if provincie=4000 type=3.
-EXECUTE.
-add value labels type
-3 'Brussel'.
+*if provincie=4000 type=3.
+*EXECUTE.
+*add value labels type
+*3 'Brussel'.
 rename variables type=type0.
 
 AGGREGATE
@@ -147,7 +148,7 @@ value labels type
 1 'gemeentegedragen'
 2 'gebaseerd op nis7'
 3 'Brussel'.
-
+frequencies type.
 
 if char.index(statsec,"ZZZZ")>0 & ggw7_naam="" ggw7_naam = "Wijk onbekend".
 if char.index(statsec,"ZZZZ")>0 & ggw7="" ggw7 = concat(string(gemeente,F5.0),"ONB").
@@ -166,15 +167,16 @@ if char.index(ggw7,"ONB")>0 | char.index(ggw7,"ZZZZ")>0 | char.index(ggw7,"ONB")
 sort cases gemeente (a) onbekendgebied (a) ggw7 (a).
 
 alter type ggw7 (a15).
-if provincie=4000 & ggw7="" ggw7=deelgemeente.
-if provincie=4000 & ggw7_naam="" ggw7_naam=deelgemeente_naam.
+* twee regels vervallen nu we wijken voor Brussel hebben.
+*if provincie=4000 & ggw7="" ggw7=deelgemeente.
+*if provincie=4000 & ggw7_naam="" ggw7_naam=deelgemeente_naam.
 
 
 * volledige naam.
 string ggw7_naamlang (a150).
 if char.index(statsec,"ZZZZ")>0 ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
-if provincie~=4000 ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
-if provincie=4000 & ggw7_naamlang="" ggw7_naamlang = ggw7_naam.
+compute ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
+*if provincie=4000 & ggw7_naamlang="" ggw7_naamlang = ggw7_naam.
 if onbekendgebied=1 & gemeente < 99991 ggw7_naamlang = concat("Wijk onbekend - ",gemeente_naam).
 if gemeente > 99990 ggw7_naamlang=gemeente_naam.
 
@@ -200,7 +202,7 @@ AGGREGATE
   /BREAK=gemeente gemeente_naam type
   /N_BREAK=N.
 DATASET ACTIVATE typewijk.
-* controleer. Enkel nog missings doordat gebied onbekend niet echt relevant is hier.
+* controleer op missings, dubbels, afwijkende waarde bij type. Enkel nog missings doordat gebied onbekend niet echt relevant is hier.
 *verwijder missings.
 FILTER OFF.
 USE ALL.
@@ -286,6 +288,25 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\statsec_ggw7_reado
   /CELLS=VALUES
 /replace.
 
+* versie voor geometrie.
+string ggwtonbekendtest (a3).
+compute ggwtonbekendtest=CHAR.SUBSTR(ggw7,6,3).
+EXECUTE.
+DATASET ACTIVATE agg.
+FILTER OFF.
+USE ALL.
+SELECT IF (ggwtonbekendtest ~= "ONB").
+EXECUTE.
+delete variables ggwtonbekendtest.
+SAVE TRANSLATE OUTFILE='C:\temp\statsec_ggw7_geo.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
 dataset activate aggkerntabel.
 DATASET DECLARE agg.
 AGGREGATE
@@ -301,6 +322,9 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+
+dataset activate aggkerntabel.
+dataset close agg.
 
 * deze laten we vallen omdat dat niet meer helemaal kan, en Swing misschien in de war gaat zijn.
 *dataset activate aggkerntabel.

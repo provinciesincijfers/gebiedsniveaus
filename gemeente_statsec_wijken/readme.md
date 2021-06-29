@@ -36,7 +36,9 @@ Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze i
 
 De nis7-gebaseerde indeling kunt u via dit platform downloaden ([rechtstreeks](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/dena_nis7.xlsx)).
 
-Voor Brussel werken we gewoon met de gemeente. We voorzien ook een “wijk onbekend” per gemeente, per gewest en over heel de toepassing. De tabellen in deze map zijn steeds de meest actuele. 
+Voor Brussel werken we met de standaard wijkindeling die in het gewest gehanteerd wordt. Wel passen we deze enigszins aan om de gemeentegrenzen te respecteren. Sommige bestaande wijken worden dus in twee of meer stukken verdeeld.
+
+We voorzien ook een “wijk onbekend” per gemeente, per gewest en over heel de toepassing. De tabellen in deze map zijn steeds de meest actuele. 
 In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt. We publiceren ongeveer eens per zes maand een nieuwe versie van deze laag op dat platform. Op dat moment actualiseren we ook [de verzameltabel](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/verzamelbestanden) die alle gebiedsindelingen samenbrengt.
 
 *We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit een gemeente.* 

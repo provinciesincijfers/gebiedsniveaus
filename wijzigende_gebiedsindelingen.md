@@ -161,35 +161,4 @@ Op basis van de nieuwe versie van de statsec en een verse dump van het CRAB, dee
 Voor heel Vlaanderen blijkt het om slechts 137 gevallen te gaan. Er zijn verschillende oorzaken aan te wijzen. Voor een deel zijn deze oplosbaar aan CRAB-kant. Bijvoorbeeld hebben huizen soms adressen van twee gemeenten gekregen, waar dat eigenlijk niet logisch lijkt. Heel vaak gaat het echter om percelen of zelfs huizen die doorsneden worden door een grens. In die gevallen is het sowieso lastig om een gebied geometrisch toe kennen, aangezien het hier steeds om speciale gevallen gaat. De grootte-orde van het probleem laat toe om het ofwel te negeren, ofwel er een automatische oplossing voor te verzinnen. In enkele gevallen is het wellicht de moeite om hier een CRAB-melding voor te doen.
 
 
-### Project overzicht aanpassingen in PinC
-
-- Aanmaak van basisdata om gebiedsniveaus aan te kunnen maken
-  - statsec2019 naar statsec
-    - aanpassen van de naam (want deze bevat de nis9 code)
-    - keuze ivm gebied onbekend.
-      - Gebied onbekend van de oude statsec aggregeert naar gebied onbekend van de nieuwe statsec
-      - In de nieuwe versie gebruiken we een &quot;gebied onbekend&quot; per unieke gemeente zoals die na de fusiegolf van 2018 bestaan.
-      - De nieuwe sectoren aan de kust worden NIET opgevuld vanuit de oude sectoren. Er kan daar dus enkel data ingevuld worden door RECHTSTREEKS op die nieuwe sectoren in te laden!
-  - statsec naar ggw7
-    - enkel impact op stad Antwerpen. Aanpassen zodat deze gebaseerd zijn op nieuwe, niet de oude sectoren.
-    - geen impact wat betreft kust
-  - statsec naar deelgemeente
-    - pmerking: namen van Deelgemeenten uniek gemaakt
-    - ude deelgemeenten worden deelgemeente2019, nieuwe &quot;deelgemeente&quot;
-    - moest aangepast nav Stad Antwerpen
-    - k &quot;gebied onbekend&quot; aangepast zodat er maar één gebied onbekend is per gemeente vanaf 2019
-- In de marge hiervan nagaan of het mogelijk/zinvol is een &quot;statsec-conforme versie van de postcodes&quot; te maken. De GIS-diensten maakten een mooie gebiedslaag met alle postzones van België. \&gt; on hold tot BePost zijn postzones als open data vrijgeeft (zie [issue 21](https://github.com/provinciesincijfers/gebiedsniveaus/issues/21)
-- Vereenvoudigen van geometrie voor gebruik in Swing
-- Omzetten van deze data naar de gebiedsdefinities zoals Swing die nodig heeft: aanpassen bestaande scripts, openstaande todo&#39;s meenemen
-- Aanpassen data in PinC
-  - Voor aggregeerbare data: geen actie nodig
-  - Voor niet-aggregeerbare data: import/export, mits conversie in Stad Antwerpen
-  - Impact op connector: enkel voor Stad Brugge en Stad Antwerpen.
-    - Brugge: kustsector toevoegen, of niets doen
-    - Antwerpen: kiezen of data van statsec2019 naar sector\_oud gaat of van statsec naar sector
-- Controleren rapporten; kaarten gebiedsniveaus; kiezen op kaart
-- Updaten documentatie AlFresco, Github, metadata gebiedsniveaus
-- Publiceren gebiedsniveaus als open data
-
-De kust-sectoren worden bij subgemeentelijke indelingen steeds toegekend aan gebied onbekend. Enkel vanaf gemeenteniveau tellen ze dus volwaardig mee.
 

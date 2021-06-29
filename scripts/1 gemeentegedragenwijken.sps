@@ -194,19 +194,24 @@ compute ggw7_naamlang=lag(ggw7_naamlang).
 end if.
 EXECUTE.
 
+* definieer de eerste wijk van de gemeente (omwille van Dashboard).
+string v9900_eerstewijk (a15).
+if $casenum=1 v9900_eerstewijk=ggw7.
+if lag(gemeente)~=gemeente v9900_eerstewijk=ggw7.
+EXECUTE.
 
 DATASET ACTIVATE aggkerntabel.
 DATASET DECLARE typewijk.
 AGGREGATE
   /OUTFILE='typewijk'
   /BREAK=gemeente gemeente_naam type
-  /N_BREAK=N.
+  /v9900_eerstewijk=first(v9900_eerstewijk).
 DATASET ACTIVATE typewijk.
 * controleer op missings, dubbels, afwijkende waarde bij type. Enkel nog missings doordat gebied onbekend niet echt relevant is hier.
 *verwijder missings.
 FILTER OFF.
 USE ALL.
-SELECT IF (type>-1 & gemeente ~= 99992).
+SELECT IF (type>-1 ).
 EXECUTE.
 
 
@@ -218,7 +223,7 @@ compute period=1970.
 match files
 /file=*
 /keep=geolevel geoitem period
-v9900_type_ggw7.
+v9900_type_ggw7 v9900_eerstewijk.
 
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\ggw7_type.xlsx'
   /TYPE=XLS
@@ -249,8 +254,6 @@ rename variables
 =gebiedscode naam_kort naam).
 
 
-
-DATASET ACTIVATE nieuw.
 COMPUTE lengte=length(ltrim(rtrim(naam_kort))).
 if lengte>50 naam_kort=concat(char.substr(naam_kort,1,47),"...").
 EXECUTE.
@@ -263,6 +266,8 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefiniti
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+
+
 
 
 dataset activate aggkerntabel.

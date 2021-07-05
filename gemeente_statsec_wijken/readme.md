@@ -7,6 +7,8 @@ Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds j
 
 Voor de lancering in juni 2019 verzamelden we de ons bekende sector-gebaseerde wijkindelingen van gemeenten. Gemeenten kunnen ons vragen om de wijkindeling voor hun gemeente aan te passen. Neem hiervoor contact op met info@provincies.incijfers.be of [Data & Analyse in uw provincie](https://provincies.incijfers.be/databank?report=project_d_en_a&keepworkspace=true). Verdere aanvullingen of correcties worden halfjaarlijks verwerkt en jaarlijks aangevuld in Provincies in Cijfers.
 
+Een samenvattende powerpoint omtrent gemeentegedragen wijken vind je [hier](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gemeente_statsec_wijken/gemeentegedragen%20wijken.pdf).
+
 Voorstellen worden opgenomen onder volgende voorwaarden:
 -	Wijken bestaan bijna altijd uit meerdere, aaneensluitende statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat, bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
 -	Wijken zijn doorgaans kleiner dan deelgemeenten. De wijken hoeven echter niet op te tellen tot deelgemeenten

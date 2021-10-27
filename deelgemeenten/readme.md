@@ -4,4 +4,4 @@ Dit is een herwerkte versie van de officiële data over deelgemeenten die via he
 
 Je kan de [methodiek hier nalezen](methodiek.md).
 
-Er is geen geometrie downloadbaar, omdat deze eigendom van het NGI is. Er is wel een hercoderingstabel beschikbaar, waarmee je eenvoudig zelf een laag kunt maken op basis van de open data statistische sectoren geometrie van Statbel.
+Een shapefile met vereenvoudigde geometrie op basis van de open data van statbel is beschikbaar [elders in dit repository](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/shapefiles), enkel Vlaanderen en Brussel. Je kan natuurlijk je eigen geometrie maken op basis van een volledige download van de statistische sectoren en de koppeltable voor België die je hier vindt.

@@ -8,6 +8,13 @@ Dit alles maakt het tot een gedeelde stabiele standaard - een voorwaarde om in t
 
 Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds juni 2019 bevat provincies.incijfers.be daarom *op statistische sectoren gebaseerde wijken*. Elke wijk bestaat uit minstens één sector, en elke sector wordt aan niet meer of minder dan één wijk toegekend.  We volgen hierbij bij voorkeur de indeling die gemeenten zelf hanteren. Indien er geen sector-gebaseerde indeling bij ons bekend is, dan werken we met een voorlopige eigen wijkindeling.
 
+### Een standaardindeling
+
+Wegens het gebrek aan officiële standaard, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap en Arvastat (VDAB), die gelijkaardige indelingen hanteren. Ook Kind & Gezin hergebruikt deze indeling. Op termijn hopen we hier tot één set wijken te komen.
+
+De indeling zoals die hier verdeeld wordt, zal vanaf 11/2021 een open data licentie krijgen.
+
+
 
 ## Gemeente-gedragen statistische sectoren gebaseerde wijken
 
@@ -54,11 +61,6 @@ In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt
 *We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit een gemeente.* 
 
 
-## Hergebruik
-
-Wegens het gebrek aan officiële standaard, streven we samenwerking na rond deze wijkindeling. We stemmen hiervoor af met het Intermutualistisch Agentschap en Arvastat, die gelijkaardige indelingen hanteren. Op termijn hopen we hier tot één set wijken te komen.
-
-De indeling zoals die hier verdeeld wordt, zal vanaf 11/2021 een open data licentie krijgen.
 
 
 ## Kernbestanden

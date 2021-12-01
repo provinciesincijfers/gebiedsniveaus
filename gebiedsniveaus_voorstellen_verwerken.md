@@ -54,8 +54,9 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - de uploadfiles zelf opladen
 - kiezen op kaart updaten (indien nodig)
 - de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen
-- het gebied toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/jive/jivereportcontents.ashx?report=gebiedsinfo)
+- nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/jive/jivereportcontents.ashx?report=gebiedsinfo)
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/jive?report=logboek)
+- indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 
 
 ## Hiërarchie

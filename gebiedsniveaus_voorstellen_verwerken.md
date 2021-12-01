@@ -34,7 +34,7 @@ Met de basistabel en de tabellen per gebiedsniveau werden SPSS scripts (zie [geb
 - Map [verzamelbestanden](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/verzamelbestanden): bestanden  met alle gebiedsindelingen samen, bouwende vanuit de statistische sectoren. Dit afzonderlijk voor de oude statistische sectoren (`statsec_2019`) en de nieuwe (`statsec`). 
 - Map [data_voor_swing/uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles). Dit zijn bestanden die je achteraf zelf kunt inlezen in Swing; ze bevatten metadata over de gebieden zelf (naam, code, wijktype)
 
-Dat laatste bestand koppelen we aan een geografisch bestand van de statistische sectoren. Vervolgens kunnen we in GIS op basis van dat bestand het geografisch bestand maken per gebiedsniveau. Dit is dan eenvoudig een geografische aggregatie. De grenzen vallen per definitie allemaal mooi samen.
+Het verwerkte bestand [statsec als basis](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/statsec_als_basis.xlsx) koppelen we aan een geografisch bestand van de statistische sectoren. Vervolgens kunnen we in GIS op basis van dat bestand het geografisch bestand maken per gebiedsniveau. Dit is dan eenvoudig een geografische aggregatie. De grenzen vallen per definitie allemaal mooi samen.
 
   - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen.
   - Open de output in QGIS.

@@ -23,7 +23,7 @@ AGGREGATE
   /BREAK=NAAMvandewijk GebiedscodePinC
   /N_BREAK=N.
 dataset activate testuniek.
-DATASET ACTIVATE testuniek.
+
 * Identify Duplicate Cases.
 SORT CASES BY GebiedscodePinC(A).
 MATCH FILES
@@ -55,7 +55,10 @@ dataset close testuniek.
 match files
 /file=*
 /keep=codsec naamvandewijk gebiedscodepinc.
+* we gebruiken "type" om de wijken te classificeren, vb "gemeentegedragen" of "nis7-achtig".
 compute type=1.
+value labels type
+1 'gemeentegedragen'.
 rename variables codsec=statsec.
 alter type statsec (a9).
 sort cases statsec (a).
@@ -73,7 +76,7 @@ EXECUTE.
 DATASET NAME nis7 WINDOW=FRONT.
 match files
 /file=*
-/keep=statsec  dena_nis7.
+/keep=statsec dena_nis7.
 EXECUTE.
 alter type statsec (a9).
 sort cases statsec (a).
@@ -87,8 +90,7 @@ EXECUTE.
 dataset close ggw.
 
 recode type (missing=2).
-value labels type
-1 'gemeentegedragen'
+add value labels type
 2 'gebaseerd op nis7'.
 
 if gebiedscodepinc="" gebiedscodepinc=dena_nis7.
@@ -138,17 +140,22 @@ rename variables gebiedscodepinc=ggw7.
 *EXECUTE.
 *add value labels type
 *3 'Brussel'.
-rename variables type=type0.
 
+* opgelet: we hebben rijen geintroduceerd waar type nog niet ingevuld is.
+* we vullen dat gat op met het gemiddelde voor de gemeente.
+* dat MOET steeds 1 of 2 zijn, anders is er iets mis in de data!.
+
+rename variables type=type0.
 AGGREGATE
   /OUTFILE=* MODE=ADDVARIABLES
   /BREAK=gemeente
   /type=MEAN(type0).
 value labels type
 1 'gemeentegedragen'
-2 'gebaseerd op nis7'
-3 'Brussel'.
+2 'gebaseerd op nis7'.
 frequencies type.
+* check de frequentietabel.
+* het is normaal dat de 3 overkoepelende "gebied onbekend" geen type hebben.
 
 if char.index(statsec,"ZZZZ")>0 & ggw7_naam="" ggw7_naam = "Wijk onbekend".
 if char.index(statsec,"ZZZZ")>0 & ggw7="" ggw7 = concat(string(gemeente,F5.0),"ONB").
@@ -255,6 +262,7 @@ rename variables
 
 
 COMPUTE lengte=length(ltrim(rtrim(naam_kort))).
+frequencies lengte.
 if lengte>50 naam_kort=concat(char.substr(naam_kort,1,47),"...").
 EXECUTE.
 delete variables lengte.
@@ -285,6 +293,8 @@ AGGREGATE
   /BREAK=statsec ggw7
   /tel=N.
 DATASET ACTIVATE agg.
+frequencies tel.
+* dit zou altijd 1 moeten zijn.
 delete variables tel.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_ggw7.xlsx'
   /TYPE=XLS

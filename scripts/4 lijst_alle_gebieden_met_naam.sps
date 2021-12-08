@@ -356,22 +356,6 @@ alter type  naam_kort (a100).
 alter type  naam (a100).
 
 
-GET DATA
-  /TYPE=XLSX
-  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\treg_po.xlsx'
-  /SHEET=name 'treg_po'
-  /CELLRANGE=FULL
-  /READNAMES=ON
-  /DATATYPEMIN PERCENTAGE=95.0
-  /HIDDEN IGNORE=YES.
-EXECUTE.
-DATASET NAME DataSet23 WINDOW=FRONT.
-
-string geolevel (a20).
-compute geolevel="treg_po".
-alter type  gebiedscode (a20).
-alter type  naam_kort (a100).
-alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX

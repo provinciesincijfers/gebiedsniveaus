@@ -12,7 +12,7 @@ Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds j
 
 Wegens het gebrek aan officiële standaard, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap en Arvastat (VDAB), die gelijkaardige indelingen hanteren. Ook Kind & Gezin hergebruikt deze indeling. Op termijn hopen we hier tot één set wijken te komen.
 
-De indeling zoals die hier verdeeld wordt is beschikbaar onder de [modellicentie gratis hergebruik](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gemeente_statsec_wijken/license.md).
+De indeling zoals die hier verdeeld wordt is beschikbaar onder de [modellicentie gratis hergebruik](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gemeente_statsec_wijken/license.md). Omwille van de vindbaarheid werd de data toegevoegd aan [metadata.vlaanderen](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/73354ce0-7940-447c-8fec-b4f672abb837) om zo door te stromen naar de [Geopunt catalogus](https://www.geopunt.be/catalogus/datasetfolder/73354ce0-7940-447c-8fec-b4f672abb837).
 
 
 

@@ -113,8 +113,7 @@ De kaart hieronder toont de wijzigingen.
 
 De Stad leverde onderstaande conversietabel aan. Ondanks de grenscorrecties, kan deze tabel gebruikt worden voor het aggregeren van socio-economische gegevens. Immers liggen de adressen bijna steeds bijna geheel in één enkele sector.
 
-|
-statsec2019 | statsec | deelgemeente2019\_naam | deelgemeente\_naam |
+| statsec2019 | statsec | deelgemeente2019\_naam | deelgemeente\_naam |
 | --- | --- | --- | --- |
 | 11002J81- | 11002J8AN | Antwerpen | Antwerpen |
 | 11002J881 | 11002P6FK | Antwerpen | Ekeren |

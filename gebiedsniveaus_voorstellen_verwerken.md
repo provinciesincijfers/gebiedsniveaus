@@ -59,6 +59,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/jive/jivereportcontents.ashx?report=gebiedsinfo)
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/jive?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
+- de fiche op metadata.vlaanderen.be updaten
 
 
 ## Hiërarchie

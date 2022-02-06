@@ -36,7 +36,7 @@ De meeste sectoren liggen in één deelgemeente. Maar dat is niet STEEDS het gev
  
 Eerst herprojecteren we de twee lagen van het NGI naar Lambert72. Dit is het projectiesysteem waarin zowat al onze data zit.
  
-In de dataset van het NGI zijn de sectoren al in stukjes geknipt op alle mogelijke manieren. Eerst voegen we ze samen tot een unieke polygoon per sector en deelgemeente. We doen dit op zo'n manier dat je in de attributentabel daarbij de code meekrijgt van de sector en de deelgemeente waarin dat stukje ligt. Dus een sector die geheel binnen één deelgemeente ligt, bestaat nog één keer. Een sector die in twee gesplitst wordt door een deelgemeentegrens vinden we twee keer terug. De oppervlakte per deel nemen we mee in de analyse.
+In de [dataset van het NGI (adminvec)](https://www.geo.be/catalog/details/fb1e2993-2020-428c-9188-eb5f75e284b9?l=nl) zijn de sectoren al in stukjes geknipt op alle mogelijke manieren. Eerst voegen we ze samen tot een unieke polygoon per sector en deelgemeente. We doen dit op zo'n manier dat je in de attributentabel daarbij de code meekrijgt van de sector en de deelgemeente waarin dat stukje ligt. Dus een sector die geheel binnen één deelgemeente ligt, bestaat nog één keer. Een sector die in twee gesplitst wordt door een deelgemeentegrens vinden we twee keer terug. De oppervlakte per deel nemen we mee in de analyse.
  
 Vervolgens nemen we de bevolking van 2016, en wijzen die toe aan de gesplitste sectoren op basis van de X-Y coordinaten. 
 Dit kan grotendeels conflictvrij, maar er moeten wel enkele keuzes gemaakt worden in de datavoorbereiding.

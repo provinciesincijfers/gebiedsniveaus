@@ -1,4 +1,4 @@
-* Encoding: windows-1252.
+* Encoding: UTF-8.
 
 GET DATA
   /TYPE=XLS
@@ -368,6 +368,29 @@ alter type vervoerregio (a2).
 compute vervoerregio=ltrim(rtrim(vervoerregio)).
 EXECUTE.
 
+GET DATA
+  /TYPE=XLSX
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\gemeente_refreg.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME refreg WINDOW=FRONT.
+match files
+/file=*
+/keep=gemeente refreg.
+sort cases gemeente (a).
+DATASET ACTIVATE kerntabel.
+sort cases gemeente (a).
+MATCH FILES /FILE=*
+  /TABLE='refreg'
+  /BY gemeente.
+EXECUTE.
+dataset close refreg.
+
 SAVE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle_gebiedsniveaus.sav'
   /COMPRESSED.
 
@@ -475,6 +498,7 @@ dataset close statsec2019.
 
 
 
+**EINDE DEEL 1
 
 
 
@@ -486,17 +510,7 @@ dataset close statsec2019.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+**BEGIN DEEL 2
 
 
 
@@ -1205,6 +1219,67 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+DATASET ACTIVATE kerntabel.
+
+
+*refreg.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente refreg
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (refreg ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_refreg.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=refreg provincie
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (refreg ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_provincie.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
 
 DATASET ACTIVATE kerntabel.
+
+* om swing te helpen.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
 dataset close ag1.

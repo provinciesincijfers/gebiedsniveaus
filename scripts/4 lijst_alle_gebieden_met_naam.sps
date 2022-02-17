@@ -1,4 +1,4 @@
-* Encoding: windows-1252.
+* Encoding: UTF-8.
 
 
 
@@ -356,7 +356,6 @@ alter type  naam_kort (a100).
 alter type  naam (a100).
 
 
-
 GET DATA
   /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gewest.xlsx'
@@ -374,6 +373,22 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\refreg.xlsx'
+  /SHEET=name 'refreg'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet25 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="refreg".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
 
 DATASET ACTIVATE arrondiss.
 ADD FILES /FILE=*
@@ -396,7 +411,8 @@ ADD FILES /FILE=*
   /FILE='DataSet21'
   /FILE='DataSet22'
   /FILE='DataSet23'
-  /FILE='DataSet24'.
+  /FILE='DataSet24'
+  /FILE='Dataset25'.
 EXECUTE.
 
 dataset close dataset3.
@@ -419,6 +435,7 @@ dataset close dataset21.
 dataset close dataset22.
 dataset close dataset23.
 dataset close dataset24.
+dataset close dataset25.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

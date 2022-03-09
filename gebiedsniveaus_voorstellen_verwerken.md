@@ -21,7 +21,7 @@ Om een nieuw gebiedsniveau aan te vragen, maak je een bestand zoals je daar aant
 
 Elk gebied van het basisniveau mag aan slechts één afgeleide toegekend worden. De code van het _nieuweafgeleide_ gebied komt doorgaans meerdere keren voor. 
 
-Naast &quot;gebied onbekend&quot; wordt overal &quot;gebied onbekend (Vlaanderen)&quot; en &quot;gebied onbekend (Brussel)&quot; toegevoegd. Enkel op die manier kan Swing een correct totaal berekenen voor Vlaanderen en Brussel. Wanneer een bron enkel &quot;gebied onbekend (om het even waar in België)&quot; heeft, kan je geen correct totaal geven. Databeheerders gebruiken 99991 (Vla), 99992 (Bru) en 99999 (België) voor gemeenten. Op statsec wordt dat 99991ZZZZ en varianten.
+Naast &quot;gebied onbekend&quot; wordt overal &quot;gebied onbekend (Vlaanderen)&quot; en &quot;gebied onbekend (Brussel)&quot; toegevoegd. Enkel op die manier kan Swing een correct totaal berekenen voor Vlaanderen en Brussel. Wanneer een bron enkel &quot;gebied onbekend (om het even waar in België)&quot; heeft, kan je geen correct totaal geven. Databeheerders gebruiken 99991 (Vla), 99992 (Bru) en 99999 (België) voor gemeenten. Op statsec wordt dat 99991ZZZZ en varianten. Wanneer er geen data voor Brussel beschikbaar is, hoef je ook geen gebied onbekend voor Brussel toe te voegen.
 
 Voorzie ook een tekstje voor de [metadata over gebiedsniveaus](https://provincies.incijfers.be/info/9900_gebiedsniveaus.html)
 
@@ -55,7 +55,9 @@ Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, e
 We moeten vervolgens nog enkele stappen uitvoeren:
 - de uploadfiles zelf opladen
 - kiezen op kaart updaten (indien nodig)
-- de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen
+- de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
+- Bij Geolevels vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
+- Bij AccesGroups verschuif je het geolevel van 'not visible' naar 'visible'.
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/jive/jivereportcontents.ashx?report=gebiedsinfo)
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/jive?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners

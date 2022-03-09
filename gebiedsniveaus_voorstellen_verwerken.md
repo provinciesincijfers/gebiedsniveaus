@@ -56,9 +56,9 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - de uploadfiles zelf opladen
 - kiezen op kaart updaten (indien nodig)
 - de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
-- Bij Geolevels vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
-- Bij AccesGroups verschuif je het geolevel van 'not visible' naar 'visible'.
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/jive/jivereportcontents.ashx?report=gebiedsinfo)
+- bij Geolevels vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
+- bij AccesGroups verschuif je het geolevel van 'not visible' naar 'visible'.
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/jive?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 - de fiche op metadata.vlaanderen.be updaten

@@ -1263,23 +1263,5 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 
-DATASET ACTIVATE kerntabel.
-
-* om swing te helpen.
-DATASET DECLARE ag1.
-AGGREGATE
-  /OUTFILE='ag1'
-  /BREAK=gemeente gewest
-  /N_BREAK=N.
-dataset activate ag1.
-delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_gewest.xlsx'
-  /TYPE=XLS
-  /VERSION=12
-  /MAP
-  /FIELDNAMES VALUE=NAMES
-  /CELLS=VALUES
-/replace.
-
 
 dataset close ag1.

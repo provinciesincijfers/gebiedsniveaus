@@ -61,7 +61,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - bij AccesGroups verschuif je het geolevel van 'not visible' naar 'visible'.
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/jive?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
-- de fiche op metadata.vlaanderen.be updaten
+- de fiche op metadata.vlaanderen.be updaten (indien er nieuwe wijkindelingen zijn)
 
 
 ## Hiërarchie

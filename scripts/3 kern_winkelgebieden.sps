@@ -1,13 +1,14 @@
 * Encoding: windows-1252.
 
-* TODO: toevoegen dummy-gebiedsniveau dat een extra stap introduceert tussen de (K)WG en de gemeente. Dit om te voorkomen dat de data geaggregeerd zou worden naar gemeenteniveau.
+* De dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente. Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden naar gemeenteniveau.
 
-* haal de nodige data af van Teams
+* Wacht op de definitieve versies (1 april)
+* haal de winkelgebieden en kernwinkelgebieden af van Teams
 * hint: neem het recentste jaar, met op het einde _def.
 * open in QGIS en gooi de rommel eruit. Sla op als Lambert72.
 * verwijder winkelgebieden buiten Vlaanderen/Brussel.
 
-
+* 2022: manueel de versie 21 en 22 samengevoegd omdat de namen in de shapefile van Locatus al kapot waren.
 PRESERVE.
 SET DECIMAL DOT.
 
@@ -19,7 +20,6 @@ GET DATA  /TYPE=TXT
   /FIRSTCASE=2
   /DATATYPEMIN PERCENTAGE=95.0
   /VARIABLES=
-  ID F6.0
   WINKELGEBI F6.0
   WINKELGE_1 A100
   WINKELGE_2 A100
@@ -33,31 +33,36 @@ rename variables winkelgebi=winkelgebied.
 sort cases  winkelgebied (a).
 delete variables ID.
 
+
+
+
+GET
+  FILE='C:\temp\locatus_gebiedsniveaus\winkelgebied2022.sav'.
+DATASET NAME winkelgebied WINDOW=FRONT.
+
+
 * BEGIN toevoegen gemeente.
 * we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
 * we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
 
-
-
-
 GET TRANSLATE
-  FILE='F:\data\locatus\dump2021_20210301\verwerkt\saga_xy_statsec.dbf'
+  FILE='C:\temp\detailhandel\2022\saga_xy_codsec.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME pandstatsec WINDOW=FRONT.
 match files
 /file=*
-/keep=unique_id_ codsec.
-sort cases unique_id_ (a).
+/keep=unique_id2 cs01012020.
+sort cases unique_id2 (a).
 
 
 GET TRANSLATE
-  FILE='F:\data\locatus\dump2021_20210301\verwerkt\saga_xy_winkelgebied.dbf'
+  FILE='C:\temp\detailhandel\2022\saga_xy_winkelgebied.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME pandwinkelgebied WINDOW=FRONT.
 match files
 /file=*
-/keep=unique_id_ winkelgebi.
-sort cases unique_id_ (a).
+/keep=unique_id2 winkelgebi.
+sort cases unique_id2 (a).
 rename variables winkelgebi=winkelgebied.
 
 DATASET ACTIVATE pandwinkelgebied.
@@ -70,15 +75,15 @@ EXECUTE.
 DATASET ACTIVATE pandstatsec.
 MATCH FILES /FILE=*
   /TABLE='pandwinkelgebied'
-  /BY unique_id_.
+  /BY unique_id2.
 EXECUTE.
 FILTER OFF.
 USE ALL.
 SELECT IF (winkelgebied ~= 0).
 EXECUTE.
 dataset close pandwinkelgebied.
-sort cases codsec (a).
-rename variables codsec=statsec.
+sort cases cs01012020 (a).
+rename variables cs01012020=statsec.
 
 
 
@@ -173,13 +178,15 @@ AGGREGATE
   /BREAK=winkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
+rename variables winkelgebied=winkelgebied_dummy.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
-  /CELLS=VALUES.
+  /CELLS=VALUES
+/replace.
 
 dataset activate winkelgebied.
 dataset close agg1.
@@ -187,7 +194,7 @@ dataset close agg1.
 
 * BEGIN namen aanmaken.
 rename variables winkelgebied=gebiedscode.
-rename variables winkelge_1=naam_kort.
+rename variables winkelgebied_naam=naam_kort.
 rename variables winkelge_2=winkelgebiedshoofdtype.
 rename variables winkelge_3=WINKELGEBIEDSTYPERING.
 
@@ -243,6 +250,26 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefiniti
   /CELLS=VALUES
 /replace.
 
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\winkelgebied_dummy.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+delete variables volgnr naam_kort naam.
+rename variables gebiedscode=winkelgebied.
+compute winkelgebied_dummy=winkelgebied.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_winkelgebied_dummy.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
 dataset activate winkelgebied.
 dataset close gebiedsniveau.
 rename variables gebiedscode=geoitem.
@@ -256,7 +283,7 @@ v1601_label_wgb_hoofdtype
 v1601_label_wgb_type.
 string geolevel (a12).
 compute geolevel="winkelgebied".
-compute period=2020.
+compute period=2022.
 EXECUTE.
 
 recode v1601_label_wgb_hoofdtype
@@ -308,6 +335,7 @@ rename variables id=kernwinkelgebied.
 rename variables gemeente=gemeente_naam.
 sort cases  gemeente_naam (a).
 
+compute naam=replace(naam,"+®","é").
 
 * naam van de gemeente ophalen.
 GET DATA
@@ -343,8 +371,9 @@ AGGREGATE
   /BREAK=kernwinkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
+rename variables kernwinkelgebied = kernwinkelgebied_dummy.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -381,6 +410,28 @@ match files
 EXECUTE.
 
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kernwinkelgebied.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+* dummy niveau.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kernwinkelgebied_dummy.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
+* dummy aggregatie.
+delete variables volgnr naam_kort naam.
+rename variables gebiedscode=kernwinkelgebied.
+compute kernwinkelgebied_dummy=kernwinkelgebied.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_kernwinkelgebied_dummy.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

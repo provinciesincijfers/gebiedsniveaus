@@ -32,4 +32,4 @@ We moeten de gebiedsindelingen regelmatig bijwerken. Dit vraagt een enigszins om
 ### verzamelbestanden
 Hier vind je tabellen die alle informatie bundelen over welke gebiedsniveaus optellen naar welke.
 
-Algemene opmerking: gebiedsniveaus die enkel nog om historische redenen zijn opgenomen, kan je herkennen aan het jaartal aan het einde van de naam. Het betreft het laatste jaar dat ze de officiële versie waren.
+Algemene opmerking: gebiedsniveaus die enkel nog om historische redenen zijn opgenomen, kan je herkennen aan het jaartal aan het einde van de naam. Het betreft in principe het laatste jaar dat ze de officiële versie waren.

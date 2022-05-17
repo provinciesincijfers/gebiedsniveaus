@@ -12,7 +12,7 @@ Door de hier beschreven manier van werken, is het mogelijk om onmiddellijk mee t
 Inhoud:
 
 * [Gemeentefusies 1 januari 2019](#gemeentefusies-1-januari-2019)
-* [Wijziging statsec 1 januari 2020](#statsec-1-januari-2020)
+* [Evoluerende statistische sectoren](#evoluerende-statistische-sectoren)
 
 ## Gemeentefusies 1 januari 2019
 
@@ -75,12 +75,40 @@ Naar databeheer is er dus bijna geen probleem.
 Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren.
 
 **Zijdelingse impact**
-* Enkele indelingen waren niet mogelijk en werden verwijderd
+* Enkele indelingen waren niet meer mogelijk en werden verwijderd
 * Arrondissementen wijzigden ook, en werden volgens dezelfde logica aangepast
 
 
 
-## statsec 1 januari 2020
+## Evoluerende statistische sectoren
+
+provincies.incijfers.be werkt op dit moment met de [statistische sectoren versie 1/1/2020, zoals gepubliceerd op Statbel](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2020). Deze versie wordt zowel gebruikt in de online tool als voor analyse. Voor de online versie werken we met een vereenvoudigde geometrie, om de laadtijd van de website optimaal te houden. Voor analyse gebruiken we de originele versie.
+
+### Wanneer volgt provincies.incijfers.be?
+
+De statistische sectoren zijn relatief onveranderlijke eenheden. Vroeger werden deze om de tien jaar licht herzien, vooral als gevolg van grote evoluties van de bevolking. Sinds 2011 was er geen grote herziening meer. Vanaf 2019 zijn er wel enkele bewegingen. Sindsdien heeft Statbel jaarlijks een nieuwe versie online gezet
+- in [2019](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2019) was dit een fundamentele wijziging: voor het eerst werden de grenzen zonder vereenvoudiging als open data gepubliceerd. In Stad Antwerpen was er ook een kleine inhoudelijke wijziging. De definitie van de kustlijn werd aangepast, waardoor alle kustgemeenten een strandsector kregen.
+- in [2020](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2020) was er enkel een wijziging in geometrie: vooral aan gemeentegrenzen zijn er kleine aanpassingen. In Stad Antwerpen waren er relatief grenscorrecties aan de districten
+- in [2021](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2021) waren er opnieuwe kleine wijzigingen in de geometrie. Daarnaast werd in de Stad Antwerpen de statistische sector van de Schelde (11002M0PA) opgesplitst op de districtsgrens Antwerpen/Bezali (11002M0RA en 11002M0QA).
+
+Overstappen naar een nieuwe versie van de statistische sectoren heeft nogal wat implicaties:
+- afgeleide gebiedsindelingen moeten bijgewerkt worden ([gemeentegedragen wijken](/gemeente_statsec_wijken), [deelgemeenten](/deelgemeenten))
+- de definitie van het gebiedsniveau in Swing moet bijgewerkt worden, of er moet een nieuwe toegevoegd worden
+- alle tijdsreeksen in Swing moeten nagekeken worden: kunnen ze zomaar op de nieuwe indeling gezet worden? Geografische analyse moet misschien voor de hele tijdsreeks opnieuw gebeuren.
+- inkomende en uitgaande [Swing Connectors](https://github.com/provinciesincijfers/connectorbeheer) moeten nagekeken worden. Moeten de partners eventueel ook aanpassingen doen in hun databeheer? Of kunnen we voor de specifieke connector zonder aanpassingen verder?
+
+Er is dus een kosten-baten ananlyse te maken:
+- voor processen waar we steeds de hele historiek verwerken, werken we liefst met een zo recent mogelijke geometrie
+- voor processen waar we zelf de historiek niet kunnen herverwerken, of waar dit arbeidsintensief is, houden we de zaken liefst zo stabiel mogelijk
+
+We houden daarom de gebiedsdefinitie (welke statsec bestaan, welke niet) zo stabiel mogelijk. We passen deze enkel aan indien er significante inhoudelijke wijzigingen in de sectoren zijn, en doen dit in principe hoogstens om de vijf jaar. Voor analyse werken we bij voorkeur met de versie die we voor Swing gebruiken. Enkel indien er een grote meerwaarde is van met de recentste geometrie te werken, kan de verwerker van een specifieke reeks er voor kiezen om met een recentere versie te werken voor een specifieke verwerking. Het is dan de verantwoordelijkheid van deze verwerker om de resultaten om te zetten naar de gebiedsdefinitie zoals deze in Swing bestaat.
+
+Hieronder volgt een historiek van de historische wijzigingen van de statistische sectoren in provincies.incijfers.be
+
+### Update statistische sectoren in provincies.incijfers.be 2020
+
+Tot en met 2019 gebruikten we voor **publicatie** een vereenvoudigde versie van de statistische sectoren [zoals NGI die publiceert ("ADMIN VEC")](https://www.geo.be/catalog/details/fb1e2993-2020-428c-9188-eb5f75e284b9?l=nl). Voor **analyse** gebruikten we de statistische sectoren die statbel publiceerde, om zo dicht mogelijk bij hun analyses te blijven.
+
 
 Drie nieuwswaardige feiten noopten tot een update van de statistische sectoren die we gebruiken voor analyse én voor Swing.
 
@@ -103,9 +131,9 @@ Later ontdekten we dat ook NGI de nieuwe versie inclusief geometrie publiceert; 
 ![afbeelding](https://user-images.githubusercontent.com/10122639/109805994-6c259000-7c24-11eb-939c-f724169a913a.png)
 Later werd dit nog toegevoegd aan [statbel](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/geografie) zelf. Inmiddels zijn er daar zelfs meerdere versies te vinden.
 
-### Wat wijzigt er precies?
+#### Wat wijzigt er precies?
 
-#### In de Stad Antwerpen
+##### In de Stad Antwerpen
 
 De kaart hieronder toont de wijzigingen.
 
@@ -132,7 +160,7 @@ De Stad leverde onderstaande conversietabel aan. Ondanks de grenscorrecties, kan
 Daarnaast leverde de Stad ook een lijst op van geaffecteerde adressen. Een aantal adressen en straten veranderen van postcode. Het gaat in totaal om een 500-tal adressen. De Stad leverde ook info aan om de aggregatie naar [wijken](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/gemeente_statsec_wijken) en [deelgemeenten](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/deelgemeenten) (=districten) volgens hun logica te kunnen doen.
 
 
-#### Aan de kust
+##### Aan de kust
 
 ![afbeelding](https://user-images.githubusercontent.com/10122639/109805586-eefa1b00-7c23-11eb-9d46-57e17ee50d68.png)
 
@@ -143,7 +171,7 @@ De nieuwe sectoren krijgen steeds de code [NISCODE]X0JQ en de naam &quot;STRAND&
 
 Er is doorgaans slechts één sector per gemeente gedefinieerd. Hierdoor kunnen deze niet aan onze subgemeentelijke indelingen toegekend worden, want doorgaans zijn er meerdere wijken die op het starnd uitgeven. In de plaats komen ze steeds bij &quot;gebied onbekend&quot; terecht.
 
-#### Verbeterde geometrie
+##### Verbeterde geometrie
 
 Grenzen zijn verbeterd. Met name aan de gemeentegrenzen is veel verbeterd. Men werkt hiervoor met de (toekomstige) authentieke bron, namelijk het kadaster. Dat is enigszins jammer, omdat in Vlaanderen men meer werkt met het &quot;voorlopig referentiebestand gemeentegrenzen&quot;. Alle wijzigingen in dit voorlopig bestand stromen uiteindelijk door naar het federale kadaster en dan zo naar statbel en uiteindelijk de statistische sectoren. Verdere grenscorrecties worden op termijn wel toegepast in dat bestand.
 

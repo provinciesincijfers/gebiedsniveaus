@@ -1,4 +1,4 @@
-* Encoding: UTF-8.
+* Encoding: windows-1252.
 
 GET DATA
   /TYPE=XLS
@@ -403,7 +403,7 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle
   /CELLS=VALUES
 /replace.
 
-* voor het gebruik van deze tabel, zie "gebiedsindelingen voorstellen.docx", hoofdstuk "toevoegen van gebiedsniveaus".
+* voor het gebruik van deze tabel, zie "https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gebiedsniveaus_voorstellen_verwerken.md", hoofdstuk "toevoegen van gebiedsniveaus".
 
 dataset copy statsec.
 dataset activate statsec.

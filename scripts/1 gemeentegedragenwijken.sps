@@ -1,6 +1,6 @@
 ﻿* Encoding: windows-1252.
 
-* OPGELET: op dit moment genereert dit ook "wijk onbekend" aan de kust.
+* OPGELET: op dit moment genereert dit ook "wijk onbekend" aan de kust. Wanneer je een nieuwe geometrie aanmaakt, let dan op dat "wijk onbekend" niet als gebied op de kaart verschijnt.
 
 * mastertabel van de gemeentegedragen wijken van Github afhalen.
 GET DATA

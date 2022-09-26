@@ -10,9 +10,11 @@ Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds j
 
 ### Een open standaardindeling
 
-Wegens het gebrek aan officiële standaard, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap en Arvastat (VDAB), die gelijkaardige indelingen hanteren. Ook Kind & Gezin hergebruikt deze indeling. Op termijn hopen we hier tot één set wijken te komen.
+Wegens het gebrek aan officiële standaard in Vlaanderen, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap, Arvastat (VDAB) en Hoplr die gelijkaardige indelingen hanteren. Kind & Gezin hergebruikt de indeling zoals hier gepubliceerd. Op termijn hopen we hier tot één set wijken te komen.
 
 De indeling zoals die hier verdeeld wordt is beschikbaar onder de [modellicentie gratis hergebruik](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gemeente_statsec_wijken/license.md). Omwille van de vindbaarheid werd de data toegevoegd aan [metadata.vlaanderen](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/73354ce0-7940-447c-8fec-b4f672abb837) om zo door te stromen naar de [Geopunt catalogus](https://www.geopunt.be/catalogus/datasetfolder/73354ce0-7940-447c-8fec-b4f672abb837).
+
+Voor Wallonië werd in de loop van 2022 een standaard indeling ontwikkeld door het gewestelijke IWEPS. De [hercoderingstabel](https://www.iweps.be/wp-content/uploads/2022/09/Table-de-correspondance-secteurs-statistiques-%E2%80%93-quartiers-statistiques-wallons-V2022.1.xlsx) voor Wallonië vind je terug op [de intropagina over hun subgemeentelijke rapportage](https://www.iweps.be/outils/donnees-infra-regionales/).
 
 
 

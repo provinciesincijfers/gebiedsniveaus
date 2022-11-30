@@ -62,6 +62,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/databank?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 - de fiche op metadata.vlaanderen.be updaten (indien er nieuwe wijkindelingen zijn)
+- bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister)
 
 
 ## Hiërarchie

@@ -157,8 +157,11 @@ frequencies type.
 * check de frequentietabel.
 * het is normaal dat de 3 overkoepelende "gebied onbekend" geen type hebben.
 
+* gebied onbekend aanvullen.
 if char.index(statsec,"ZZZZ")>0 & ggw7_naam="" ggw7_naam = "Wijk onbekend".
 if char.index(statsec,"ZZZZ")>0 & ggw7="" ggw7 = concat(string(gemeente,F5.0),"ONB").
+
+
 
 * X?JQ indiceert stranden in de kustgemeenten.
 * indien een gemeente een EIGEN wijkindeling heeft, dan doen we met de strandsectoren wat die gemeente wil.
@@ -183,6 +186,10 @@ alter type ggw7 (a15).
 string ggw7_naamlang (a150).
 if char.index(statsec,"ZZZZ")>0 ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
 compute ggw7_naamlang = concat(ltrim(rtrim(ggw7_naam))," (",ltrim(rtrim(gemeente_naam)),")").
+* expliciteren dat het om een wijk gaat..
+if ltrim(rtrim(ggw7_naam))=ltrim(rtrim(gemeente_naam)) ggw7_naamlang=concat(ltrim(rtrim(ggw7_naam))," (wijk)").
+
+
 *if provincie=4000 & ggw7_naamlang="" ggw7_naamlang = ggw7_naam.
 if onbekendgebied=1 & gemeente < 99991 ggw7_naamlang = concat("Wijk onbekend - ",gemeente_naam).
 if gemeente > 99990 ggw7_naamlang=gemeente_naam.

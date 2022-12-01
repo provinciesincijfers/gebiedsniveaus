@@ -391,6 +391,33 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close refreg.
 
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gewest_belgie.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME belgie WINDOW=FRONT.
+match files
+/file=*
+/keep=gewest belgie.
+sort cases gewest (a).
+DATASET ACTIVATE kerntabel.
+sort cases gewest (a).
+MATCH FILES /FILE=*
+  /TABLE='belgie'
+  /BY gewest.
+EXECUTE.
+dataset close belgie.
+
+
+
+
 SAVE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle_gebiedsniveaus.sav'
   /COMPRESSED.
 
@@ -1256,6 +1283,32 @@ USE ALL.
 SELECT IF (refreg ~="").
 EXECUTE.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_provincie.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
+dataset close ag1.
+
+
+
+DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gewest belgie
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (gewest ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gewest_belgie.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP

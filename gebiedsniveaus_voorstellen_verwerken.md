@@ -45,7 +45,7 @@ Het verwerkte bestand [statsec als basis](https://github.com/provinciesincijfers
   - Gebruik de GDAL-functie _Samensmelten_ om de statsec die een gemeenschappelijke gebiedscode hebben op het nieuwe niveau tot één object te versmelten.
   - Opgelet: bij deze operatie ontstaan soms artefacten; verdwaalde stukjes grens zonder betekenis. Dit kan je vermijden mits een goede cleaning van je basislaag. Gebruik je een nieuwe basislaag, controleer dan eens of ze goed is door eerst naar gewest samen te smelten en dan te controleren op artefacten._
   - Verwijder kaart-objecten die geen zinvolle gebiedscode hebben (ggw7 met een ZZZZ code aan het strand; indelingen waar Brussel niet gedefinieerd is, ...)
-  - Converteer naar GeoJSON voor [kiezen_op_kaart](https://github.com/provinciesincijfers/kiezen_op_kaart/) (verdere instructies daar te vinden)
+  - Converteer naar GeoJSON voor [kiezen_op_kaart](https://github.com/provinciesincijfers/kiezen_op_kaart/) (verdere instructies daar te vinden; je kan dit pas doen nadat ABF de gebiedsniveaus heeft bijgewerkt)
 
 Bij het draaien van de scripts worden alle relevante bestanden automatisch in de juiste map gezet. Enkel de shapefiles moet je manueel in de map [data_voor_swing/shapefiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/shapefiles) zetten. 
 

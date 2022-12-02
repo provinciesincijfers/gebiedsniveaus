@@ -143,7 +143,7 @@ rename variables gebiedscodepinc=ggw7.
 
 * opgelet: we hebben rijen geintroduceerd waar type nog niet ingevuld is.
 * we vullen dat gat op met het gemiddelde voor de gemeente.
-* dat MOET steeds 1 of 2 zijn, anders is er iets mis in de data!.
+* dat MOET steeds 1 of 2 zijn, anders is er iets mis in de data! Het is normaal dat de 3 overkoepelende "gebied onbekend" geen type hebben.
 
 rename variables type=type0.
 AGGREGATE
@@ -155,7 +155,7 @@ value labels type
 2 'gebaseerd op nis7'.
 frequencies type.
 * check de frequentietabel.
-* het is normaal dat de 3 overkoepelende "gebied onbekend" geen type hebben.
+
 
 * gebied onbekend aanvullen.
 if char.index(statsec,"ZZZZ")>0 & ggw7_naam="" ggw7_naam = "Wijk onbekend".
@@ -292,7 +292,6 @@ dataset close definitie.
 -wijk-gemeente
 wijk-gemeente2018.
 
-* geometrie aanmaken.
 
 DATASET DECLARE agg.
 AGGREGATE
@@ -319,6 +318,8 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\kerntabellen\statsec_ggw7_reado
 /replace.
 
 * versie voor geometrie.
+* OPGELET: op dit moment genereert dit ook "wijk onbekend" aan de kust. Wanneer je een nieuwe geometrie aanmaakt, let dan op dat "wijk onbekend" niet als gebied op de kaart verschijnt.
+
 string ggwtonbekendtest (a3).
 compute ggwtonbekendtest=CHAR.SUBSTR(ggw7,6,3).
 EXECUTE.

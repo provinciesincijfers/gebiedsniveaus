@@ -1316,5 +1316,6 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 
-
+DATASET ACTIVATE kerntabel.
+dataset close aggkerntabel.
 dataset close ag1.

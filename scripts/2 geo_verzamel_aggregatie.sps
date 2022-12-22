@@ -1,4 +1,4 @@
-* Encoding: windows-1252.
+* Encoding: UTF-8.
 
 GET DATA
   /TYPE=XLS
@@ -1271,24 +1271,28 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
-DATASET DECLARE ag1.
-AGGREGATE
+
+*referentieregio's bouwen niet meer op tot provincies (cfr zwijndrecht)
+
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=refreg provincie
   /N_BREAK=N.
-dataset activate ag1.
-delete variables n_break.
-FILTER OFF.
-USE ALL.
-SELECT IF (refreg ~="").
-EXECUTE.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_provincie.xlsx'
+*dataset activate ag1.
+*delete variables n_break.
+*FILTER OFF.
+*USE ALL.
+*SELECT IF (refreg ~="").
+*EXECUTE.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_provincie.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+
 
 
 dataset close ag1.

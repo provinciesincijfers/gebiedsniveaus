@@ -1,4 +1,8 @@
 # METHODIEK
+
+Omdat deelgemeenten geen juridische grondslag hebben, is hier geen eenduidige definitie van. Als vertrekpunt hebben we de dataset van het NGI met deelgemeenten genomen. Deze deelgemeenten gaan terug tot de toestand van de gemeenten in 1961. De deelgemeente is vaak, maar niet altijd af te leiden uit de code van de statistische sector. [Meer info over de dataset](https://publish.geo.be/geonetwork/srv/api/records/fb1e2993-2020-428c-9188-eb5f75e284b9/attachments/AdminVector_ProductSpecificatie_NL.pdf) en [download hier](https://www.geo.be/catalog/details/fb1e2993-2020-428c-9188-eb5f75e284b9?l=nl)
+
+De grenzen van de deelgemeenten aangeleverd door NGI komen bijna perfect overeen met de grenzen van de huidige statistische sectoren. Het grootste deel van dit document legt uit op welke manier we beslist hebben om deelgemeenten te vormen die exact gebaseerd zijn op statistische sectoren.
  
 ## Basismethodiek
 We vertrekken van de sectoren van het NGI. Die zijn op allerlei manieren verknipt in kleine deeltjes. We voegen ze samen tot ze enkel nog opgesplitst zijn indien ze in meerdere NGI deelgemeenten liggen. In bijna alle gevallen levert dit een één-op-één relatie op.

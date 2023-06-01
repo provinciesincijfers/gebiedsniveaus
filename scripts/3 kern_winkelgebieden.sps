@@ -9,11 +9,13 @@
 * verwijder winkelgebieden buiten Vlaanderen/Brussel.
 
 * 2022: manueel de versie 21 en 22 samengevoegd omdat de namen in de shapefile van Locatus al kapot waren.
+* normaal geizen: maak een export vanuit QGIS, sla op als CSV.
+* SPSS verwacht doorgaans ANSI, dus mogelijk nodig om nog te hercoderen met bv Notepad++.
 PRESERVE.
 SET DECIMAL DOT.
 
 GET DATA  /TYPE=TXT
-  /FILE="C:\temp\locatus_gebiedsniveaus\winkelgebied.csv"
+  /FILE="C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\wgb_naam_ansi.csv"
   /DELIMITERS=","
   /QUALIFIER='"'
   /ARRANGEMENT=DELIMITED
@@ -31,14 +33,10 @@ EXECUTE.
 DATASET NAME winkelgebied WINDOW=FRONT.
 rename variables winkelgebi=winkelgebied.
 sort cases  winkelgebied (a).
-delete variables ID.
 
 
 
 
-GET
-  FILE='C:\temp\locatus_gebiedsniveaus\winkelgebied2022.sav'.
-DATASET NAME winkelgebied WINDOW=FRONT.
 
 
 * BEGIN toevoegen gemeente.
@@ -46,45 +44,17 @@ DATASET NAME winkelgebied WINDOW=FRONT.
 * we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
 
 GET TRANSLATE
-  FILE='C:\temp\detailhandel\2022\saga_xy_codsec.dbf'
+  FILE='C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\punten_verrijkt_poging2.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME pandstatsec WINDOW=FRONT.
-match files
-/file=*
-/keep=unique_id2 cs01012020.
-sort cases unique_id2 (a).
-
-
-GET TRANSLATE
-  FILE='C:\temp\detailhandel\2022\saga_xy_winkelgebied.dbf'
-  /TYPE=DBF /MAP .
-DATASET NAME pandwinkelgebied WINDOW=FRONT.
-match files
-/file=*
-/keep=unique_id2 winkelgebi.
-sort cases unique_id2 (a).
 rename variables winkelgebi=winkelgebied.
-
-DATASET ACTIVATE pandwinkelgebied.
 FILTER OFF.
 USE ALL.
 SELECT IF (winkelgebied ~= 0).
 EXECUTE.
 
-
-DATASET ACTIVATE pandstatsec.
-MATCH FILES /FILE=*
-  /TABLE='pandwinkelgebied'
-  /BY unique_id2.
-EXECUTE.
-FILTER OFF.
-USE ALL.
-SELECT IF (winkelgebied ~= 0).
-EXECUTE.
-dataset close pandwinkelgebied.
 sort cases cs01012020 (a).
 rename variables cs01012020=statsec.
-
 
 
 GET DATA
@@ -105,6 +75,7 @@ MATCH FILES /FILE=*
   /BY statsec.
 EXECUTE.
 dataset close statsecgemeente.
+
 
 
 DATASET DECLARE winkelgebiedgemeente.
@@ -194,7 +165,7 @@ dataset close agg1.
 
 * BEGIN namen aanmaken.
 rename variables winkelgebied=gebiedscode.
-rename variables winkelgebied_naam=naam_kort.
+rename variables winkelge_1=naam_kort.
 rename variables winkelge_2=winkelgebiedshoofdtype.
 rename variables winkelge_3=WINKELGEBIEDSTYPERING.
 
@@ -300,9 +271,9 @@ recode v1601_label_wgb_type
 ('Kernverzorgend centrum klein'='5')
 ('Baanconcentratie'='6')
 ('Binnenstedelijke winkelstraat'='7')
-('Buurtcentrum'='8')
-('Wijkcentrum groot'='9')
-('Wijkcentrum klein'='10')
+('Kernondersteunend klein'='8')
+('Kernondersteunend middel'='9')
+('Kernondersteunend groot'='10')
 ('Grootschalige concentratie'='11')
 ('Shopping center'='12')
 ('Speciaal Winkelgebied'='13')
@@ -324,7 +295,7 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\wgb
 * kernwinkelgebieden.
 
 GET TRANSLATE
-  FILE='C:\github\gebiedsniveaus\data_voor_swing\shapefiles\kernwinkelgebied.dbf'
+  FILE='C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\indeling\Kernafbakening.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME kernwinkelgebied WINDOW=FRONT.
 dataset close winkelgebied.

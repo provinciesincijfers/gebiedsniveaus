@@ -10,7 +10,7 @@ Voor sommige statistieken zijn statistische sectoren eenvoudig te klein. Sinds j
 
 ### Een open standaardindeling
 
-Wegens het gebrek aan officiële standaard in Vlaanderen, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap, Arvastat (VDAB) en Hoplr die gelijkaardige indelingen hanteren. Kind & Gezin hergebruikt de indeling zoals hier gepubliceerd. Op termijn hopen we hier tot één set wijken te komen.
+Wegens het gebrek aan officiële standaard in Vlaanderen, streven we samenwerking en hergebruik na rond de wijkindeling die we hier ontwikkelen. We stemmen hiervoor af met het Intermutualistisch Agentschap (IMA), Arvastat (VDAB) en Hoplr die gelijkaardige indelingen hanteren. Op termijn hopen we zo tot één set wijken te komen. Opgroeien, IMA en Wonen in Vlaanderen (vroeger VSMW) hergebruiken de indeling zoals hier gepubliceerd. Ook Arvastat evolueert in die richting.
 
 De indeling zoals die hier verdeeld wordt is beschikbaar onder de [modellicentie gratis hergebruik](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/gemeente_statsec_wijken/license.md). Omwille van de vindbaarheid werd de data toegevoegd aan [metadata.vlaanderen](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/73354ce0-7940-447c-8fec-b4f672abb837) om zo door te stromen naar de [Geopunt catalogus](https://www.geopunt.be/catalogus/datasetfolder/73354ce0-7940-447c-8fec-b4f672abb837).
 
@@ -24,18 +24,21 @@ Voor de lancering in juni 2019 verzamelden we de ons bekende sector-gebaseerde w
 
 Een samenvattende presentatie omtrent gemeentegedragen wijken vind je [hier](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen%20wijken.pdf).
 
-Voorstellen worden opgenomen onder volgende voorwaarden:
+Inhoudelijke voorwaarden:
 - Ze zijn gebaseerd op statistische sectoren. Immers kunnen we anders geen data uit diverse bronnen samenbrengen
 - Wijken bestaan bijna altijd uit meerdere, aaneensluitende statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat, bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
-- Wijken zijn doorgaans kleiner dan deelgemeenten. De wijken hoeven echter niet op te tellen tot deelgemeenten
+- Wijken bestaan naast statistische sectoren en deelgemeenten en vervangen ze niet. Doorgaans zijn ze kleiner dan deelgemeenten, voor zover ze dan nog voldoende inwoners bevatten.
+- Wijken staan volledig los van deelgemeenten, ze hoeven er dus ook niet naar op te tellen
 - Wijken respecteren steeds de gemeentegrenzen
 - Deze wijken zijn vooral bedoeld voor statistieken over de inwoners. Door enkele sectoren samen te voegen, krijgen we vrij grote bevolkingsaantallen waardoor je stabielere cijfers krijgt. Het kan soms wel zinvol zijn om onbewoonde gebieden af te splitsen.
+
+Technische voorwaarden:
 - We werken met slechts één wijkindeling
     -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
     -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn
-- de data wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
-- de indeling is gebaseerd op de [statistische sectoren geldig vanaf 2019](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e)
-- de indeling kent elke statistische sector toe aan één wijk
+- de indeling wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
+- de indeling is gebaseerd op de [statistische sectoren geldig vanaf 2019](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e) of recenter
+- de indeling kent élke statistische sector toe aan één wijk
 - de wijk krijgt een unieke code van het format *[niscode van de gemeente][vrij te kiezen]*. Het vrij te kiezen gedeelte bevat enkel hoofdletters, cijfers en underscores.
 - de wijken krijgen unieke namen binnen de gemeente. Voor gebruik op provincies.incijfers.be maken wij ze uniek over Vlaanderen door er "Naam wijk X (Gemeente Y)" van te maken.
 - er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden

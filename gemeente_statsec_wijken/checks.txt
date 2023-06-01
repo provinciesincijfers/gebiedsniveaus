@@ -6,3 +6,4 @@
 - zijn de wijken aaneengesloten
 - zijn de meeste wijken groter dan één sector?
 - is er een wijk onbekend?
+- zijn de codes van de GGW wijken anders dan die van de NIS7 wijken? (het is beter dat deze anders zijn. Indien ze identiek zijn, moeten reeds in Swing ingelezen hard ingelezen data voor de betreffende wijken manueel gewist worden)

@@ -64,6 +64,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - de fiche op metadata.vlaanderen.be updaten (indien er nieuwe wijkindelingen zijn)
 - bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister)
 
+Indien de wijken geüpdate worden, vergeet dan niet om ook [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden.
 
 ## Hiërarchie
 

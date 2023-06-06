@@ -1,6 +1,6 @@
-* Encoding: UTF-8.
+* Encoding: windows-1252.
 
-
+* vergeet niet volledige nieuwe gebiedsniveaus hier op te nemen!.
 
 GET DATA
   /TYPE=XLSX
@@ -390,6 +390,44 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\elzantw.xlsx'
+  /SHEET=name 'elzantw'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet26 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="elzantw".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\woonmaatschappij.xlsx'
+  /SHEET=name 'woonmaatschappij'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet27 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="woonmaatschappij".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
 DATASET ACTIVATE arrondiss.
 ADD FILES /FILE=*
   /FILE='DataSet3'
@@ -412,7 +450,9 @@ ADD FILES /FILE=*
   /FILE='DataSet22'
   /FILE='DataSet23'
   /FILE='DataSet24'
-  /FILE='Dataset25'.
+  /FILE='Dataset25'
+  /FILE='DataSet26'
+  /FILE='Dataset27'.
 EXECUTE.
 
 dataset close dataset3.
@@ -436,6 +476,8 @@ dataset close dataset22.
 dataset close dataset23.
 dataset close dataset24.
 dataset close dataset25.
+dataset close dataset26.
+dataset close dataset27.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

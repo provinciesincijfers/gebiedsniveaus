@@ -102,7 +102,7 @@ EXECUTE.
 
 
 
-
+* verrijken met kerntabel.
 
 GET DATA
   /TYPE=XLS

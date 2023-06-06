@@ -1,4 +1,4 @@
-* Encoding: UTF-8.
+* Encoding: windows-1252.
 
 GET DATA
   /TYPE=XLS
@@ -414,6 +414,57 @@ MATCH FILES /FILE=*
   /BY gewest.
 EXECUTE.
 dataset close belgie.
+
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gemeente_woonmaatschappij.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME woonmaatschappij WINDOW=FRONT.
+match files
+/file=*
+/keep=gemeente woonmaatschappij.
+sort cases gemeente (a).
+DATASET ACTIVATE kerntabel.
+sort cases gemeente (a).
+MATCH FILES /FILE=*
+  /TABLE='woonmaatschappij'
+  /BY gemeente.
+EXECUTE.
+dataset close woonmaatschappij.
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\ggw7_ELZantw.xlsx'
+  /SHEET=name 'Sheet1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME elzantw WINDOW=FRONT.
+match files
+/file=*
+/keep=ggw7 elzantw.
+alter type ggw7 (a11).
+sort cases ggw7 (a).
+DATASET ACTIVATE kerntabel.
+sort cases ggw7 (a).
+MATCH FILES /FILE=*
+  /TABLE='elzantw'
+  /BY ggw7.
+EXECUTE.
+dataset close elzantw.
+
+
+
 
 
 
@@ -1339,3 +1390,94 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 dataset close aggkerntabel.
 dataset close ag1.
+
+
+
+*woonmaatschappij.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente woonmaatschappij
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (woonmaatschappij > -1).
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_woonmaatschappij.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+* woonmaatschappij aggregeert NIET naar provincie.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=woonmaatschappij gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (woonmaatschappij>-1).
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\woonmaatschappij_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+* elzantw.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=ggw7 elzantw
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (elzantw >-1).
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\ggw7_elzantw.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=elzantw elz
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (elz >-1).
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elzantw_elz.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.

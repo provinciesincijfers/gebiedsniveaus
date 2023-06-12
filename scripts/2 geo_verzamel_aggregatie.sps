@@ -1471,7 +1471,7 @@ dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (elz >-1).
+SELECT IF (elzantw ~="").
 EXECUTE.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elzantw_elz.xlsx'
   /TYPE=XLS

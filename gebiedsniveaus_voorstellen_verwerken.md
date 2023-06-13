@@ -53,18 +53,18 @@ Opgelet: soms is het nodig om niet enkel NAAR je gebiedsniveau te aggregeren, ma
 
 Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, en lezen zij die in in Swing.
 We moeten vervolgens nog enkele stappen uitvoeren:
-- de uploadfiles zelf opladen
-- kiezen op kaart updaten (indien nodig)
+- de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen
+- kiezen op kaart updaten (enkel indien wijzigingen in de gebiedsniveaus die daar gebruikt worden)
 - de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo)
-- bij Geolevels vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
-- bij AccesGroups verschuif je het geolevel van 'not visible' naar 'visible'.
+- bij Geolevels: vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
+- bij AccesGroups>Extern>Geolevels verschuif je het geolevel van 'not visible' naar 'visible'.
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/databank?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 - de fiche op metadata.vlaanderen.be updaten (indien er nieuwe wijkindelingen zijn)
 - bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne)
-- breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC)
-- indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden.
+- breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC, HOPLR). De laatste mail gewoonlijk te vinden met onderwerp "update gemeentegedragen wijken"
+- indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden
 
 ## Hiërarchie
 

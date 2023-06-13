@@ -62,9 +62,9 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/databank?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 - de fiche op metadata.vlaanderen.be updaten (indien er nieuwe wijkindelingen zijn)
-- bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister)
-
-Indien de wijken geüpdate worden, vergeet dan niet om ook [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden.
+- bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne)
+- breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC)
+- indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden.
 
 ## Hiërarchie
 

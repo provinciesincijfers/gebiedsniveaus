@@ -3,7 +3,7 @@
 * voeg in dit bestand de nieuwe wijken toe, en maak een kolom "nieuw" en "gecontroleerd" aan om gemakkelijk te kunnen filteren.
 GET DATA
   /TYPE=XLSX
-  /FILE='C:\temp\ggw7\gemeentegedragen_wijken.xlsx'
+  /FILE='C:\github\gebiedsniveaus\gemeente_statsec_wijken\gemeentegedragen_wijken.xlsx'
   /SHEET=name 'basistabel'
   /CELLRANGE=FULL
   /READNAMES=ON
@@ -22,15 +22,16 @@ EXECUTE.
 DATASET DECLARE test1.
 AGGREGATE
   /OUTFILE='test1'
-  /BREAK=NAAMvandewijk GebiedscodePinC
+  /BREAK=gemeentecode NAAMvandewijk GebiedscodePinC
   /N_BREAK=N.
+
 
 DATASET ACTIVATE test1.
 * Identify Duplicate Cases.
-SORT CASES BY NAAMvandewijk(A).
+SORT CASES BY Gemeentecode(A) NAAMvandewijk(A).
 MATCH FILES
   /FILE=*
-  /BY NAAMvandewijk
+  /BY Gemeentecode NAAMvandewijk
   /FIRST=PrimaryFirst
   /LAST=PrimaryLast.
 DO IF (PrimaryFirst).
@@ -51,7 +52,8 @@ VARIABLE LEVEL  PrimaryLast (ORDINAL).
 FREQUENCIES VARIABLES=PrimaryLast.
 EXECUTE.
 
-* nu zie je bovenaan dubbele namen. Enkel dubbels binnen eenzelfde gemeente zijn relevant!
+
+* nu zie je bovenaan dubbele namen (één naam, meerdere gebiedscodes).
 
 
 * Identify Duplicate Cases.

@@ -51,7 +51,7 @@ Bij het draaien van de scripts worden alle relevante bestanden automatisch in de
 
 Opgelet: soms is het nodig om niet enkel NAAR je gebiedsniveau te aggregeren, maar ook VAN je gebiedsniveau naar hogere gebiedsniveaus te aggregeren. Indien je dit nalaat, dan kan je de hogere gebiedsniveaus niet uitsplitsen naar je nieuwe gebiedsniveau. De basisstructuur van de hiërarchie van gebiedsindelingen wordt hieronder uitgelegd.
 
-Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, en lezen zij die in in Swing.
+Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, en lezen zij die in in Swing. OPGELET: in onze gebiedsdefinitie bestanden gebruiken we "naam_kort", wat door Swing niet herkend wordt. Ofwaal dus manueel dit aanpassen in de Excel files, ofwel Richard er nog eens aan herinneren dit aan te passen vóór upload.
 We moeten vervolgens nog enkele stappen uitvoeren:
 - de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen
 - kiezen op kaart updaten (enkel indien wijzigingen in de gebiedsniveaus die daar gebruikt worden)

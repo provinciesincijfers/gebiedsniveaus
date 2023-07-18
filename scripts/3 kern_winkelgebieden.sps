@@ -3,13 +3,13 @@
 * De dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente. Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden naar gemeenteniveau.
 
 * Wacht op de definitieve versies (1 april)
-* haal de winkelgebieden en kernwinkelgebieden af van Teams
+* haal de winkelgebieden en kernwinkelgebieden af van Teams: https://vlbr.sharepoint.com/:f:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/Ruwe%20data/Locatus%20(detailhandelspanden)/Geografische%20lagen?csf=1&web=1&e=2YW8Ga
 * hint: neem het recentste jaar, met op het einde _def.
 * open in QGIS en gooi de rommel eruit. Sla op als Lambert72.
 * verwijder winkelgebieden buiten Vlaanderen/Brussel.
 
 * 2022: manueel de versie 21 en 22 samengevoegd omdat de namen in de shapefile van Locatus al kapot waren.
-* normaal geizen: maak een export vanuit QGIS, sla op als CSV.
+* normaal gezien: maak een export vanuit QGIS, sla op als CSV.
 * SPSS verwacht doorgaans ANSI, dus mogelijk nodig om nog te hercoderen met bv Notepad++.
 PRESERVE.
 SET DECIMAL DOT.

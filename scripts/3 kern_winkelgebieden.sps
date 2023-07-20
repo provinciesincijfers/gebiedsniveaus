@@ -1,16 +1,20 @@
 * Encoding: windows-1252.
 
-* De dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente. Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden naar gemeenteniveau.
-
-* Wacht op de definitieve versies (1 april)
+* VOORBEREIDING BUITEN DIT SCRIPT
 * haal de winkelgebieden en kernwinkelgebieden af van Teams: https://vlbr.sharepoint.com/:f:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/Ruwe%20data/Locatus%20(detailhandelspanden)/Geografische%20lagen?csf=1&web=1&e=2YW8Ga
-* hint: neem het recentste jaar, met op het einde _def.
-* open in QGIS en gooi de rommel eruit. Sla op als Lambert72.
-* verwijder winkelgebieden buiten Vlaanderen/Brussel.
 
-* 2022: manueel de versie 21 en 22 samengevoegd omdat de namen in de shapefile van Locatus al kapot waren.
-* normaal gezien: maak een export vanuit QGIS, sla op als CSV.
+* OPMERKINGEN.
+* om de gebiedscode en naam van het gebied als indicator (dus v9900_gebiedscode etc) goed te krijgen, moet ook script 4 gedraaid worden.
+* de dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente. Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden naar gemeenteniveau.
+* OPMERKING: het huidige script veronderstelt dat je een bestand krijgt waarin de winkelpunten al gekoppeld zijn aan de wgb en aan de gemeente (hier bijvoorbeeld punten_verrijkt_poging2.dbf). 
+Je kan de nood aan zo'n bestand vermijden door in de plaats in GIS gewoon een spatial join te doen van de wgb met gemeentegrenzen, gebruik makende van "largest overlap" om toe te kennen aan gemeente.
+
+
+* OPGELET: als je de namen uit de DBF van de shapefile zou ophalen, dan gaan speciale tekens kapot zijn.
+* je kan dit normaal gezien omzeilen door de shapefile in QGIS op te slaan als CSV (hier wgb_naam_ansi.csv).
 * SPSS verwacht doorgaans ANSI, dus mogelijk nodig om nog te hercoderen met bv Notepad++.
+* doe dit zowel voor de winkelgebieden als de kernwinkelgebieden (deze worden verderop verwerkt).
+
 PRESERVE.
 SET DECIMAL DOT.
 
@@ -42,7 +46,6 @@ sort cases  winkelgebied (a).
 * BEGIN toevoegen gemeente.
 * we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
 * we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
-
 GET TRANSLATE
   FILE='C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\punten_verrijkt_poging2.dbf'
   /TYPE=DBF /MAP .
@@ -55,7 +58,6 @@ EXECUTE.
 
 sort cases cs01012020 (a).
 rename variables cs01012020=statsec.
-
 
 GET DATA
   /TYPE=XLSX
@@ -77,7 +79,7 @@ EXECUTE.
 dataset close statsecgemeente.
 
 
-
+* aanmaken lijst combinaties van wgb met gemeente.
 DATASET DECLARE winkelgebiedgemeente.
 AGGREGATE
   /OUTFILE='winkelgebiedgemeente'
@@ -94,7 +96,7 @@ EXECUTE.
 
 
 
-
+* DIT IS NIET MEER NODIG INDIEN JE MET LARGEST OVERLAP ZOU WERKEN.
 * Identify Duplicate Cases.
 SORT CASES BY winkelgebied(A) combi(D).
 MATCH FILES
@@ -254,7 +256,8 @@ v1601_label_wgb_hoofdtype
 v1601_label_wgb_type.
 string geolevel (a12).
 compute geolevel="winkelgebied".
-compute period=2022.
+* dit mag op 1970 staan omdat het periode-onafhankelijke info is.
+compute period=1970.
 EXECUTE.
 
 recode v1601_label_wgb_hoofdtype
@@ -306,7 +309,9 @@ rename variables id=kernwinkelgebied.
 rename variables gemeente=gemeente_naam.
 sort cases  gemeente_naam (a).
 
-compute naam=replace(naam,"+®","é").
+compute naam=replace(naam,"+Â®","Ã©").
+compute naam=replace(naam,"_","-").
+compute naam=replace(naam,"Ãš","Ã©").
 
 * naam van de gemeente ophalen.
 GET DATA
@@ -358,9 +363,7 @@ dataset close agg1.
 
 rename variables kernwinkelgebied=gebiedscode.
 
-compute naam=replace(naam,"_","-").
-compute naam=replace(naam,"Ú","é").
-EXECUTE.
+
 
 string naam_kort (a45).
 compute naam_kort=naam.

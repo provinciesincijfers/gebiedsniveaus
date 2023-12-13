@@ -1,4 +1,4 @@
-* Encoding: UTF-8.
+* Encoding: windows-1252.
 
 GET DATA
   /TYPE=XLS
@@ -429,7 +429,7 @@ EXECUTE.
 DATASET NAME woonmaatschappij WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente woonmaatschappij.
+/keep=gemeente werkingsgebied_woonmaatschappij.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -1398,13 +1398,13 @@ dataset close ag1.
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=gemeente woonmaatschappij
+  /BREAK=gemeente werkingsgebied_woonmaatschappij
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (woonmaatschappij > -1).
+SELECT IF (werkingsgebied_woonmaatschappij > -1).
 EXECUTE.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_woonmaatschappij.xlsx'
   /TYPE=XLS
@@ -1420,13 +1420,13 @@ DATASET ACTIVATE kerntabel.
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=woonmaatschappij gewest
+  /BREAK=werkingsgebied_woonmaatschappij gewest
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (woonmaatschappij>-1).
+SELECT IF (werkingsgebied_woonmaatschappij>-1).
 EXECUTE.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\woonmaatschappij_gewest.xlsx'
   /TYPE=XLS

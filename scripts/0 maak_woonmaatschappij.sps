@@ -18,12 +18,12 @@ DATASET NAME start WINDOW=FRONT.
 DATASET DECLARE woonmaatschappij.
 AGGREGATE
   /OUTFILE='woonmaatschappij'
-  /BREAK=woonmaatschappij Namewoonmaatschappij
+  /BREAK=werkingsgebied_woonmaatschappij Namewerkingsgebied_woonmaatschappij
   /N_BREAK=N.
 dataset activate woonmaatschappij.
 delete variables n_break.
-rename variables woonmaatschappij=gebiedscode.
-rename variables Namewoonmaatschappij=naam_kort.
+rename variables werkingsgebied_woonmaatschappij=gebiedscode.
+rename variables Namewerkingsgebied_woonmaatschappij=naam_kort.
 string naam (a55).
 compute naam=naam_kort.
 if (gebiedscode=91 | gebiedscode=92 | gebiedscode=99)  onbekend_gebied=1.

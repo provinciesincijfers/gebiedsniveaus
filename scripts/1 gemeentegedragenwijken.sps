@@ -253,7 +253,7 @@ AGGREGATE
   /BREAK=gemeente gemeente_naam type
   /v9900_eerstewijk=first(v9900_eerstewijk).
 DATASET ACTIVATE typewijk.
-* controleer op missings, dubbels, afwijkende waarde bij type. Enkel nog missings doordat gebied onbekend niet echt relevant is hier.
+* controleer op missings, dubbels, afwijkende waarde bij type. Enkel nog missings doordat gebied onbekend niet echt relevant is hier (N=3).
 *verwijder missings.
 FILTER OFF.
 USE ALL.

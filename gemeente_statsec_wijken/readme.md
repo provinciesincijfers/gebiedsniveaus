@@ -77,5 +77,5 @@ In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt
 
 
 
-Voor vragen, contacteer joost.schouppe@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
+Voor vragen, contacteer emilien.dupont@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
 

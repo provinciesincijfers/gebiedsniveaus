@@ -26,7 +26,7 @@ rename variables politiezone=gebiedscode.
 rename variables Namesamenwerkingpolitie=naam_kort.
 string naam (a44).
 compute naam=naam_kort.
-if (gebiedscode="ipz991" | gebiedscode="ipz992" | gebiedscode="ipz999")  onbekend_gebied=1.
+if (gebiedscode="ipz991" | gebiedscode="ipz992" | gebiedscode="ipz999" | gebiedscode="ipz993")  onbekend_gebied=1.
 sort cases onbekend_gebied (a) naam (a).
 compute volgnr=$casenum.
 alter type volgnr (f8.0).

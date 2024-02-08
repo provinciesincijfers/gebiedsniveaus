@@ -22,8 +22,8 @@ AGGREGATE
   /N_BREAK=N.
 dataset activate woonmaatschappij.
 delete variables n_break.
-rename variables werkingsgebied_woonmaatschappij=gebiedscode.
-rename variables Namewerkingsgebied_woonmaatschappij=naam_kort.
+rename variables woonmaatschappij=gebiedscode.
+rename variables Namewoonmaatschappij=naam_kort.
 string naam (a55).
 compute naam=naam_kort.
 if (gebiedscode=91 | gebiedscode=92 | gebiedscode=99)  onbekend_gebied=1.

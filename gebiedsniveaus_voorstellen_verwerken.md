@@ -61,7 +61,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - bij AccesGroups>Extern>Geolevels verschuif je het geolevel van 'not visible' naar 'visible'.
 - de update aanvullen in het [logboek](https://provincies.incijfers.be/databank?report=logboek)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
-- bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne)
+- bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne). Aanvulling: bij een nieuwe update gaat het ook mis voor de wijken die niet werden aangepast. Laadt dus steeds de data volledig opnieuw in. 
 - breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC, HOPLR). De laatste mail gewoonlijk te vinden met onderwerp "update gemeentegedragen wijken"
 - indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden
 

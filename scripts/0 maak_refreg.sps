@@ -1,4 +1,4 @@
-* Encoding: UTF-8.
+* Encoding: windows-1252.
 
 GET DATA
   /TYPE=XLSX
@@ -45,4 +45,4 @@ dataset close start.
 
 
 
-
+*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name. 

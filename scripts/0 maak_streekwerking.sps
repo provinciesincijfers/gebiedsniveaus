@@ -1,33 +1,29 @@
 * Encoding: windows-1252.
 
 GET DATA
-  /TYPE=XLS
+  /TYPE=XLSX
   /FILE=
-    'C:\github\gebiedsniveaus\kerntabellen\gemeente_elz.xls'
+    'C:\github\gebiedsniveaus\kerntabellen\gemeente_streekwerking.xlsx'
   /SHEET=name 'Blad1'
   /CELLRANGE=FULL
   /READNAMES=ON
-  /DATATYPEMIN PERCENTAGE=95.0.
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
 EXECUTE.
 DATASET NAME start WINDOW=FRONT.
 
 
-
-
-
-DATASET DECLARE elz.
+DATASET DECLARE werkbestand.
 AGGREGATE
-  /OUTFILE='elz'
-  /BREAK=elz Nameelz
+  /OUTFILE='werkbestand'
+  /BREAK=streekwerking Namegebiedstreekwerking
   /N_BREAK=N.
-dataset activate elz.
+dataset activate werkbestand.
 delete variables n_break.
-rename variables elz=gebiedscode.
-rename variables Nameelz=naam_kort.
+rename variables streekwerking=gebiedscode.
+rename variables Namegebiedstreekwerking=naam_kort.
 string naam (a55).
 compute naam=naam_kort.
-if (gebiedscode="elz91" | gebiedscode="elz92" | gebiedscode="elz99")  onbekend_gebied=1.
-sort cases onbekend_gebied (a) naam (a).
 compute volgnr=$casenum.
 alter type volgnr (f8.0).
 
@@ -37,7 +33,7 @@ match files
 EXECUTE.
 
 
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\elz.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\streekwerking.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -50,4 +46,3 @@ dataset close start.
 
 
 *!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name. 
-

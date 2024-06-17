@@ -428,6 +428,23 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\streekwerking.xlsx'
+  /SHEET=name 'streekwerking'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet28 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="streekwerking".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
 DATASET ACTIVATE arrondiss.
 ADD FILES /FILE=*
   /FILE='DataSet3'
@@ -452,7 +469,8 @@ ADD FILES /FILE=*
   /FILE='DataSet24'
   /FILE='Dataset25'
   /FILE='DataSet26'
-  /FILE='Dataset27'.
+  /FILE='Dataset27'
+  /File='Dataset28'.
 EXECUTE.
 
 dataset close dataset3.
@@ -478,6 +496,7 @@ dataset close dataset24.
 dataset close dataset25.
 dataset close dataset26.
 dataset close dataset27.
+dataset close dataset28.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

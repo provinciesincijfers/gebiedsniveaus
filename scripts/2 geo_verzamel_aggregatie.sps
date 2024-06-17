@@ -263,10 +263,6 @@ EXECUTE.
 dataset close logo.
 
 
-
-
-
-
 GET DATA
   /TYPE=XLSX
   /FILE=
@@ -465,6 +461,27 @@ dataset close elzantw.
 
 
 
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gemeente_streekwerking.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME streekwerking WINDOW=FRONT.
+match files
+/file=*
+/keep=gemeente streekwerking.
+sort cases gemeente (a).
+DATASET ACTIVATE kerntabel.
+sort cases gemeente (a).
+MATCH FILES /FILE=*
+  /TABLE='streekwerking'
+  /BY gemeente.
+EXECUTE.
+dataset close streekwerking.
 
 
 
@@ -1502,3 +1519,45 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
+
+*streekwerking
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente streekwerking
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (streekwerking ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_streekwerking.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=streekwerking provincie
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (streekwerking ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\streekwerking_provincie.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.

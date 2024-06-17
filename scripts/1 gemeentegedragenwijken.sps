@@ -86,11 +86,13 @@ dataset activate ggw.
 dataset close testuniek.
 match files
 /file=*
-/keep=codsec naamvandewijk gebiedscodepinc.
+/keep=codsec naamvandewijk gebiedscodepinc provinciegemaakt.
 * we gebruiken "type" om de wijken te classificeren, vb "gemeentegedragen" of "nis7-achtig".
 compute type=1.
+if provinciegemaakt = 1 type = 3.
 value labels type
-1 'gemeentegedragen'.
+1 'gemeentegedragen'
+3 'wijkindeling - voorstel provincie'.
 rename variables codsec=statsec.
 alter type statsec (a9).
 sort cases statsec (a).
@@ -175,7 +177,8 @@ rename variables gebiedscodepinc=ggw7.
 
 * opgelet: we hebben rijen geintroduceerd waar type nog niet ingevuld is.
 * we vullen dat gat op met het gemiddelde voor de gemeente.
-* dat MOET steeds 1 of 2 zijn, anders is er iets mis in de data! Het is normaal dat de 3 overkoepelende "gebied onbekend" geen type hebben.
+* dat MOET steeds 1 of 2 zijn, anders is er iets mis in de data! 
+  *  Het is normaal dat de 4 overkoepelende "gebied onbekend" geen type hebben.
 
 rename variables type=type0.
 AGGREGATE
@@ -184,7 +187,8 @@ AGGREGATE
   /type=MEAN(type0).
 value labels type
 1 'gemeentegedragen'
-2 'gebaseerd op nis7'.
+2 'gebaseerd op nis7'
+3 'wijkindeling - voorstel provincie'.
 frequencies type.
 * check de frequentietabel.
 
@@ -388,6 +392,11 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 
 dataset activate aggkerntabel.
 dataset close agg.
+
+*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name. 
+
+
+
 
 * deze laten we vallen omdat dat niet meer helemaal kan, en Swing misschien in de war gaat zijn.
 *dataset activate aggkerntabel.

@@ -191,8 +191,9 @@ EXECUTE.
 dataset close elz.
 
 
+*agr uitrustingsniveau werd verwijderd
 
-GET DATA
+*GET DATA
   /TYPE=XLSX
   /FILE=
     'C:\github\gebiedsniveaus\kerntabellen\gemeente_uitrustingsniveau.xlsx'
@@ -201,19 +202,19 @@ GET DATA
   /READNAMES=ON
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
-EXECUTE.
-DATASET NAME uitrustingsniveau WINDOW=FRONT.
-match files
+*EXECUTE.
+*DATASET NAME uitrustingsniveau WINDOW=FRONT.
+*match files
 /file=*
 /keep=gemeente uitrustingsniveau.
-sort cases gemeente (a).
-DATASET ACTIVATE kerntabel.
-sort cases gemeente (a).
-MATCH FILES /FILE=*
+*sort cases gemeente (a).
+*DATASET ACTIVATE kerntabel.
+*sort cases gemeente (a).
+*MATCH FILES /FILE=*
   /TABLE='uitrustingsniveau'
   /BY gemeente.
-EXECUTE.
-dataset close uitrustingsniveau.
+*EXECUTE.
+*dataset close uitrustingsniveau.
 
 
 GET DATA
@@ -867,28 +868,28 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
+*aggr uitrustingsniveau werden verwijderd*
 
-
-DATASET DECLARE ag1.
-AGGREGATE
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=gemeente uitrustingsniveau
   /N_BREAK=N.
-dataset activate ag1.
-delete variables n_break.
-DATASET ACTIVATE ag1.
-FILTER OFF.
-USE ALL.
-SELECT IF (uitrustingsniveau ~= "").
-EXECUTE.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_uitrustingsniveau.xlsx'
+*dataset activate ag1.
+*delete variables n_break.
+*DATASET ACTIVATE ag1.
+*FILTER OFF.
+*USE ALL.
+*SELECT IF (uitrustingsniveau ~= "").
+*EXECUTE.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_uitrustingsniveau.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-DATASET ACTIVATE kerntabel.
+*DATASET ACTIVATE kerntabel.
 
 
 
@@ -973,30 +974,30 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
+*aggr uitrustingsniveau werden verwijderd
 
-
-DATASET DECLARE ag1.
-AGGREGATE
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=uitrustingsniveau gewest
   /N_BREAK=N.
-dataset activate ag1.
-delete variables n_break.
+*dataset activate ag1.
+*delete variables n_break.
 
 * enkele zijn leeg wegens Brussel of gebied onbekend.
-FILTER OFF.
-USE ALL.
-SELECT IF (uitrustingsniveau ~= "").
-EXECUTE.
+*FILTER OFF.
+*USE ALL.
+*SELECT IF (uitrustingsniveau ~= "").
+*EXECUTE.
 
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\uitrustingsniveau_gewest.xlsx'
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\uitrustingsniveau_gewest.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-DATASET ACTIVATE kerntabel.
+*DATASET ACTIVATE kerntabel.
 
 
 

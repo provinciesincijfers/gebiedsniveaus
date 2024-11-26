@@ -38,9 +38,9 @@ Met de basistabel en de tabellen per gebiedsniveau werden SPSS scripts (zie [geb
 
 Het verwerkte bestand [statsec als basis](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/statsec_als_basis.xlsx) koppelen we aan een geografisch bestand van de statistische sectoren. Vervolgens kunnen we in GIS op basis van dat bestand het geografisch bestand maken per gebiedsniveau. Dit is dan eenvoudig een geografische aggregatie. De grenzen vallen per definitie allemaal mooi samen.
 
-  - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen.
+  - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen. Dit enkel wanneer er een nieuwe statsec laag nodig is! Anders start je gewoon van punt 3.
   - Open de output in QGIS.
-  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx)
+  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx). Voor bovengemeentelijke niveaus kan je vertrekken van de afzonderlijke kerntabel excel files. 
   - Exporteer deze verrijkte versie van de sectoren naar een nieuwe shapefile om er vlot mee te kunnen werken
   - Gebruik de GDAL-functie _Samensmelten_ om de statsec die een gemeenschappelijke gebiedscode hebben op het nieuwe niveau tot één object te versmelten.
   - Opgelet: bij deze operatie ontstaan soms artefacten; verdwaalde stukjes grens zonder betekenis. Dit kan je vermijden mits een goede cleaning van je basislaag. Gebruik je een nieuwe basislaag, controleer dan eens of ze goed is door eerst naar gewest samen te smelten en dan te controleren op artefacten._

@@ -11,8 +11,94 @@ Door de hier beschreven manier van werken, is het mogelijk om onmiddellijk mee t
 
 Inhoud:
 
+* [Gemeentefusies 1 januari 2025](#gemeentefusies-1-januari-2025)
 * [Gemeentefusies 1 januari 2019](#gemeentefusies-1-januari-2019)
 * [Evoluerende statistische sectoren](#evoluerende-statistische-sectoren)
+  
+## Gemeentefusies 1 januari 2025
+
+Op 1 januari hielden een aantal Vlaamse en twee Waalse gemeenten op te bestaan, en werden enkele nieuwe gemeenten geboren. 
+Dit document beschrijft kort hoe we deze aanpassing verwerken in provincies.incijfers.be.
+
+Voor meer context op de impact op niscodes, zie [de pagina van statbel](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/geografie).
+
+De geaffecteerde gemeenten:
+
+gemeente2024 | naam gemeente 2024 | gemeente |  naam huidige gemeente
+-- | -- | -- | --
+11002 | Antwerpen | 11002 | Antwerpen
+11007 | Borsbeek | 11002 | Antwerpen
+23023 | Galmaarden | 23106 | Pajottegem 
+23024 | Gooik | 23106 | Pajottegem 
+23032 | Herne | 23106 | Pajottegem 
+37012 | Ruiselede | 37021 | Wingene
+37018 | Wingene | 37021 | Wingene
+37007 | Meulebeke | 37022 | Tielt 
+37015 | Tielt | 37022 | Tielt 
+44012 | De Pinte | 44086 | Nazareth-De Pinte
+44048 | Nazareth | 44086 | Nazareth-De Pinte
+44034 | Lochristi | 44087 | Lochristi
+44073 | Wachtebeke | 44087 | Lochristi
+46014 | Lokeren | 46029 | Lokeren
+44045 | Moerbeke | 46029 | Lokeren
+44040 | Melle | 44088 | Merelbeke-Melle
+44043 | Merelbeke | 44088 | Merelbeke-Melle
+46003 | Beveren | 46030 | Beveren-Kruibeke-Zwijndrecht
+46013 | Kruibeke | 46030 | Beveren-Kruibeke-Zwijndrecht
+11056 | Zwijndrecht | 46030 | Beveren-Kruibeke-Zwijndrecht
+73006 | Bilzen | 73110 | Bilzen-Hoeselt
+73032 | Hoeselt | 73110 | Bilzen-Hoeselt
+73009 | Borgloon | 73111 | Tongeren-Borgloon
+73083 | Tongeren | 73111 | Tongeren-Borgloon
+71069 | Ham | 71071 | Tessenderlo-Ham
+71057 | Tessenderlo | 71071 | Tessenderlo-Ham
+71022 | Hasselt | 71072 | Hasselt
+73040 | Kortessem | 71072 | Hasselt
+82003* | Basogne | 82039 | Bastogne
+82005* | Bertogne | 82039 | Bastogne
+
+*: Waalse gemeente
+
+
+**STATISTISCHE SECTORNIVEAU**
+
+De sectorcodes bleven ongewijzigd. **Opgelet: je kan daardoor niet meer op basis van de sectorcode de NIS-code van de gemeente waar het ligt achterhalen**. Je moet dus beschikken over een koppeltabel!
+
+De statistische sectoren en de sub-gemeente-niveaus moesten niet aangepast worden.
+
+Om data die op sectorniveau ingeladen wordt op de nieuwe gemeenten te kunnen tonen, hebben we enkel een nieuwe aggregatietabellen voorzien die zegt in welke nieuwe gemeente de oude sector ligt.
+
+Uitzondering: data die niet aggregeerbaar is. Dit moest altijd al op meerdere gebiedsniveaus ingelezen worden. Zie daarvoor het volgende stukje.
+
+
+
+**GEMEENTENIVEAU**
+
+Eerst wijzigden we de gebiedsniveaucode gemeente naar `gemeente_2024`. Al de data die op gemeenteniveau beschikbaar was, blijft dan gewoon correct - voor die verouderde gemeenten.
+
+We kunnen nu een nieuwe versie van de gemeenten inladen, met de code `gemeente`.
+
+Deze heeft uiteraard nog geen data. We voorzien een aggregatietabel van de oude naar de nieuwe gemeenten en van de nieuwe gemeenten naar alle hiervan afgeleide gebiedsniveaus. Swing aggregeert nu zelf alle aggregeerbare data van de oude naar de nieuwe gemeenten. 
+
+Tot 1 januari houden we de nieuwe gemeenten deels achter de schermen. Op 1 januari draaien we de rollen om. Dan kunnen we achter de schermen nog steeds de oude gemeenten laten zien.
+
+**PROVINCIENIVEAU**
+Zwijndrecht behoorde voor de fusies tot de provincie Antwerpen. Na de fusie behoort de fusiegemeente Beveren-Kruibeke-Zwijndrecht tot de provincie Oost-Vlaanderen. Hierdoor werd er een nieuw provincieniveau gemaakt. Het oude blijft bestaan onder provincie2024.
+
+**Impact op databeheer**
+Naar databeheer is er dus bijna geen probleem.
+
+- data op sectorniveau blijft ongewijzigd
+- data die op het oude gemeenteniveau wordt geleverd kan nog steeds ingelezen worden op `gemeente_2024`
+- data die op het nieuwe gemeenteniveau wordt geleverd kan gewoon ingelezen worden door te werken met `gemeente`
+
+Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren.
+
+**Zijdelingse impact**
+* Arrondissementen wijzigden ook, en werden volgens dezelfde logica aangepast
+* Een aantal gemeenten die fusseerden behoorden tot verschillende bovengemeentelijke niveaus. Daarom werden zo goed als alle aggregaties opnieuw berrekend. 
+
+
 
 ## Gemeentefusies 1 januari 2019
 

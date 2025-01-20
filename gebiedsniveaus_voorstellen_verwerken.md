@@ -38,13 +38,14 @@ Met de basistabel en de tabellen per gebiedsniveau werden SPSS scripts (zie [geb
 
 Het verwerkte bestand [statsec als basis](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/statsec_als_basis.xlsx) koppelen we aan een geografisch bestand van de statistische sectoren. Vervolgens kunnen we in GIS op basis van dat bestand het geografisch bestand maken per gebiedsniveau. Dit is dan eenvoudig een geografische aggregatie. De grenzen vallen per definitie allemaal mooi samen.
 
-  - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen.
+  - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen. Dit enkel wanneer er een nieuwe statsec laag nodig is! Anders start je gewoon van punt 3.
   - Open de output in QGIS.
-  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx)
+  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx). Voor bovengemeentelijke niveaus kan je vertrekken van de afzonderlijke kerntabel excel files en van de shape van de gemeente. 
   - Exporteer deze verrijkte versie van de sectoren naar een nieuwe shapefile om er vlot mee te kunnen werken
   - Gebruik de GDAL-functie _Samensmelten_ om de statsec die een gemeenschappelijke gebiedscode hebben op het nieuwe niveau tot één object te versmelten.
   - Opgelet: bij deze operatie ontstaan soms artefacten; verdwaalde stukjes grens zonder betekenis. Dit kan je vermijden mits een goede cleaning van je basislaag. Gebruik je een nieuwe basislaag, controleer dan eens of ze goed is door eerst naar gewest samen te smelten en dan te controleren op artefacten._
   - Verwijder kaart-objecten die geen zinvolle gebiedscode hebben (ggw7 met een ZZZZ code aan het strand; indelingen waar Brussel niet gedefinieerd is, ...)
+  - Koppel met de excel met gebiedsdefinities zodat je naast de code ook de namen van de gebieden hebt.
   - Converteer naar GeoJSON voor [kiezen_op_kaart](https://github.com/provinciesincijfers/kiezen_op_kaart/) (verdere instructies daar te vinden; je kan dit pas doen nadat ABF de gebiedsniveaus heeft bijgewerkt)
 
 Bij het draaien van de scripts worden alle relevante bestanden automatisch in de juiste map gezet. Enkel de shapefiles moet je manueel in de map [data_voor_swing/shapefiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/shapefiles) zetten. 
@@ -59,7 +60,7 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo)
 - bij Geolevels: vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
 - bij AccesGroups>Extern>Geolevels verschuif je het geolevel van 'not visible' naar 'visible'.
-- de update aanvullen in het [logboek](https://provincies.incijfers.be/databank?report=logboek)
+- de update aanvullen in het [logboek](https://vlbr.sharepoint.com/:x:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/General/2024%20LOGBOEK%20vanaf%20juni%202024.xlsx?d=w5635d830d5fe4aacbf95c83d7e401f66&csf=1&web=1&e=r950Jt)
 - indien belangrijke wijzigingen: een nieuwe [release](https://github.com/provinciesincijfers/gebiedsniveaus/releases) maken en dit per mail melden aan geïnteresseerde partners
 - bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne). Aanvulling: bij een nieuwe update gaat het ook mis voor de wijken die niet werden aangepast. Laadt dus steeds de data volledig opnieuw in. 
 - breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC, HOPLR). De laatste mail gewoonlijk te vinden met onderwerp "update gemeentegedragen wijken"

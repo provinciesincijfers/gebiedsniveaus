@@ -24,7 +24,7 @@ EXECUTE.
 delete variables n_break.
 
 
-string gemeentenbe (a5).
+string gemeentenbe2024 (a5).
 recode gemeentenbe2018
 ('55022'='58001')
 ('56011'='58002')
@@ -52,9 +52,46 @@ recode gemeentenbe2018
 ('72040'='72042')
 ('72025'='72043')
 ('72029'='72043')
+(else=copy) into gemeentenbe2024.
+exe.
+
+string gemeentenbe (a5).
+recode gemeentenbe2024
+('11007'='11002')
+('23023'='23106')
+('23024'='23106')
+('23032'='23106')
+('37012'='37021')
+('37018'='37021')
+('37007'='37022')
+('37015'='37022')
+('44012'='44086')
+('44048'='44086')
+('44034'='44087')
+('44073'='44087')
+('46014'='46029')
+('44045'='46029')
+('44040'='44088')
+('44043'='44088')
+('46003'='46030')
+('46013'='46030')
+('11056'='46030')
+('73006'='73110')
+('73032'='73110')
+('73009'='73111')
+('73083'='73111')
+('71069'='71071')
+('71057'='71071')
+('71022'='71072')
+('73040'='71072')
+('82003'='82039')
+('82005'='82039')
 (else=copy) into gemeentenbe.
+exe.
 
 rename variables niscode=statsec.
+
+
 
 * deze is om een kaartlaag te kunnen maken?.
 SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\kerntabellen\verwerkt_belgie2018_2019.xlsx'
@@ -87,7 +124,7 @@ dataset activate belagg.
 DATASET DECLARE belagg2.
 AGGREGATE
   /OUTFILE='belagg2'
-  /BREAK=gemeentenbe2018 gemeentenbe
+  /BREAK=gemeentenbe2018 gemeentenbe2024 gemeentenbe
   /N_BREAK=N.
 dataset activate belagg2.
 
@@ -98,9 +135,10 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close definitie2018.
 rename variables naam=naam_gemeentenbe2018.
+if gemeentenbe2024="" gemeentenbe2024=gemeentenbe2018.
 if gemeentenbe="" gemeentenbe=gemeentenbe2018.
 
-string naam_gemeentenbe (a50).
+string naam_gemeentenbe2024 (a50).
 recode gemeentenbe2018
 ('12030'='Puurs-Sint-Amands')
 ('12034'='Puurs-Sint-Amands')
@@ -116,11 +154,52 @@ recode gemeentenbe2018
 ('71047'='Oudsbergen')
 ('72040'='Oudsbergen')
 ('72025'='Pelt')
-('72029'='Pelt') into naam_gemeentenbe.
-if naam_gemeentenbe="" naam_gemeentenbe=naam_gemeentenbe2018.
+('72029'='Pelt') into naam_gemeentenbe2024.
+exe.
+if naam_gemeentenbe2024="" naam_gemeentenbe2024=naam_gemeentenbe2018.
+exe.
+
+
+string naam_gemeentenbe (a50).
+recode gemeentenbe2024
+('11007'='Antwerpen')
+('23023'='Pajottegem')
+('23024'='Pajottegem')
+('23032'='Pajottegem')
+('37012'='Wingene')
+('37018'='Wingene')
+('37007'='Tielt')
+('37015'='Tielt')
+('44012'='Nazareth-De Pinte')
+('44048'='Nazareth-De Pinte')
+('44034'='Lochristi')
+('44073'='Lochristi')
+('46014'='Lokeren')
+('44045'='Lokeren')
+('44040'='Merelbeke-Melle')
+('44043'='Merelbeke-Melle')
+('46003'='Beveren-Kruibeke-Zwijndrecht')
+('46013'='Beveren-Kruibeke-Zwijndrecht')
+('11056'='Beveren-Kruibeke-Zwijndrecht')
+('73006'='Bilzen-Hoeselt')
+('73032'='Bilzen-Hoeselt')
+('73009'='Tongeren-Borgloon')
+('73083'='Tongeren-Borgloon')
+('71069'='Tessenderlo-Ham')
+('71057'='Tessenderlo-Ham')
+('71022'='Hasselt')
+('73040'='Hasselt')
+('82003'='Bastogne')
+('82005'='Bastogne') into naam_gemeentenbe.
+exe.
+if naam_gemeentenbe="" naam_gemeentenbe=naam_gemeentenbe2024.
+exe.
+*****
 
 
 
+
+DATASET ACTIVATE belagg2.
 DATASET DECLARE werkbestand.
 AGGREGATE
   /OUTFILE='werkbestand'
@@ -151,6 +230,38 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities s
   /CELLS=VALUES
 /replace.
 
+
+dataset activate belagg2.
+DATASET DECLARE werkbestand.
+AGGREGATE
+  /OUTFILE='werkbestand'
+  /BREAK=gemeentenbe2024 naam_gemeentenbe2024
+/volgnummer=min(volgnummer)
+  /N_BREAK=N.
+dataset activate werkbestand.
+delete variables n_break.
+rename variables gemeentenbe2024=gebiedscode.
+rename variables naam_gemeentenbe2024=naam_kort.
+string naam (a55).
+compute naam=naam_kort.
+sort cases volgnummer (a).
+compute volgnr=$casenum.
+alter type volgnr (f8.0).
+DELETE VARIABLES volgnummer.
+
+match files
+/file=*
+/keep= volgnr gebiedscode naam_kort naam.
+EXECUTE.
+
+
+SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsdefinities swing\gemeentenbe2024.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
 
 dataset activate belagg2.
 DATASET DECLARE werkbestand.
@@ -191,21 +302,39 @@ DATASET close werkbestand.
 
 
 
-
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=gemeentenbe2018 gemeentenbe
+  /BREAK=gemeentenbe2018 gemeentenbe2024
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\gemeentenbe2018_gemeentenbe.xlsx'
+SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\gemeentenbe2018_gemeentenbe2024.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+dataset activate belagg2.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeentenbe2024 gemeentenbe
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties swing\gemeentenbe2024_gemeentenbe.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
 DATASET ACTIVATE belagg.
 
 
@@ -267,7 +396,7 @@ SAVE TRANSLATE OUTFILE='C:\temp\gebiedsniveaus\werkbestanden\gebiedsaggregaties 
 DATASET ACTIVATE belagg2.
 dataset close ag1.
 
-
+****tot hier. opgelet: staat nog in temp files.
 * de officiële verdeling statsec via geopunt bevat DE OUDE niscode, niet de nieuwe.
 GET TRANSLATE
   FILE='C:\Users\plu3532\Documents\gebiedsindelingen\statsec_2019\diff3\SCBEL01012019N_diff03.dbf'

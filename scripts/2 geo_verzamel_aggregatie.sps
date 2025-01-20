@@ -13,11 +13,13 @@ DATASET NAME kerntabel WINDOW=FRONT.
 
 match files
 /file=*
-/keep=statsec statsec2019
-deelgemeente
-gemeente2018
-gemeente
-provincie.
+/keep=statsec statsec_naam statsec2019 statsec2019_naam
+deelgemeente deelgemeente_naam
+gemeente2018 gemeente2018_naam
+gemeente2024 gemeente2024_naam
+gemeente gemeente_naam
+provincie2024 provincie2024_naam
+provincie provincie_naam.
 
 
 * uitzonderlijk, omdat ggw7 combinatie is van twee kerntabellen!.
@@ -58,7 +60,7 @@ EXECUTE.
 DATASET NAME gemeente_arrondiss WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente2018 arrondiss2018.
+/keep=gemeente2018 arrondiss2018 Namebestuurlijkarrondissement2018.
 sort cases gemeente2018 (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente2018 (a).
@@ -68,6 +70,27 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close gemeente_arrondiss.
 
+GET DATA
+  /TYPE=XLS
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\gemeente2024_arrondiss2024.xls'
+  /SHEET=name 'gemeente_arrondiss'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0.
+EXECUTE.
+DATASET NAME gemeente_arrondiss WINDOW=FRONT.
+match files
+/file=*
+/keep=gemeente2024 arrondiss2024 Namebestuurlijkarrondissement2024.
+sort cases gemeente2024 (a).
+DATASET ACTIVATE kerntabel.
+sort cases gemeente2024 (a).
+MATCH FILES /FILE=*
+  /TABLE='gemeente_arrondiss'
+  /BY gemeente2024.
+EXECUTE.
+dataset close gemeente_arrondiss.
 
 
 GET DATA
@@ -82,7 +105,7 @@ EXECUTE.
 DATASET NAME gemeente_arrondis WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente arrondiss.
+/keep=gemeente arrondiss Namebestuurlijkarrondissement.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -106,7 +129,7 @@ EXECUTE.
 DATASET NAME fogem WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente fo_gem.
+/keep=gemeente fo_gem Namefo_gem.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -132,7 +155,7 @@ EXECUTE.
 DATASET NAME politiezone WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente politiezone.
+/keep=gemeente politiezone Namesamenwerkingpolitie.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -156,7 +179,7 @@ EXECUTE.
 DATASET NAME gewest WINDOW=FRONT.
 match files
 /file=*
-/keep=provincie gewest.
+/keep=provincie gewest Namegewest.
 sort cases provincie (a).
 DATASET ACTIVATE kerntabel.
 sort cases provincie (a).
@@ -166,7 +189,27 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close gewest.
 
-
+GET DATA
+  /TYPE=XLS
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\provincie2024_gewest.xls'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0.
+EXECUTE.
+DATASET NAME gewest WINDOW=FRONT.
+match files
+/file=*
+/keep=provincie2024 gewest.
+sort cases provincie2024 (a).
+DATASET ACTIVATE kerntabel.
+sort cases provincie2024 (a).
+MATCH FILES /FILE=*
+  /TABLE='gewest'
+  /BY provincie2024.
+EXECUTE.
+dataset close gewest.
 
 GET DATA
   /TYPE=XLS
@@ -180,7 +223,7 @@ EXECUTE.
 DATASET NAME elz WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente elz.
+/keep=gemeente elz Nameelz.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -230,7 +273,7 @@ EXECUTE.
 DATASET NAME uitrustingsgraad WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente uitrustingsgraad.
+/keep=gemeente uitrustingsgraad Nameuitrustingsgraad.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -253,7 +296,7 @@ EXECUTE.
 DATASET NAME logo WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente logo.
+/keep=gemeente logo Namelokaalgezondheidsoverleg.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -277,7 +320,7 @@ EXECUTE.
 DATASET NAME vervoer WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente vervoerregio.
+/keep=gemeente vervoerregio Namevervoerregio.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -302,7 +345,7 @@ EXECUTE.
 DATASET NAME treg WINDOW=FRONT.
 match files
 /file=*
-/keep=statsec treg.
+/keep=statsec treg Nametreg.
 sort cases statsec (a).
 DATASET ACTIVATE kerntabel.
 sort cases statsec (a).
@@ -327,7 +370,7 @@ EXECUTE.
 DATASET NAME treg WINDOW=FRONT.
 match files
 /file=*
-/keep=statsec treg_po.
+/keep=statsec treg_po Nametreg_po.
 sort cases statsec (a).
 DATASET ACTIVATE kerntabel.
 sort cases statsec (a).
@@ -351,7 +394,7 @@ EXECUTE.
 DATASET NAME treggem WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente treg_gem.
+/keep=gemeente treg_gem Nametreg_gem.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -378,7 +421,7 @@ EXECUTE.
 DATASET NAME refreg WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente refreg.
+/keep=gemeente refreg Namerefreg.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -402,7 +445,7 @@ EXECUTE.
 DATASET NAME belgie WINDOW=FRONT.
 match files
 /file=*
-/keep=gewest belgie.
+/keep=gewest belgie Namebelgie.
 sort cases gewest (a).
 DATASET ACTIVATE kerntabel.
 sort cases gewest (a).
@@ -426,7 +469,7 @@ EXECUTE.
 DATASET NAME woonmaatschappij WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente woonmaatschappij.
+/keep=gemeente woonmaatschappij Namewoonmaatschappij.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -449,7 +492,7 @@ EXECUTE.
 DATASET NAME elzantw WINDOW=FRONT.
 match files
 /file=*
-/keep=ggw7 elzantw.
+/keep=ggw7 elzantw Nameelzantw.
 alter type ggw7 (a11).
 sort cases ggw7 (a).
 DATASET ACTIVATE kerntabel.
@@ -474,7 +517,7 @@ EXECUTE.
 DATASET NAME streekwerking WINDOW=FRONT.
 match files
 /file=*
-/keep=gemeente streekwerking.
+/keep=gemeente streekwerking Namegebiedstreekwerking.
 sort cases gemeente (a).
 DATASET ACTIVATE kerntabel.
 sort cases gemeente (a).
@@ -483,6 +526,80 @@ MATCH FILES /FILE=*
   /BY gemeente.
 EXECUTE.
 dataset close streekwerking.
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\statsec_kern.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME kern WINDOW=FRONT.
+match files
+/file=*
+/keep=statsec kern Namekern.
+sort cases statsec (a).
+DATASET ACTIVATE kerntabel.
+sort cases statsec (a).
+MATCH FILES /FILE=*
+  /TABLE='kern'
+  /BY statsec.
+EXECUTE.
+dataset close kern.
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\statsec_kerntypering.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME kerntypering WINDOW=FRONT.
+match files
+/file=*
+/keep=statsec kerntypering Namekerntypering.
+sort cases statsec (a).
+DATASET ACTIVATE kerntabel.
+sort cases statsec (a).
+MATCH FILES /FILE=*
+  /TABLE='kerntypering'
+  /BY statsec.
+EXECUTE.
+dataset close kerntypering.
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE=
+    'C:\github\gebiedsniveaus\kerntabellen\statsec_woningmarkt.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME woningmarkt WINDOW=FRONT.
+match files
+/file=*
+/keep=statsec woningmarkt Namewoningmarkt.
+sort cases statsec (a).
+DATASET ACTIVATE kerntabel.
+sort cases statsec (a).
+MATCH FILES /FILE=*
+  /TABLE='woningmarkt'
+  /BY statsec.
+EXECUTE.
+dataset close woningmarkt.
+
+
 
 
 
@@ -504,7 +621,7 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\verzamelbestanden\verwerkt_alle
 dataset copy statsec.
 dataset activate statsec.
 
-delete variables statsec2019 gemeente2018 arrondiss2018.
+delete variables statsec2019 statsec2019_naam.
 
 * Identify Duplicate Cases.
 SORT CASES BY statsec(A).
@@ -671,29 +788,65 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
-DATASET DECLARE ag1.
-AGGREGATE
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=deelgemeente gemeente2018
   /N_BREAK=N.
+*dataset activate ag1.
+* Voor "deelgemeente onbekend" kan je eigenlijk niet correct aggregeren. In de nieuwe fusies is er immers een enkel gebied onbekend, terwijl er in de oude gemeenten twee of drie waren binnen de huidige fusie.
+* Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hierote verwijderen we de overbodige records uit het bestand. 
+*(onderstaande behouden + gem2024 toevoegen? mag volgens mij weg want oude deelgem --> gem (nu 2024) werkt ook gewoon goed *
+
+*if deelgemeente='12041ONBE' & gemeente2018=12034 teverwijderen=1.
+*if deelgemeente='44083ONBE' & gemeente2018=44049 teverwijderen=1.
+*if deelgemeente='44084ONBE' & gemeente2018=44029 teverwijderen=1.
+*if deelgemeente='44085ONBE' & gemeente2018=44072 teverwijderen=1.
+*if deelgemeente='44085ONBE' & gemeente2018=44080 teverwijderen=1.
+*if deelgemeente='45068ONBE' & gemeente2018=45057 teverwijderen=1.
+*if deelgemeente='72042ONBE' & gemeente2018=71047 teverwijderen=1.
+*if deelgemeente='72043ONBE' & gemeente2018=72029 teverwijderen=1.
+*EXECUTE.
+*FILTER OFF.
+*USE ALL.
+*SELECT IF (missing(teverwijderen)).
+*EXECUTE.
+*delete variables n_break teverwijderen.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\deelgemeente_gemeente2018.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+*DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=deelgemeente gemeente2024
+  /N_BREAK=N.
 dataset activate ag1.
 * Voor "deelgemeente onbekend" kan je eigenlijk niet correct aggregeren. In de nieuwe fusies is er immers een enkel gebied onbekend, terwijl er in de oude gemeenten twee of drie waren binnen de huidige fusie.
-* Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hierote verwijderen we de overbodige records uit het bestand.
-if deelgemeente='12041ONBE' & gemeente2018=12034 teverwijderen=1.
-if deelgemeente='44083ONBE' & gemeente2018=44049 teverwijderen=1.
-if deelgemeente='44084ONBE' & gemeente2018=44029 teverwijderen=1.
-if deelgemeente='44085ONBE' & gemeente2018=44072 teverwijderen=1.
-if deelgemeente='44085ONBE' & gemeente2018=44080 teverwijderen=1.
-if deelgemeente='45068ONBE' & gemeente2018=45057 teverwijderen=1.
-if deelgemeente='72042ONBE' & gemeente2018=71047 teverwijderen=1.
-if deelgemeente='72043ONBE' & gemeente2018=72029 teverwijderen=1.
+* Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hierote verwijderen we de overbodige records uit het bestand. 
+*borsbeek,  ruiselede, meulebeke, wachtebeke, moerbeke, tessenderlo hebben geen gebied onbekend
+
+if deelgemeente='23023ONBE' & gemeente2024=23023 teverwijderen=1.
+if deelgemeente='23032ONBE' & gemeente2024=23032 teverwijderen=1. 
+if deelgemeente='44012ONBE' & gemeente2024=44012 teverwijderen=1.
+if deelgemeente='44040ONBE' & gemeente2024=44040 teverwijderen=1.
+if deelgemeente='46013ONBE' & gemeente2024=46013 teverwijderen=1.
+if deelgemeente='11056ONBE' & gemeente2024=11056 teverwijderen=1.
+if deelgemeente='73032ONBE' & gemeente2024=73032 teverwijderen=1.
+if deelgemeente='73009ONBE' & gemeente2024=73009 teverwijderen=1.
+if deelgemeente='73040ONBE' & gemeente2024=73040 teverwijderen=1.
 EXECUTE.
 FILTER OFF.
 USE ALL.
 SELECT IF (missing(teverwijderen)).
 EXECUTE.
 delete variables n_break teverwijderen.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\deelgemeente_gemeente2018.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\deelgemeente_gemeente2024.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -703,15 +856,49 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 
 
-
-DATASET DECLARE ag1.
-AGGREGATE
+*aggr archief
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=gemeente2018 gemeente
   /N_BREAK=N.
+*dataset activate ag1.
+*delete variables n_break.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2018_gemeente.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+*DATASET ACTIVATE kerntabel.
+
+
+*aggr archief
+*DATASET DECLARE ag1.
+*AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente2018 gemeente2024
+  /N_BREAK=N.
+*dataset activate ag1.
+*delete variables n_break.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2018_gemeente2024.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+*DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+  AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente2024 gemeente
+  /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2018_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2024_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -721,15 +908,31 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 
 
-
+*aggr archief
 DATASET DECLARE ag1.
-AGGREGATE
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=gemeente2018 arrondiss2018
   /N_BREAK=N.
+*dataset activate ag1.
+*delete variables n_break.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2018_arrondiss2018.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+*DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente2024 arrondiss2024
+  /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2018_arrondiss2018.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2024_arrondiss2024.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -737,17 +940,34 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 DATASET ACTIVATE kerntabel.
+
+*AGGR ARCHIEF
+DATASET DECLARE ag1.
+*AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=arrondiss2018 provincie
+  /N_BREAK=N.
+*dataset activate ag1.
+*delete variables n_break.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\arrondiss2018_provincie.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+*DATASET ACTIVATE kerntabel.
 
 
 
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=arrondiss2018 provincie
+  /BREAK=provincie2024 gewest
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\arrondiss2018_provincie.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\provincie2024_gewest.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -755,7 +975,6 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 DATASET ACTIVATE kerntabel.
-
 
 
 
@@ -821,6 +1040,22 @@ AGGREGATE
 dataset activate ag1.
 delete variables n_break.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\arrondiss_provincie.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=arrondiss2024 provincie2024
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\arrondiss2024_provincie2024.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -1103,6 +1338,23 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 
 
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente2024 provincie2024
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2024_provincie2024.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
 * om swing te helpen.
 DATASET DECLARE ag1.
 AGGREGATE
@@ -1133,7 +1385,7 @@ dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (vervoerregio >-1).
+SELECT IF (vervoerregio ~="").
 EXECUTE.
 
 DATASET ACTIVATE ag1.
@@ -1156,7 +1408,7 @@ dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (vervoerregio >-1).
+SELECT IF (vervoerregio ~="").
 EXECUTE.
 
 DATASET ACTIVATE ag1.
@@ -1422,7 +1674,7 @@ dataset activate ag1.
 delete variables n_break.
 FILTER OFF.
 USE ALL.
-SELECT IF (werkingsgebied_woonmaatschappij > -1).
+SELECT IF (woonmaatschappij > -1).
 EXECUTE.
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_woonmaatschappij.xlsx'
   /TYPE=XLS
@@ -1562,3 +1814,153 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
+DATASET ACTIVATE kerntabel.
+
+
+
+*woningmarkt.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec woningmarkt
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (woningmarkt ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_woningmarkt.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=woningmarkt gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (woningmarkt ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\woningmarkt_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+*kerntypering.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec kerntypering
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (kerntypering ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_kerntypering.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=kerntypering gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (kerntypering ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kerntypering_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+*kern.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec kern
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (kern ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_kern.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=kern kerntypering
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (kern ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kern_kerntypering.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=kern gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (kern ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kern_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+

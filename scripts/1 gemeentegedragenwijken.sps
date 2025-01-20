@@ -86,13 +86,17 @@ dataset activate ggw.
 dataset close testuniek.
 match files
 /file=*
-/keep=codsec naamvandewijk gebiedscodepinc provinciegemaakt.
+/keep=codsec naamvandewijk gebiedscodepinc provinciegemaakt mengvorm_nafusies.
 * we gebruiken "type" om de wijken te classificeren, vb "gemeentegedragen" of "nis7-achtig".
+*mengvorm komt niet mee want wordt samengenomen met type 2 later*
+
 compute type=1.
 if provinciegemaakt = 1 type = 3.
+if mengvorm_nafusies = 1 type = 4.
 value labels type
 1 'gemeentegedragen'
-3 'wijkindeling - voorstel provincie'.
+3 'wijkindeling - voorstel provincie'
+4 'zowel gemeentegedragen als gebaseerd op nis7 na fusies'.
 rename variables codsec=statsec.
 alter type statsec (a9).
 sort cases statsec (a).
@@ -188,7 +192,8 @@ AGGREGATE
 value labels type
 1 'gemeentegedragen'
 2 'gebaseerd op nis7'
-3 'wijkindeling - voorstel provincie'.
+3 'wijkindeling - voorstel provincie'
+4 'zowel gemeentegedragen als gebaseerd op nis7 na fusies'.
 frequencies type.
 * check de frequentietabel.
 
@@ -283,6 +288,7 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\ggw
   /CELLS=VALUES
 /replace.
 
+*type vier gaat nog niet juist staan en gaat bestaan uit decimale getallen in de excel file die je hierboven aanmaakte
 * einde aanmaak onderwerp.
 
 dataset activate aggkerntabel.
@@ -393,7 +399,7 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 dataset activate aggkerntabel.
 dataset close agg.
 
-*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name. 
+*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name in de file voor richard. . 
 
 
 

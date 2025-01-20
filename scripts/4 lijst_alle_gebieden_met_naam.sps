@@ -38,6 +38,23 @@ alter type  naam (a100).
 
 GET DATA
   /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\arrondiss2024.xlsx'
+  /SHEET=name 'arrondiss2024'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet3 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="arrondiss2024".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+GET DATA
+  /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\deelgemeente.xlsx'
   /SHEET=name 'deelgemeente'
   /CELLRANGE=FULL
@@ -122,6 +139,24 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente2024.xlsx'
+  /SHEET=name 'gemeente2024'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet8 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="gemeente2024".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
 GET DATA
   /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\logo.xlsx'
@@ -169,6 +204,23 @@ DATASET NAME DataSet11 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="provincie".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\provincie2024.xlsx'
+  /SHEET=name 'provincie2024'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet11 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="provincie2024".
 alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
@@ -445,6 +497,61 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\woningmarkt.xlsx'
+  /SHEET=name 'woningmarkt'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet29 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="woningmarkt".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kerntypering.xlsx'
+  /SHEET=name 'kerntypering'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet30 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="kerntypering".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kern.xlsx'
+  /SHEET=name 'kern'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet31 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="kern".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
+
+
+
 DATASET ACTIVATE arrondiss.
 ADD FILES /FILE=*
   /FILE='DataSet3'
@@ -470,7 +577,10 @@ ADD FILES /FILE=*
   /FILE='Dataset25'
   /FILE='DataSet26'
   /FILE='Dataset27'
-  /File='Dataset28'.
+  /File='Dataset28'
+  /File='Dataset29'
+  /File='Dataset30'
+  /File='Dataset31'.
 EXECUTE.
 
 dataset close dataset3.
@@ -497,6 +607,9 @@ dataset close dataset25.
 dataset close dataset26.
 dataset close dataset27.
 dataset close dataset28.
+dataset close dataset29.
+dataset close dataset30.
+dataset close dataset31.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

@@ -26,7 +26,7 @@ rename variables elz=gebiedscode.
 rename variables Nameelz=naam_kort.
 string naam (a55).
 compute naam=naam_kort.
-if (gebiedscode="elz91" | gebiedscode="elz92" | gebiedscode="elz99")  onbekend_gebied=1.
+if (gebiedscode="elz91" | gebiedscode="elz92" | gebiedscode="elz93" | gebiedscode="elz99")  onbekend_gebied=1.
 sort cases onbekend_gebied (a) naam (a).
 compute volgnr=$casenum.
 alter type volgnr (f8.0).
@@ -49,5 +49,5 @@ dataset close start.
 
 
 
-*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name. 
+*!!! pas de kolomhoofden nog manueel aan van volgnr gebiedscode  naam_kort en naam naar: sequencenr    geoitem code    short name    name in de file voor richard. . 
 

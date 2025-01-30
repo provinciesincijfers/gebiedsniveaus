@@ -54,7 +54,7 @@ Opgelet: soms is het nodig om niet enkel NAAR je gebiedsniveau te aggregeren, ma
 
 Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, en lezen zij die in in Swing. OPGELET: in onze gebiedsdefinitie bestanden gebruiken we "naam_kort", wat door Swing niet herkend wordt. Ofwaal dus manueel dit aanpassen in de Excel files, ofwel Richard er nog eens aan herinneren dit aan te passen vóór upload.
 We moeten vervolgens nog enkele stappen uitvoeren:
-- de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen
+- de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen. Zet het laatste jaartal op het huidige jaar + 1.
 - kiezen op kaart updaten (enkel indien wijzigingen in de gebiedsniveaus die daar gebruikt worden)
 - de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo)

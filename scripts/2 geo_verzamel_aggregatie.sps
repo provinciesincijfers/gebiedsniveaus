@@ -1167,6 +1167,22 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 DATASET ACTIVATE kerntabel.
 
 
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente2024 elz
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente2024_elz.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
 
 
 

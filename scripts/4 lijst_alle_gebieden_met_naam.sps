@@ -45,7 +45,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet3 WINDOW=FRONT.
+DATASET NAME DataSet4 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="arrondiss2024".
@@ -62,7 +62,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet4 WINDOW=FRONT.
+DATASET NAME DataSet5 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="deelgemeente".
@@ -80,7 +80,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet5 WINDOW=FRONT.
+DATASET NAME DataSet6 WINDOW=FRONT.
 string geolevel (a20).
 compute geolevel="fo_gem".
 alter type  gebiedscode (a20).
@@ -97,7 +97,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet6 WINDOW=FRONT.
+DATASET NAME DataSet7 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="gemeente".
@@ -114,7 +114,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet7 WINDOW=FRONT.
+DATASET NAME DataSet8 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="elz".
@@ -131,7 +131,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet8 WINDOW=FRONT.
+DATASET NAME DataSet9 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="gemeente2018".
@@ -149,7 +149,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet8 WINDOW=FRONT.
+DATASET NAME DataSet10 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="gemeente2024".
@@ -166,7 +166,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet9 WINDOW=FRONT.
+DATASET NAME DataSet11 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="logo".
@@ -183,7 +183,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet10 WINDOW=FRONT.
+DATASET NAME DataSet12 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="politiezone".
@@ -200,7 +200,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet11 WINDOW=FRONT.
+DATASET NAME DataSet13 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="provincie".
@@ -217,7 +217,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet11 WINDOW=FRONT.
+DATASET NAME DataSet14 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="provincie2024".
@@ -235,7 +235,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet12 WINDOW=FRONT.
+DATASET NAME DataSet15 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="statsec".
@@ -252,7 +252,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet13 WINDOW=FRONT.
+DATASET NAME DataSet16 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="uitrustingsniveau".
@@ -270,7 +270,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet14 WINDOW=FRONT.
+DATASET NAME DataSet17 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="vervoerregio".
@@ -292,7 +292,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME Dataset17 WINDOW=FRONT.
+DATASET NAME Dataset18 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="winkelgebied".
@@ -310,7 +310,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME Dataset18 WINDOW=FRONT.
+DATASET NAME Dataset19 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="kernwinkelgebied".
@@ -328,7 +328,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet19 WINDOW=FRONT.
+DATASET NAME DataSet20 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="statsec2019".
@@ -346,7 +346,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet20 WINDOW=FRONT.
+DATASET NAME DataSet21 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="treg".
@@ -363,7 +363,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet21 WINDOW=FRONT.
+DATASET NAME DataSet22 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="treg_gem".
@@ -381,7 +381,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet22 WINDOW=FRONT.
+DATASET NAME DataSet23 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="ggw7".
@@ -399,7 +399,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet23 WINDOW=FRONT.
+DATASET NAME DataSet24 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="treg_po".
@@ -417,7 +417,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet24 WINDOW=FRONT.
+DATASET NAME DataSet25 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="gewest".
@@ -434,7 +434,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet25 WINDOW=FRONT.
+DATASET NAME DataSet26 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="refreg".
@@ -453,7 +453,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet26 WINDOW=FRONT.
+DATASET NAME DataSet27 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="elzantw".
@@ -472,7 +472,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet27 WINDOW=FRONT.
+DATASET NAME DataSet28 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="woonmaatschappij".
@@ -489,7 +489,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet28 WINDOW=FRONT.
+DATASET NAME DataSet29 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="streekwerking".
@@ -507,7 +507,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet29 WINDOW=FRONT.
+DATASET NAME DataSet30 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="woningmarkt".
@@ -524,7 +524,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet30 WINDOW=FRONT.
+DATASET NAME DataSet31 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="kerntypering".
@@ -542,7 +542,7 @@ GET DATA
   /DATATYPEMIN PERCENTAGE=95.0
   /HIDDEN IGNORE=YES.
 EXECUTE.
-DATASET NAME DataSet31 WINDOW=FRONT.
+DATASET NAME DataSet32 WINDOW=FRONT.
 
 string geolevel (a20).
 compute geolevel="kern".
@@ -580,7 +580,8 @@ ADD FILES /FILE=*
   /File='Dataset28'
   /File='Dataset29'
   /File='Dataset30'
-  /File='Dataset31'.
+  /File='Dataset31'
+/File='Dataset32'.
 EXECUTE.
 
 dataset close dataset3.
@@ -610,6 +611,7 @@ dataset close dataset28.
 dataset close dataset29.
 dataset close dataset30.
 dataset close dataset31.
+dataset close dataset32.
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

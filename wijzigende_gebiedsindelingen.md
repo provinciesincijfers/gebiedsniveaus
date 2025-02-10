@@ -94,6 +94,8 @@ Naar databeheer is er dus bijna geen probleem.
 
 Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren.
 
+Let ook op met waarden die door de data-leverancier gecensureerd worden (-99997), deze tellen immers niet op binnen PinC. Wanneer je een dergelijke missing hebt voor bv. Borsbeek, dan zal je in de nieuwe fusiegemeente Antwerpen ook nog steeds deze missing zien staan, ook al heeft de voormalige gemeente Antwerpen wel cijfers. 
+
 **Zijdelingse impact**
 * Arrondissementen wijzigden ook, en werden volgens dezelfde logica aangepast
 * Een aantal gemeenten die fusseerden behoorden tot verschillende bovengemeentelijke niveaus. Daarom werden zo goed als alle aggregaties opnieuw berrekend. 

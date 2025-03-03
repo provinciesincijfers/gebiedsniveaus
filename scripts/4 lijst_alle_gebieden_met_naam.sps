@@ -1,4 +1,5 @@
 * Encoding: windows-1252.
+* Encoding: .
 
 * vergeet niet volledige nieuwe gebiedsniveaus hier op te nemen!.
 
@@ -566,6 +567,8 @@ ADD FILES /FILE=*
   /FILE='DataSet12'
   /FILE='DataSet13'
   /FILE='DataSet14'
+  /FILE='Dataset15'
+  /FILE='Dataset16'
   /FILE='DataSet17'
   /FILE='DataSet18'
   /FILE='DataSet19'
@@ -596,6 +599,8 @@ dataset close dataset11.
 dataset close dataset12.
 dataset close dataset13.
 dataset close dataset14.
+dataset close dataset15.
+dataset close dataset16.
 dataset close dataset17.
 dataset close dataset18.
 dataset close dataset19.

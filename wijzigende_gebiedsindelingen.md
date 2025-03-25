@@ -92,7 +92,7 @@ Naar databeheer is er dus bijna geen probleem.
 - data die op het oude gemeenteniveau wordt geleverd kan nog steeds ingelezen worden op `gemeente_2024`
 - data die op het nieuwe gemeenteniveau wordt geleverd kan gewoon ingelezen worden door te werken met `gemeente`
 
-Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren.
+Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren. Let op met gemiddelden die aggregeren. Hierdoor wordt het verkeerde gemiddelde berekend omdat hij de gemeenten die nu leeg zijn, wel meerekent. Vermijdt dit door de mogelijkheid tot aggregeren even af te zetten totdat je data hebt voor de nieuwe gemeenten. 
 
 Let ook op met waarden die door de data-leverancier gecensureerd worden (-99997), deze tellen immers niet op binnen PinC. Wanneer je een dergelijke missing hebt voor bv. Borsbeek, dan zal je in de nieuwe fusiegemeente Antwerpen ook nog steeds deze missing zien staan, ook al heeft de voormalige gemeente Antwerpen wel cijfers. 
 

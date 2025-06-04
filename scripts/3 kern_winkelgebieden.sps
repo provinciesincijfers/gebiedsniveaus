@@ -7,19 +7,20 @@
 * om de gebiedscode en naam van het gebied als indicator (dus v9900_gebiedscode etc) goed te krijgen, moet ook script 4 gedraaid worden.
 * de dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente. Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden naar gemeenteniveau.
 * OPMERKING: het huidige script veronderstelt dat je een bestand krijgt waarin de winkelpunten al gekoppeld zijn aan de wgb en aan de gemeente (hier bijvoorbeeld punten_verrijkt_poging2.dbf). 
-Je kan de nood aan zo'n bestand vermijden door in de plaats in GIS gewoon een spatial join te doen van de wgb met gemeentegrenzen, gebruik makende van "largest overlap" om toe te kennen aan gemeente.
+* (ik denk dat Joost met de zin hierboven: 'nog niet aan de gemeente gekoppeld' bedoeld)
+*Je kan de nood aan zo'n bestand vermijden door in de plaats in GIS gewoon een spatial join te doen van de wgb met gemeentegrenzen, gebruik makende van "largest overlap" om toe te kennen aan gemeente, 
+    dan vervalt een deel van het script (aangeduid in het script).
 
 
 * OPGELET: als je de namen uit de DBF van de shapefile zou ophalen, dan gaan speciale tekens kapot zijn.
-* je kan dit normaal gezien omzeilen door de shapefile in QGIS op te slaan als CSV (hier wgb_naam_ansi.csv).
+* je kan dit normaal gezien omzeilen door de shapefile in QGIS op te slaan als CSV (hier wgb_naam_ansi.csv). Behoud enkel de indicatoren die je nodig hebt. Zorg dat je de juiste indicatornamen hieronder in dit script definieert. 
 * SPSS verwacht doorgaans ANSI, dus mogelijk nodig om nog te hercoderen met bv Notepad++.
-* doe dit zowel voor de winkelgebieden als de kernwinkelgebieden (deze worden verderop verwerkt).
 
 PRESERVE.
 SET DECIMAL DOT.
 
 GET DATA  /TYPE=TXT
-  /FILE="C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\wgb_naam_ansi.csv"
+  /FILE="C:\temp\locatus_gebiedsniveaus\2025\wgb_naam_ansi_2.csv"
   /DELIMITERS=","
   /QUALIFIER='"'
   /ARRANGEMENT=DELIMITED
@@ -30,6 +31,8 @@ GET DATA  /TYPE=TXT
   WINKELGE_1 A100
   WINKELGE_2 A100
   WINKELGE_3 A100
+  gemeente A100
+  naam A100
   /MAP.
 RESTORE.
 CACHE.
@@ -43,7 +46,7 @@ sort cases  winkelgebied (a).
 
 
 
-* BEGIN toevoegen gemeente.
+* BEGIN toevoegen gemeente: niet nodig als je het zelf de gemeente al gekoppeld hebt aan de winkelpunten en winkelgebieden. Het volgende deel in het script veronderstelt immers dat je zelf d egeografische analyse hebt gemaakt (Filip doet dit nu)
 * we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
 * we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
 GET TRANSLATE
@@ -170,8 +173,10 @@ rename variables winkelgebied=gebiedscode.
 rename variables winkelge_1=naam_kort.
 rename variables winkelge_2=winkelgebiedshoofdtype.
 rename variables winkelge_3=WINKELGEBIEDSTYPERING.
+rename variables gemeentenaam = gemeente_naam.
 
-* naam van de gemeente ophalen.
+* naam van de gemeente ophalen: NIET NODIG als de namen al in de file staan. Zorg er wel voor dat de variabele de correcte naam heeft
+
 GET DATA
   /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'
@@ -253,12 +258,12 @@ match files
 /file=*
 /keep=geoitem
 v1601_label_wgb_hoofdtype
-v1601_label_wgb_type.
 string geolevel (a12).
 compute geolevel="winkelgebied".
 * dit mag op 1970 staan omdat het periode-onafhankelijke info is.
 compute period=1970.
 EXECUTE.
+
 
 recode v1601_label_wgb_hoofdtype
 ('Centraal'='1')
@@ -266,6 +271,7 @@ recode v1601_label_wgb_hoofdtype
 ('Overig'='3').
 alter type v1601_label_wgb_hoofdtype (f1.0).
 
+*wordt niet meer gebruikt
 recode v1601_label_wgb_type
 ('Binnenstad'='1')
 ('Hoofdwinkelgebied groot'='2')
@@ -281,7 +287,7 @@ recode v1601_label_wgb_type
 ('Shopping center'='12')
 ('Speciaal Winkelgebied'='13')
 ('Speciaal winkelgebied'='13').
-alter type v1601_label_wgb_type (f2.0).
+*alter type v1601_label_wgb_type (f2.0).
 
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\wgb_labels.xlsx'
   /TYPE=XLS
@@ -296,16 +302,17 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\wgb
 
 
 * kernwinkelgebieden.
+*check of de namen nog kloppen die in het bestand zouden moeten zitten
 
 GET TRANSLATE
-  FILE='C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\indeling\Kernafbakening.dbf'
+  FILE='C:\temp\locatus_gebiedsniveaus\2025\kernwinkelgebieden_2024_def.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME kernwinkelgebied WINDOW=FRONT.
 dataset close winkelgebied.
 match files
 /file=*
-/keep=id naam gemeente.
-rename variables id=kernwinkelgebied.
+/keep=kwg_id naam gemeente.
+rename variables kwg_id=kernwinkelgebied.
 rename variables gemeente=gemeente_naam.
 sort cases  gemeente_naam (a).
 
@@ -313,7 +320,7 @@ compute naam=replace(naam,"+®","é").
 compute naam=replace(naam,"_","-").
 compute naam=replace(naam,"Ú","é").
 
-* naam van de gemeente ophalen.
+* code van de gemeente ophalen.
 GET DATA
   /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'

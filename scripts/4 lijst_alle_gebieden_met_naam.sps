@@ -1,7 +1,7 @@
 * Encoding: windows-1252.
 * Encoding: .
 
-* vergeet niet volledige nieuwe gebiedsniveaus hier op te nemen!.
+* vergeet niet volledig nieuwe gebiedsniveaus hier op te nemen!.
 
 GET DATA
   /TYPE=XLSX
@@ -622,6 +622,8 @@ compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.
 string v9900_gebiedscode (a20).
 compute v9900_gebiedscode=ltrim(rtrim(geoitem)).
+string v9900_gebiedsniveau (a20).
+compute v9900_gebiedsniveau = geolevel.
 compute period=1970.
 EXECUTE.
 DELETE VARIABLES naam_kort.

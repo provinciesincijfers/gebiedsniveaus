@@ -18,7 +18,7 @@ DATASET NAME start WINDOW=FRONT.
 DATASET DECLARE woonmaatschappij.
 AGGREGATE
   /OUTFILE='woonmaatschappij'
-  /BREAK=werkingsgebied_woonmaatschappij Namewerkingsgebied_woonmaatschappij
+  /BREAK=woonmaatschappij Namewoonmaatschappij
   /N_BREAK=N.
 dataset activate woonmaatschappij.
 delete variables n_break.
@@ -26,7 +26,7 @@ rename variables woonmaatschappij=gebiedscode.
 rename variables Namewoonmaatschappij=naam_kort.
 string naam (a55).
 compute naam=naam_kort.
-if (gebiedscode=91 | gebiedscode=92 | gebiedscode=99)  onbekend_gebied=1.
+if (gebiedscode>89)  onbekend_gebied=1.
 sort cases onbekend_gebied (a) naam (a).
 compute volgnr=$casenum.
 alter type volgnr (f8.0).

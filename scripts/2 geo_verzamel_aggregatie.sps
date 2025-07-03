@@ -13,7 +13,7 @@ DATASET NAME kerntabel WINDOW=FRONT.
 
 match files
 /file=*
-/keep=statsec statsec_naam statsec2019 statsec2019_naam
+/keep=statsec statsec_dummy statsec_naam statsec2019 statsec2019_naam
 deelgemeente deelgemeente_naam
 gemeente2018 gemeente2018_naam
 gemeente2024 gemeente2024_naam
@@ -599,6 +599,28 @@ MATCH FILES /FILE=*
 EXECUTE.
 dataset close woningmarkt.
 
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\kerntabellen\gemeente_igs.xlsx'
+  /SHEET=name 'Blad1'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME igs WINDOW=FRONT.
+match files
+/file=*
+/keep=gemeente igs Nameigs.
+sort cases gemeente (a).
+DATASET ACTIVATE kerntabel.
+sort cases gemeente (a).
+MATCH FILES /FILE=*
+  /TABLE='igs'
+  /BY gemeente.
+EXECUTE.
+dataset close igs.
+
 
 
 
@@ -786,8 +808,40 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-DATASET ACTIVATE kerntabel.
 
+DATASET ACTIVATE kerntabel.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec statsec_dummy
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_statsec_dummy.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+DATASET ACTIVATE kerntabel.
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=statsec_dummy provincie2024
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_dummy_provincie2024.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+*DATASET ACTIVATE kerntabel.
 *DATASET DECLARE ag1.
 *AGGREGATE
   /OUTFILE='ag1'
@@ -795,7 +849,7 @@ DATASET ACTIVATE kerntabel.
   /N_BREAK=N.
 *dataset activate ag1.
 * Voor "deelgemeente onbekend" kan je eigenlijk niet correct aggregeren. In de nieuwe fusies is er immers een enkel gebied onbekend, terwijl er in de oude gemeenten twee of drie waren binnen de huidige fusie.
-* Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hierote verwijderen we de overbodige records uit het bestand. 
+* Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hiertoe verwijderen we de overbodige records uit het bestand. 
 *(onderstaande behouden + gem2024 toevoegen? mag volgens mij weg want oude deelgem --> gem (nu 2024) werkt ook gewoon goed *
 
 *if deelgemeente='12041ONBE' & gemeente2018=12034 teverwijderen=1.
@@ -821,39 +875,44 @@ DATASET ACTIVATE kerntabel.
 /replace.
 *DATASET ACTIVATE kerntabel.
 
-DATASET DECLARE ag1.
-AGGREGATE
+*DATASET DECLARE ag1.
+*AGGREGATE
   /OUTFILE='ag1'
   /BREAK=deelgemeente gemeente2024
   /N_BREAK=N.
-dataset activate ag1.
+*dataset activate ag1.
 * Voor "deelgemeente onbekend" kan je eigenlijk niet correct aggregeren. In de nieuwe fusies is er immers een enkel gebied onbekend, terwijl er in de oude gemeenten twee of drie waren binnen de huidige fusie.
 * Om dit op te lossen, kennen we het nieuwe gebied onbekend toe aan de gemeente die voor de fusie het grootst was. Hierote verwijderen we de overbodige records uit het bestand. 
 *borsbeek,  ruiselede, meulebeke, wachtebeke, moerbeke, tessenderlo hebben geen gebied onbekend
 
-if deelgemeente='23023ONBE' & gemeente2024=23023 teverwijderen=1.
-if deelgemeente='23032ONBE' & gemeente2024=23032 teverwijderen=1. 
-if deelgemeente='44012ONBE' & gemeente2024=44012 teverwijderen=1.
-if deelgemeente='44040ONBE' & gemeente2024=44040 teverwijderen=1.
-if deelgemeente='46013ONBE' & gemeente2024=46013 teverwijderen=1.
-if deelgemeente='11056ONBE' & gemeente2024=11056 teverwijderen=1.
-if deelgemeente='73032ONBE' & gemeente2024=73032 teverwijderen=1.
-if deelgemeente='73009ONBE' & gemeente2024=73009 teverwijderen=1.
-if deelgemeente='73040ONBE' & gemeente2024=73040 teverwijderen=1.
-EXECUTE.
-FILTER OFF.
-USE ALL.
-SELECT IF (missing(teverwijderen)).
-EXECUTE.
-delete variables n_break teverwijderen.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\deelgemeente_gemeente2024.xlsx'
+* nu grey maar bij update niet meer grey zetten
+
+*if deelgemeente='23023ONBE' & gemeente2024=23023 teverwijderen=1.
+*if deelgemeente='23032ONBE' & gemeente2024=23032 teverwijderen=1. 
+*if deelgemeente='44012ONBE' & gemeente2024=44012 teverwijderen=1.
+*if deelgemeente='44040ONBE' & gemeente2024=44040 teverwijderen=1.
+*if deelgemeente='46013ONBE' & gemeente2024=46013 teverwijderen=1.
+*if deelgemeente='11056ONBE' & gemeente2024=11056 teverwijderen=1.
+*if deelgemeente='73032ONBE' & gemeente2024=73032 teverwijderen=1.
+*if deelgemeente='73009ONBE' & gemeente2024=73009 teverwijderen=1.
+*if deelgemeente='73040ONBE' & gemeente2024=73040 teverwijderen=1.
+*EXECUTE.
+*FILTER OFF.
+*USE ALL.
+*SELECT IF (missing(teverwijderen)).
+*EXECUTE.
+
+*hieronder oorspronkelijk: delete variables n_break teverwijderen
+
+*delete variables n_break.
+*SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\deelgemeente_gemeente2024.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-DATASET ACTIVATE kerntabel.
+*DATASET ACTIVATE kerntabel.
 
 
 *aggr archief
@@ -889,7 +948,7 @@ DATASET ACTIVATE kerntabel.
   /FIELDNAMES VALUE=NAMES
   /CELLS=VALUES
 /replace.
-*DATASET ACTIVATE kerntabel.
+DATASET ACTIVATE kerntabel.
 
 DATASET DECLARE ag1.
   AGGREGATE
@@ -1280,11 +1339,11 @@ DATASET ACTIVATE kerntabel.
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=elz gewest
+  /BREAK=elz provincie
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elz_gewest.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elz_provincie.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -1634,7 +1693,7 @@ DATASET ACTIVATE kerntabel.
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=refreg gewest
+  /BREAK=refreg provincie
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
@@ -1642,7 +1701,7 @@ FILTER OFF.
 USE ALL.
 SELECT IF (refreg ~="").
 EXECUTE.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_gewest.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\refreg_provincie.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -1706,7 +1765,7 @@ DATASET ACTIVATE kerntabel.
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=woonmaatschappij gewest
+  /BREAK=woonmaatschappij provincie
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
@@ -1714,7 +1773,7 @@ FILTER OFF.
 USE ALL.
 SELECT IF (woonmaatschappij>-1).
 EXECUTE.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\woonmaatschappij_gewest.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\woonmaatschappij_provincie.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -1747,11 +1806,10 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
 /replace.
 DATASET ACTIVATE kerntabel.
 
-
 DATASET DECLARE ag1.
 AGGREGATE
   /OUTFILE='ag1'
-  /BREAK=elzantw elz
+  /BREAK=elzantw elzantw_dummy
   /N_BREAK=N.
 dataset activate ag1.
 delete variables n_break.
@@ -1759,7 +1817,7 @@ FILTER OFF.
 USE ALL.
 SELECT IF (elzantw ~="").
 EXECUTE.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elzantw_elz.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elzantw_elzantw_dummy.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -1767,6 +1825,27 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 DATASET ACTIVATE kerntabel.
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=elzantw_dummy elz
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (elzantw ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\elzantw_dummy_elz.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
 
 DATASET DECLARE ag1.
 AGGREGATE
@@ -1979,4 +2058,50 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 DATASET ACTIVATE kerntabel.
+
+
+*igs
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=gemeente igs
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (igs ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\gemeente_igs.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
+DATASET DECLARE ag1.
+AGGREGATE
+  /OUTFILE='ag1'
+  /BREAK=igs gewest
+  /N_BREAK=N.
+dataset activate ag1.
+delete variables n_break.
+FILTER OFF.
+USE ALL.
+SELECT IF (igs ~="").
+EXECUTE.
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\igs_gewest.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+DATASET ACTIVATE kerntabel.
+
+
 

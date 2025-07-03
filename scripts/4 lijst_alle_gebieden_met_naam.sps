@@ -551,6 +551,22 @@ alter type  gebiedscode (a20).
 alter type  naam_kort (a100).
 alter type  naam (a100).
 
+GET DATA
+  /TYPE=XLSX
+  /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\igs.xlsx'
+  /SHEET=name 'igs'
+  /CELLRANGE=FULL
+  /READNAMES=ON
+  /DATATYPEMIN PERCENTAGE=95.0
+  /HIDDEN IGNORE=YES.
+EXECUTE.
+DATASET NAME DataSet33 WINDOW=FRONT.
+
+string geolevel (a20).
+compute geolevel="igs".
+alter type  gebiedscode (a20).
+alter type  naam_kort (a100).
+alter type  naam (a100).
 
 
 DATASET ACTIVATE arrondiss.
@@ -584,7 +600,8 @@ ADD FILES /FILE=*
   /File='Dataset29'
   /File='Dataset30'
   /File='Dataset31'
-/File='Dataset32'.
+/File='Dataset32'
+/File='Dataset33'.
 EXECUTE.
 
 dataset close dataset3.
@@ -617,6 +634,8 @@ dataset close dataset29.
 dataset close dataset30.
 dataset close dataset31.
 dataset close dataset32.
+dataset close dataset33.
+
 
 compute gebiedscode=ltrim(rtrim(gebiedscode)).
 rename variables gebiedscode=geoitem.

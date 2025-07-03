@@ -1,5 +1,7 @@
 * Encoding: windows-1252.
 
+* enkel wanneer gebied onbekend bij meerdere deelgemeenten voorkomt
+
 GET DATA
   /TYPE=XLS
   /FILE=

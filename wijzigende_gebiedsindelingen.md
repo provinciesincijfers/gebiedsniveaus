@@ -83,6 +83,7 @@ Deze heeft uiteraard nog geen data. We voorzien een aggregatietabel van de oude 
 Tot 1 januari houden we de nieuwe gemeenten deels achter de schermen. Op 1 januari draaien we de rollen om. Dan kunnen we achter de schermen nog steeds de oude gemeenten laten zien.
 
 **PROVINCIENIVEAU**
+
 Zwijndrecht behoorde voor de fusies tot de provincie Antwerpen. Na de fusie behoort de fusiegemeente Beveren-Kruibeke-Zwijndrecht tot de provincie Oost-Vlaanderen. Hierdoor werd er een nieuw provincieniveau gemaakt. Het oude blijft bestaan onder provincie2024.
 
 **Impact op databeheer**

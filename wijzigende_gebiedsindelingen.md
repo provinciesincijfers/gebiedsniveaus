@@ -86,7 +86,6 @@ Tot 1 januari houden we de nieuwe gemeenten deels achter de schermen. Op 1 janua
 Zwijndrecht behoorde voor de fusies tot de provincie Antwerpen. Na de fusie behoort de fusiegemeente Beveren-Kruibeke-Zwijndrecht tot de provincie Oost-Vlaanderen. Hierdoor werd er een nieuw provincieniveau gemaakt. Het oude blijft bestaan onder provincie2024.
 
 **Impact op databeheer**
-Naar databeheer is er dus bijna geen probleem.
 
 - data op sectorniveau blijft ongewijzigd
 - data die op het oude gemeenteniveau wordt geleverd kan nog steeds ingelezen worden op `gemeente_2024`

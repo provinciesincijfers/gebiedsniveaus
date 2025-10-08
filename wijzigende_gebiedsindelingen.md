@@ -91,7 +91,7 @@ Hoe omgaan met meerdere gebieden onbekend op het statistische sectorniveau voor 
 
 - Oplossing 2: Lees de data die je normal gezien zou inlezen op het gebied onbekend van de statistische sectoren voor de fusiegemeenten in als missing. Hierdoor hoef je geen gebied onbekend te kiezen. Lees dan wel de correcte cijfers in op gemeenteniveau.
 
-
+Op deelgemeente- en wijkniveau werden de gebieden onbekend reeds geharmoniseerd.
 
 **GEMEENTENIVEAU**
 

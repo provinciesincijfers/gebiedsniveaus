@@ -70,6 +70,27 @@ Om data die op sectorniveau ingeladen wordt op de nieuwe gemeenten te kunnen ton
 
 Uitzondering: data die niet aggregeerbaar is. Dit moest altijd al op meerdere gebiedsniveaus ingelezen worden. Zie daarvoor het volgende stukje.
 
+Hoe omgaan met meerdere gebieden onbekend op het statistische sectorniveau voor fusiegemeenten?
+- Oplossing 1: Lees de data in op het gebied onbekend van de gemeente met het gootste inwonersaantal
+
+ gemeentecode2024 | naam gemeenten 2024 | gemeentecode en naam fusie | naam grootste gemeente2024 | code gebied onbekend statsec
+-- | -- | -- | -- | -- 
+11002 - 1007 | Antwerpen - Borsbeek | 11002 Antwerpen | Antwerpen | 11002ZZZZ
+23023 - 23024 - 23032 | Galmaarden - Gooik - Herne | 23106 Pajottegem | Gooik | 23024ZZZZ
+37012 - 37018 | Ruiselede - Wingene | 37021 Wingene | Wingene | 37018ZZZZ
+37007 - 37015 | Meulebeke - Tielt | 37022 Tielt | Tielt | 37015ZZZZ
+44012 - 44048 | De Pinte - Nazareth | 44086 Nazareth-De Pinte | Nazareth | 44048ZZZZ
+44034 - 44073 | Lochristi - Wachtebeke | 44087 Lochristi | Lochristi | 44034ZZZZ
+46014 - 44045 | Lokeren- Moerbeke | 46029 Lokeren | Lokeren | 46014ZZZZ
+44040 - 44043 | Melle - Merelbeke | 44088 Merelbeke-Melle | Merelbeke | 44043ZZZZ
+46003 - 46013 - 11056 | Beveren - Kruibeke - Zwijndrect | 46030 Beveren-Kruibeke-Zwijndrecht | Beveren | 46003ZZZZ
+73006 - 73032 | Bilzen - Hoeselt | 73110 Bilzen-Hoeselt | Bilzen | 73006ZZZZ
+73009 - 73083 | Borgloon - Tongeren | 73111 Tongeren-Borgloon | Tongeren | 73083ZZZZ
+71069 - 71057 | Ham - Tessenderlo | 71071 Tessenderlo-Ham | Tessenderlo | 71057ZZZZ
+71022 - 73040 | Hasselt - Kortessem | 71072 Hasselt | Hasselt | 71022ZZZZ
+
+- Oplossing 2: Lees de data die je normal gezien zou inlezen op het gebied onbekend van de statistische sectoren voor de fusiegemeenten in als missing. Hierdoor hoef je geen gebied onbekend te kiezen. Lees dan wel de correcte cijfers in op gemeenteniveau.
+
 
 
 **GEMEENTENIVEAU**

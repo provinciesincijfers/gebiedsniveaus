@@ -75,7 +75,7 @@ Hoe omgaan met meerdere gebieden onbekend op het statistische sectorniveau voor 
 
  gemeentecode2024 | naam gemeenten 2024 | gemeentecode en naam fusie | naam grootste gemeente2024 | code gebied onbekend statsec
 -- | -- | -- | -- | -- 
-11002 - 1007 | Antwerpen - Borsbeek | 11002 Antwerpen | Antwerpen | 11002ZZZZ
+11002 - 11007 | Antwerpen - Borsbeek | 11002 Antwerpen | Antwerpen | 11002ZZZZ
 23023 - 23024 - 23032 | Galmaarden - Gooik - Herne | 23106 Pajottegem | Gooik | 23024ZZZZ
 37012 - 37018 | Ruiselede - Wingene | 37021 Wingene | Wingene | 37018ZZZZ
 37007 - 37015 | Meulebeke - Tielt | 37022 Tielt | Tielt | 37015ZZZZ

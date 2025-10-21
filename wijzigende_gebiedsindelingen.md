@@ -72,7 +72,8 @@ Uitzondering: data die niet aggregeerbaar is. Dit moest altijd al op meerdere ge
 
 Hoe omgaan met meerdere gebieden onbekend op het statistische sectorniveau voor fusiegemeenten?
 - Oplossing 1: Lees de data in op het gebied onbekend van de gemeente met het gootste inwonersaantal
-  N.B. de sectorcodes onbekend die je mag negeren, bestaan telkens uit de NIScode + ZZZZ, dus bv. Borsbegek: 11007ZZZZ
+- 
+  N.B. de sectorcodes onbekend die je mag negeren, bestaan telkens uit de NIScode + ZZZZ, dus bv. voor Borbseek is dit 11007ZZZZ
 
  gemeentecode2024 | naam gemeenten 2024 | gemeentecode en naam fusie | naam grootste gemeente2024 | code gebied onbekend statsec
 -- | -- | -- | -- | -- 

@@ -195,51 +195,52 @@ Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan i
 
 ## Evoluerende statistische sectoren
 
-provincies.incijfers.be werkt op dit moment met de [statistische sectoren versie 1/1/2020, zoals gepubliceerd op Statbel](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2020). Deze versie wordt zowel gebruikt in de online tool als voor analyse. Voor de online versie werken we met een vereenvoudigde geometrie, om de laadtijd van de website optimaal te houden. Voor analyse gebruiken we de originele versie.
+provincies.incijfers.be werkt op dit moment met de [statistische sectoren versie 1/1/2025, zoals gepubliceerd op Statbel](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2025). Deze versie wordt zowel gebruikt in de online tool als voor analyse. Voor de online versie werken we met een vereenvoudigde geometrie, om de laadtijd van de website optimaal te houden. Voor analyse gebruiken we de originele versie.
 
 ### Wanneer volgt provincies.incijfers.be?
 
-De statistische sectoren zijn relatief onveranderlijke eenheden. Vroeger werden deze om de tien jaar licht herzien, vooral als gevolg van grote evoluties van de bevolking. Sinds 2011 was er geen grote herziening meer. Vanaf 2019 zijn er wel enkele bewegingen. Sindsdien heeft Statbel jaarlijks een nieuwe versie online gezet
+De statistische sectoren zijn relatief onveranderlijke eenheden. Vroeger werden deze om de tien jaar licht herzien, vooral als gevolg van grote evoluties van de bevolking. Sinds 2011 was er lange tijd geen grote herziening meer. Vanaf 2019 zijn er wel enkele bewegingen. Sindsdien heeft Statbel jaarlijks een nieuwe versie online gezet. In 2025 kenden de statistische sectoren een grondige hervorming. De praktische uitwerking is door de VSA overgelaten aan de Data & Analyse-werkingen van de provincies. Meer informatie over de hervorming kan je [hier](https://statbel.fgov.be/sites/default/files/files/opendata/Statistische%20sectoren/Hervorming%20statistische%20sectoren%202025.pdf) terugvinden.
 - in [2019](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2019) was dit een fundamentele wijziging: voor het eerst werden de grenzen zonder vereenvoudiging als open data gepubliceerd. In Stad Antwerpen was er ook een kleine inhoudelijke wijziging. De definitie van de kustlijn werd aangepast, waardoor alle kustgemeenten een strandsector kregen.
 - in [2020](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2020) was er enkel een wijziging in geometrie: vooral aan gemeentegrenzen zijn er kleine aanpassingen. In Stad Antwerpen waren er relatief grenscorrecties aan de districten
-- in [2021](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2021) waren er opnieuwe kleine wijzigingen in de geometrie. Daarnaast werd in de Stad Antwerpen de statistische sector van de Schelde (11002M0PA) opgesplitst op de districtsgrens Antwerpen/Bezali (11002M0RA en 11002M0QA).
+- in [2021](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2021) waren er opnieuw kleine wijzigingen in de geometrie. Daarnaast werd in de Stad Antwerpen de statistische sector van de Schelde (11002M0PA) opgesplitst op de districtsgrens Antwerpen/Bezali (11002M0RA en 11002M0QA).
+- in [2025](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2025) vond een grondige hervorming plaats van de statistische sectoren. 
 
 Overstappen naar een nieuwe versie van de statistische sectoren heeft nogal wat implicaties:
-- afgeleide gebiedsindelingen moeten bijgewerkt worden ([gemeentegedragen wijken](/gemeente_statsec_wijken), [deelgemeenten](/deelgemeenten))
-- de definitie van het gebiedsniveau in Swing moet bijgewerkt worden, of er moet een nieuwe toegevoegd worden
+- afgeleide gebiedsindelingen moeten bijgewerkt worden ([gemeentegedragen wijken](/gemeente_statsec_wijken), [deelgemeenten](/deelgemeenten)).
+- de definitie van het gebiedsniveau in Swing moet bijgewerkt worden, of er moet een nieuwe toegevoegd worden.
 - alle tijdsreeksen in Swing moeten nagekeken worden: kunnen ze zomaar op de nieuwe indeling gezet worden? Geografische analyse moet misschien voor de hele tijdsreeks opnieuw gebeuren.
 - inkomende en uitgaande [Swing Connectors](https://github.com/provinciesincijfers/connectorbeheer) moeten nagekeken worden. Moeten de partners eventueel ook aanpassingen doen in hun databeheer? Of kunnen we voor de specifieke connector zonder aanpassingen verder?
 
-Er is dus een kosten-baten ananlyse te maken:
+Er is dus een kosten-baten analyse te maken:
 - voor processen waar we steeds de hele historiek verwerken, werken we liefst met een zo recent mogelijke geometrie
 - voor processen waar we zelf de historiek niet kunnen herverwerken, of waar dit arbeidsintensief is, houden we de zaken liefst zo stabiel mogelijk
 
-We houden daarom de gebiedsdefinitie (welke statsec bestaan, welke niet) zo stabiel mogelijk. We passen deze enkel aan indien er significante inhoudelijke wijzigingen in de sectoren zijn, en doen dit in principe hoogstens om de vijf jaar. Voor analyse werken we bij voorkeur met de versie die we voor Swing gebruiken. Enkel indien er een grote meerwaarde is van met de recentste geometrie te werken, kan de verwerker van een specifieke reeks er voor kiezen om met een recentere versie te werken voor een specifieke verwerking. Het is dan de verantwoordelijkheid van deze verwerker om de resultaten om te zetten naar de gebiedsdefinitie zoals deze in Swing bestaat.
+We houden daarom de gebiedsdefinitie (welke statsec bestaan, welke niet) zo stabiel mogelijk. We passen deze enkel aan indien er significante inhoudelijke wijzigingen in de sectoren zijn, en doen dit in principe hoogstens om de vijf jaar. Voor analyse werken we bij voorkeur met de versie (gepubliceerd door Statbel) die we voor Swing gebruiken. Enkel indien er een grote meerwaarde is van met de recentste geometrie te werken, kan de verwerker van een specifieke reeks er voor kiezen om met een recentere versie te werken voor een specifieke verwerking. Het is dan de verantwoordelijkheid van deze verwerker om de resultaten om te zetten naar de gebiedsdefinitie zoals deze in Swing bestaat.
 
 Hieronder volgt een historiek van de historische wijzigingen van de statistische sectoren in provincies.incijfers.be
 
 ### Update statistische sectoren in provincies.incijfers.be 2020
 
-Tot en met 2019 gebruikten we voor **publicatie** een vereenvoudigde versie van de statistische sectoren [zoals NGI die publiceert ("ADMIN VEC")](https://www.geo.be/catalog/details/fb1e2993-2020-428c-9188-eb5f75e284b9?l=nl). Voor **analyse** gebruikten we de statistische sectoren die statbel publiceerde, om zo dicht mogelijk bij hun analyses te blijven.
+Tot en met 2019 gebruikten we voor **publicatie** een vereenvoudigde versie van de statistische sectoren [zoals NGI die publiceert ("ADMIN VEC")](https://www.geo.be/catalog/details/fb1e2993-2020-428c-9188-eb5f75e284b9?l=nl). Voor **analyse** gebruikten we de statistische sectoren die Statbel publiceerde, om zo dicht mogelijk bij hun analyses te blijven.
 
 
 Drie nieuwswaardige feiten noopten tot een update van de statistische sectoren die we gebruiken voor analyse én voor Swing.
 
-- In de stad Antwerpen is er een &quot;grenscorrectie&quot; van een district. Omdat dit juridische gevolgen heeft, was statbel bereid om hier een grensverlegging van de statistische sectoren te doen. Op die manier kan je nog steeds cijfers over districten bouwen op basis van statistische sectoren
+- In de stad Antwerpen is er een &quot;grenscorrectie&quot; van een district. Omdat dit juridische gevolgen heeft, was Statbel bereid om hier een grensverlegging van de statistische sectoren te doen. Op die manier kan je nog steeds cijfers over districten bouwen op basis van statistische sectoren
 - Aan de kust zijn er extra statistische sectoren gedefinieerd
-- De dataset van statbel is in kwaliteit verhoogd: gemeentegrenzen wijken veel minder af van het &quot;voorlopig referentiebestand gemeentegrenzen&quot; dan vroeger. In oktober 2019 volgde nog een verder verbeterde versie. De open dataset zal niet meer met sterk vereenvoudigde geometrie gepubliceerd worden, maar in al zijn oorspronkelijke geometrische glorie
+- De dataset van Statbel is in kwaliteit verhoogd: gemeentegrenzen wijken veel minder af van het &quot;voorlopig referentiebestand gemeentegrenzen&quot; dan vroeger. In oktober 2019 volgde nog een verder verbeterde versie. De open dataset zal niet meer met sterk vereenvoudigde geometrie gepubliceerd worden, maar in al zijn oorspronkelijke geometrische glorie
 
 Dit betekent dat we:
 
 - Een aanpassing moeten doen in PinC om de Stad Antwerpen met data te kunnen blijven voeden
 - Een aanpassing moeten doen in PinC om oppervlakte-gerelateerde cijfers correct weer te kunnen geven op laag geometrisch niveau
-- We vanaf nu één enkele dataset kunnen gebruiken voor zowel PinC als analyse. Bovendien gaat ruimtelijke analyse nu een veel kleinere foutenmarge hebben (vb. adrespunten die niet in de juiste gemeente liggen).
+
 
 Opmerking: voor Swing (PinC) hebben we de conventie om het eindjaar toe te voegen van gebiedsindelingen die ophouden te bestaan, en de nieuwe versie zonder clarificatie te behouden. Verder bedoelen we met &quot;statsec&quot; de nieuwe statistische sectoren en &quot;statsec2019&quot; de versie die eindigt in het jaar 2019.
 
 Op de kaartjes is de rode info steeds &quot;oud&quot; en de blauwe &quot;nieuw&quot;.
 
-Het heeft lang geduurd eer statbel zelf de indeling publiceerde. Geopunt deed dit eerst. Daarom werken we met [de versie die daar is gepubliceerd](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e). Deze is lichtjes vereenvoudigd, maar zeker niet in de mate dat dit vroeger gedaan werd. 
+Het heeft lang geduurd eer Statbel zelf de indeling publiceerde. Geopunt deed dit eerst. Daarom werken we met [de versie die daar is gepubliceerd](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e). Deze is lichtjes vereenvoudigd, maar zeker niet in de mate dat dit vroeger gedaan werd. 
 Later ontdekten we dat ook NGI de nieuwe versie inclusief geometrie publiceert; zie [de federale data site](https://data.gov.be/en/dataset/fb1e2993-2020-428c-9188-eb5f75e284b9)
 ![afbeelding](https://user-images.githubusercontent.com/10122639/109805994-6c259000-7c24-11eb-939c-f724169a913a.png)
 Later werd dit nog toegevoegd aan [statbel](https://statbel.fgov.be/nl/over-statbel/methodologie/classificaties/geografie) zelf. Inmiddels zijn er daar zelfs meerdere versies te vinden.
@@ -282,11 +283,11 @@ Langsheen de hele kust worden de sectoren die de kustlijn vormden ietsje kleiner
 Bij een snelle scan zagen we slechts een impact op één adres. 
 De nieuwe sectoren krijgen steeds de code [NISCODE]X0JQ en de naam &quot;STRAND&quot;. Behalve Nieuwpoort dat een OOST-STRAND (38016X0JQ) en een WEST-STRAND (38016X1JQ) krijgt.
 
-Er is doorgaans slechts één sector per gemeente gedefinieerd. Hierdoor kunnen deze niet aan onze subgemeentelijke indelingen toegekend worden, want doorgaans zijn er meerdere wijken die op het starnd uitgeven. In de plaats komen ze steeds bij &quot;gebied onbekend&quot; terecht.
+Er is doorgaans slechts één sector per gemeente gedefinieerd. Hierdoor kunnen deze niet aan onze subgemeentelijke indelingen toegekend worden, want doorgaans zijn er meerdere wijken die op het strand uitgeven. In de plaats komen ze steeds bij &quot;gebied onbekend&quot; terecht.
 
 ##### Verbeterde geometrie
 
-Grenzen zijn verbeterd. Met name aan de gemeentegrenzen is veel verbeterd. Men werkt hiervoor met de (toekomstige) authentieke bron, namelijk het kadaster. Dat is enigszins jammer, omdat in Vlaanderen men meer werkt met het &quot;voorlopig referentiebestand gemeentegrenzen&quot;. Alle wijzigingen in dit voorlopig bestand stromen uiteindelijk door naar het federale kadaster en dan zo naar statbel en uiteindelijk de statistische sectoren. Verdere grenscorrecties worden op termijn wel toegepast in dat bestand.
+Grenzen zijn verbeterd. Met name aan de gemeentegrenzen is veel verbeterd. Men werkt hiervoor met de (toekomstige) authentieke bron, namelijk het kadaster. Dat is enigszins jammer, omdat in Vlaanderen men meer werkt met het &quot;voorlopig referentiebestand gemeentegrenzen&quot;. Alle wijzigingen in dit voorlopig bestand stromen uiteindelijk door naar het federale kadaster en dan zo naar Statbel en uiteindelijk de statistische sectoren. Verdere grenscorrecties worden op termijn wel toegepast in dat bestand.
 
 Daarnaast (zie voorbeeld) zijn ook grenzen die niet aan een gemeentegrens liggen aangepast.
 
@@ -294,11 +295,15 @@ Daarnaast (zie voorbeeld) zijn ook grenzen die niet aan een gemeentegrens liggen
 
 Het toewijzen van CRAB-adressen op basis van hun coördinaat aan een statistische sector was vroeger enigszins problematisch. Voor een groot stuk lag dat aan de slechte geometrie van die versie. Voor een deel ligt dit aan de exacte plaats van het punt zoals het in CRAB was gedefinieerd. Bij het bepalen van de exacte adrespositie, wordt doorgaans géén rekening gehouden met statistische gebiedsindelingen.
 
-Op basis van de nieuwe versie van de statsec en een verse dump van het CRAB, deed Karin van de GIS-dienst van Limburg eeb controle van in hoeverre dit probleem zich nog voordoet. We kunnen het enkel controleren wat betreft gemeentegrenzen. De oefening bestond eruit om na te gaan welke adressen die door het CRAB gedefinieerd zijn als &quot;behorende tot Gemeente X&quot; na ruimtelijke doordruk NIET in die Gemeente X blijken te liggen.
+Op basis van de nieuwe versie van de statsec en een verse dump van het CRAB, deed Karin van de GIS-dienst van Limburg een controle van in hoeverre dit probleem zich nog voordoet. We kunnen het enkel controleren wat betreft gemeentegrenzen. De oefening bestond eruit om na te gaan welke adressen die door het CRAB gedefinieerd zijn als &quot;behorende tot Gemeente X&quot; na ruimtelijke doordruk NIET in die Gemeente X blijken te liggen.
 
 ![afbeelding](https://user-images.githubusercontent.com/10122639/109805738-1bae3280-7c24-11eb-9b11-b70b5609dbc6.png)
 
 Voor heel Vlaanderen blijkt het om slechts 137 gevallen te gaan. Er zijn verschillende oorzaken aan te wijzen. Voor een deel zijn deze oplosbaar aan CRAB-kant. Bijvoorbeeld hebben huizen soms adressen van twee gemeenten gekregen, waar dat eigenlijk niet logisch lijkt. Heel vaak gaat het echter om percelen of zelfs huizen die doorsneden worden door een grens. In die gevallen is het sowieso lastig om een gebied geometrisch toe kennen, aangezien het hier steeds om speciale gevallen gaat. De grootte-orde van het probleem laat toe om het ofwel te negeren, ofwel er een automatische oplossing voor te verzinnen. In enkele gevallen is het wellicht de moeite om hier een CRAB-melding voor te doen.
+
+
+### Update statistische sectoren in provincies.incijfers.be 2025
+Een uitgebreid overzicht van wat er zoal veranderde tijdens de grondige herwerking van de statistische sectoren geven we hier niet omdat elke gemeente wel aanpassingen kende. Voor sommige gemeenten werd daarenboven een volledig nieuwe indeling opgemaakt die volledig losstaat van de oude indeling van de sectoren. Een samenvatting kan je evenwel [hier](https://statbel.fgov.be/sites/default/files/files/opendata/Statistische%20sectoren/Hervorming%20statistische%20sectoren%202025.pdf) terugvinden. Contacteer gerust de [Data & Analyse van je provincie](https://provincies.incijfers.be/dashboard/dashboard/contact) of ons [algemene contactadres](mailto:info@provincies.incijfers.be) voor meer informatie.  
 
 
 

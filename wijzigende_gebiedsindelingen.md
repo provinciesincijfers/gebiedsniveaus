@@ -3,7 +3,7 @@
 Af en toe wijzigen de basisindelingen die we gebruiken. Dat is met name het geval voor statistische sectoren en gemeenten. De enige wijzigingen die relevant zijn voor de gebruiker van de toepassing zijn er waar de gebiedscodes wijzigen.
 
 Als algemeen principe geldt:
-We wijzigen de code van het gebiedsniveau van de oude versie. Daarbij geven we een achtervoegsel dat aangeeft wanneer de indeling ophield te bestaan op deze manier. Dus de gebiedsniveaucode `gemeente` blijft steeds verwijzen naar "de huidige gemeenten". De "oude" gemeenten blijven raadpleegbaar via `gemeente_2018`.
+We wijzigen de code van het gebiedsniveau van de oude versie. Daarbij geven we een achtervoegsel dat aangeeft wanneer de indeling ophield te bestaan op deze manier. Dus de gebiedsniveaucode `gemeente` blijft steeds verwijzen naar "de huidige gemeenten". De "oude" gemeenten blijven raadpleegbaar via `gemeente2024`.
 
 Er zijn ook steeds frequentere wijzigingen in de geometrie van de gebieden. Dit heeft voor provincies.incijfers.be weinig impact. Wel kan dit aanleiding geven tot de nood om bepaalde geografische berekeningen opnieuw uit te voeren. Dit gebeurt echter achter de schermen.
 

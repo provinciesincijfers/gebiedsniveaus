@@ -68,7 +68,7 @@ Sinds juni 2024 is het ook mogelijk dat Data & Analyse zelf een voorstel opmaakt
 *We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit de gemeente.* 
 
 ## Oude en nieuwe wijkindeling
-Naar aanleiding van de hertekening van de statistische sectoren[TODO LINK] werd een nieuwe wijkindeling opgemaakt op basis van de nieuwe sectoren. Daarom zal je op provincies.incijfers.be twee wijkindelingen zien: wijk (indeling t.e.m. 2024) en wijk, dit laatste is de meest recente indeling.
+Naar aanleiding van de hertekening van de [statistische sectoren](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/wijzigende_gebiedsindelingen.md#evoluerende-statistische-sectoren) werd een nieuwe wijkindeling opgemaakt op basis van de nieuwe sectoren. Daarom zal je op provincies.incijfers.be twee wijkindelingen zien: wijk (indeling t.e.m. 2024) en wijk, dit laatste is de meest recente indeling.
 
 ## Kernbestanden
 * [gemeenten volgens beschikbaarheid wijkindeling](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/uploadfiles/ggw7_type.xlsx)

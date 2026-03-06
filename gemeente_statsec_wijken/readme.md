@@ -20,28 +20,34 @@ De indeling zoals die hier verdeeld wordt is beschikbaar onder de [modellicentie
 Voor de lancering in juni 2019 verzamelden we de ons bekende sector-gebaseerde wijkindelingen van gemeenten. Gemeenten kunnen ons vragen om de wijkindeling voor hun gemeente aan te passen. Neem hiervoor contact op met info@provincies.incijfers.be of [Data & Analyse in uw provincie](https://provincies.incijfers.be/dashboard/dashboard/contact). Verdere aanvullingen of correcties worden halfjaarlijks verwerkt en jaarlijks aangevuld in Provincies in Cijfers.
 
 Inhoudelijke voorwaarden:
-- Ze zijn gebaseerd op statistische sectoren. Immers kunnen we anders geen data uit diverse bronnen samenbrengen
-- Wijken bestaan bijna altijd uit meerdere, aaneensluitende statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat, bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. 
-- Wijken bestaan naast statistische sectoren en deelgemeenten en vervangen ze niet. Doorgaans zijn ze kleiner dan deelgemeenten, voor zover ze dan nog voldoende inwoners bevatten.
-- Wijken staan volledig los van deelgemeenten, ze hoeven er dus ook niet naar op te tellen
-- Wijken respecteren steeds de gemeentegrenzen
-- Deze wijken zijn vooral bedoeld voor statistieken over de inwoners. Door enkele sectoren samen te voegen, krijgen we vrij grote bevolkingsaantallen waardoor je stabielere cijfers krijgt. Het kan soms wel zinvol zijn om onbewoonde gebieden af te splitsen.
+-	Ze zijn gebaseerd op statistische sectoren. Immers kunnen we anders geen data uit diverse bronnen samenbrengen.
+-	Bij het opmaken van de wijkgrenzen moeten de sectorgrenzen én de gemeentegrenzen gerespecteerd worden. Een sector kan niet aan 2 wijken worden toegekend, en een wijk kan een gemeentegrens niet overschrijden.    
+-	Wijken bestaan doorgaans uit meerdere, aaneensluitende statistische sectoren. Het kan slechts uitzonderlijk voorkomen dat een wijk slechts uit één sector bestaat, bijvoorbeeld omdat ze zeer atypisch is en heel weinig of net heel veel inwoners bevat. Multipart wijken (wijken die bestaan uit niet-aaneensluitende sectoren) mogen niet. 
+-	Wijken bestaan naast statistische sectoren en deelgemeenten en vervangen ze niet. Doorgaans zijn ze kleiner dan deelgemeenten, voor zover ze dan nog voldoende inwoners bevatten.
+-	Wijken staan volledig los van deelgemeenten, ze hoeven er dus ook niet naar op te tellen.
+-	Deze wijken zijn vooral bedoeld voor statistieken over de inwoners. Door enkele sectoren samen te voegen, krijgen we vrij grote bevolkingsaantallen waardoor je stabielere cijfers krijgt. Het kan soms wel zinvol zijn om onbewoonde gebieden af te splitsen.
+
 
 Technische voorwaarden:
-- We werken met slechts één wijkindeling
-    -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is.
-    -	We maken geen “thematische wijken” (bv welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn
-- de indeling wordt aangeleverd als aanvulling op de beschikbare Excel (of vergelijkbaar formaat) in dat format
-- de indeling is gebaseerd op de [statistische sectoren geldig vanaf 2019](http://www.geopunt.be/catalogus/datasetfolder/c2acf4e7-bcdd-4ea0-9702-37023b08638e) of recenter
-- de indeling kent élke statistische sector toe aan één wijk
-- de wijk krijgt een unieke code van het format *[niscode van de gemeente][vrij te kiezen]*. Het vrij te kiezen gedeelte bevat enkel hoofdletters, cijfers en underscores.
-- de wijken krijgen unieke namen binnen de gemeente. Voor gebruik op provincies.incijfers.be maken wij ze uniek over Vlaanderen door er "Naam wijk X (Gemeente Y)" van te maken.
-- er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden
-- de gemeente geeft door indienen van een voorstel toestemming om de informatie over de wijkindeling (aggregatietabel, namen) vrij te geven als open data onder Vlaamse modellicentie gratis hergebruik
+-	We werken met slechts één wijkindeling
+    -	We werken met de eerste wijkindeling die we van een gemeente ontvangen. Indien we daarna van andere medewerkers van dezelfde gemeente de vraag krijgen om een andere wijkindeling te gebruiken, dan doen we dit enkel mits een collegebesluit van de gemeente dat de nieuwe wijkindeling de officiële wijkindeling is. De wijkindeling moet dus afgetoetst zijn bij verschillende diensten binnen de gemeente, zodat ze vanuit verschillende invalshoeken bruikbaar is. Niet alle diensten moeten worden bevraagd, maar bij voorkeur zit er wel variatie in de diensten die worden betrokken, waarbij zowel ruimtelijk georiënteerde diensten (ruimtelijke ordening, wonen…) als persoonsgebonden diensten (welzijn, sociale dienst…) worden geconsulteerd. Ook als er een buurt- of wijkwerking is, is het belangrijk deze mee te nemen in het proces.   
+    - We maken geen “thematische wijken” (bv. welzijnswijken, handhavingswijken, etc.) maar streven een generiek wijkniveau na dat een grootste gemene deler voor de gemeente kan zijn.
+- De indeling wordt aangeleverd idealiter aangeleverd in Excel-formaat met daarin minstens de sectorcode en de naam van de wijk.
+- De indeling is gebaseerd op de [statistische sectoren geldig vanaf 2025 of recenter](https://statbel.fgov.be/nl/open-data/statistische-sectoren-2025 ) of recenter.
+- De indeling kent élke statistische sector toe aan één wijk.
+- De wijk krijgt via een script een unieke code van het format [NIScode gemeente][W][01, 02 (oplopend) Bij NIS7 wijken bestaat de unieke code uit de NIS7-codering + ‘W’. Uitzonderingen (bv. om multipart wijken te vermijden) worden bijgehouden. Uitzonderingen hierop zijn mogelijk mits zeer goede argumentatie. 
+- De wijken krijgen unieke namen binnen de gemeente. Voor gebruik op provincies.incijfers.be maken wij ze uniek over Vlaanderen door er "Naam wijk X (Gemeente Y)" van te maken.
+- Er moet één wijk ‘onbekend’ zijn. Deze wijk heeft geen geografische locatie maar is een ‘restcategorie’ waar data worden ondergebracht waarvan de exacte locatie binnen de gemeente niet gekend is. Deze krijgt als code NIS gemeente (fusiegemeente) + W + ONB en als naam: naam gemeente – Niet te lokaliseren.  
+- Er wordt een verantwoordelijke voor de wijkindeling opgegeven die inhoudelijke en technische vragen kan (laten) beantwoorden.
+- De gemeente geeft door indienen van een voorstel toestemming om de informatie over de wijkindeling (aggregatietabel, namen) vrij te geven als open data onder Vlaamse modellicentie gratis hergebruik.
+  
+Een overzicht van de beschikbare gemeenten kan je hier downloaden (rechtsreekse link)
+De gebiedscodes (oplopend ...W01, ...W02, enz.) worden toegekend op basis van de alfabetische volgorde van de wijknamen. Wil je hier een uitzondering op (zoals Gent), dan moeten de gebiedscodes dit reflecteren. 
+
 
 Een overzicht van de beschikbare gemeenten kan je hier downloaden ([rechtsreekse link](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx))
 
-Binnen Swing worden de wijken getoond in alfabetische volgorde op basis van de gebiedscode; "wijk onbekend" wordt steeds laatste getoond. Als je wijken wil groeperen op basis van waar ze liggen (bijvoorbeeld eerst de centrumwijken), dan moeten de gebiedscodes dit reflecteren.
+De gebiedscodes (oplopend ...W01, ...W02, enz.) worden toegekend op basis van de alfabetische volgorde van de wijknamen. Wil je hier een uitzondering op (zoals Gent), dan moeten de gebiedscodes dit reflecteren.
 
 
 ## Gebiedsdekkend
@@ -49,28 +55,27 @@ Binnen Swing worden de wijken getoond in alfabetische volgorde op basis van de g
 [<img src="https://provincies.incijfers.be/jive/JiveInlineImg.aspx?presel=ggw7_kaart" alt="kaart" height="300"/>](https://provincies.incijfers.be/databank?presel=ggw7_kaart&keepworkspace=true)
 
 
-Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze indeling met een "automatische" wijkbenadering. Hiervoor baseren we ons op de structuur van de NIS-code van de statistische sectoren. Deze hebben een zekere logica. De code van een statistische sector (of "nis9") heeft negen tekens, waarbij de eerste vijf tekens voor de gemeente (situatie tot 2018, "nis5") staat. Onze voorlopige wijken zijn gebaseerd op "nis7".  We passen deze indeling echter lichtjes aan. Door hervormingen van de sectoren zijn deze codes niet altijd logisch. Daarnaast vermijden we zoveel mogelijk "wijken" die uit meerdere gebieden bestaan die niet op elkaar aansluiten. Voor een klein aantal statistische sectoren hebben we daarom aanpassingen in de indeling gemaakt.
+Om tot een gebiedsdekkende indeling van Vlaanderen te komen, verrijken we deze indeling met een "automatische" wijkbenadering. Hiervoor baseren we ons op de structuur van de NIS-code van de statistische sectoren. Deze hebben een zekere logica. De code van een statistische sector (of "nis9") heeft negen tekens, waarbij de eerste vijf tekens voor de gemeente (situatie tot 2018, "nis5") staat. Onze voorlopige wijken zijn gebaseerd op "nis7". We passen deze indeling echter lichtjes aan. Door hervormingen van de sectoren zijn deze codes niet altijd logisch. Een document dat deze aanpassingen toelicht vind je hier[TODO AANVULLEN]. Daarnaast vermijden we zoveel mogelijk "wijken" die uit meerdere gebieden bestaan die niet op elkaar aansluiten. Voor een klein aantal statistische sectoren hebben we daarom aanpassingen in de indeling gemaakt. Uitzonderingen hierop zijn Baarle-Hertog (multipart gemeente), Mesen (multipart gemeente) en Wevelgem (randgeval). 
 
-De nis7-gebaseerde indeling kunt u via dit platform downloaden ([rechtstreeks](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/dena_nis7.xlsx)).
+De nis7-gebaseerde indeling kunt u via dit platform downloaden ([rechtstreeks](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/dena_nis7.xlsx).
 
 Voor Brussel werken we met de standaard wijkindeling die in het gewest gehanteerd wordt. Wel passen we deze enigszins aan om de gemeentegrenzen te respecteren. Sommige bestaande wijken worden dus in twee of meer stukken verdeeld.
 
 We voorzien ook een “wijk onbekend” per gemeente, per gewest en over heel de toepassing. De tabellen in deze map zijn steeds de meest actuele. 
-In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt. We publiceren ongeveer eens per zes maand een nieuwe versie van deze laag op dat platform. Op dat moment actualiseren we ook [de verzameltabel](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/verzamelbestanden) die alle gebiedsindelingen samenbrengt.
+In provincies.incijfers.be zelf kan het zijn dat de wijkindeling nog achterloopt. We publiceren ongeveer eens per zes maand een nieuwe versie van deze laag op dat platform. Op dat moment actualiseren we ook [de verzameltabellen](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/verzamelbestanden) die alle gebiedsindelingen samenbrengt.
 
-*We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit een gemeente.* 
+Sinds juni 2024 is het ook mogelijk dat Data & Analyse zelf een voorstel opmaakt voor een wijkindeling binnen een gemeente, indien een gemeente (nog) geen gemeentegedragen wijkindeling heeft.
+*We geven de voorkeur aan gemeentegedragen wijken en vervangen zo veel als we kunnen onze nis7-variant door het voorstel vanuit de gemeente.* 
 
-
-
+## Oude en nieuwe wijkindeling
+Naar aanleiding van de hertekening van de statistische sectoren[TODO LINK] werd een nieuwe wijkindeling opgemaakt op basis van de nieuwe sectoren. Daarom zal je op provincies.incijfers.be twee wijkindelingen zien: wijk (indeling t.e.m. 2024) en wijk, dit laatste is de meest recente indeling.
 
 ## Kernbestanden
-
-* [koppeltabel statistische sector aan code en naam van de bijhorende gemeentegedragen wijk](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/gemeente_statsec_wijken/gemeentegedragen_wijken.xlsx)
 * [gemeenten volgens beschikbaarheid wijkindeling](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/uploadfiles/ggw7_type.xlsx)
 * [definitietabel alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/gebiedsdefinities/ggw7.xlsx)
 * [koppeltabel alle statsec naar alle wijken (zowel gemeentegedragen als NIS7)](https://github.com/provinciesincijfers/gebiedsniveaus/raw/master/data_voor_swing/aggregatietabellen/statsec_ggw7.xlsx)
 
 
 
-Voor vragen, contacteer emilien.dupont@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/databank?report=project_d_en_a)
+Voor vragen, contacteer emilien.dupont@data-en-analyse.be of [uw provinciaal D&A](https://provincies.incijfers.be/dashboard/dashboard/contact)
 

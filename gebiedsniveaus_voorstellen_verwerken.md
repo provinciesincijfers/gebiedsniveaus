@@ -40,7 +40,7 @@ Het verwerkte bestand [statsec als basis](https://github.com/provinciesincijfers
 
   - Praktisch: maak een vereenvoudigde versie van de statsec (indien nog niet beschikbaar). Dit doen we in [Mapshaper](https://mapshaper.org/). Gebruik de optie &quot;-clean&quot; om er fouten uit te halen. Dit enkel wanneer er een nieuwe statsec laag nodig is! Anders start je gewoon van punt 3.
   - Open de output in QGIS.
-  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx) of aan de kerntabel. Voor bovengemeentelijke niveaus kan je ook vertrekken van de afzonderlijke kerntabel excel files en van de shape van de gemeente. 
+  - Koppel aan een bijgewerkte versie van [verwerkt_alle_gebiedsniveaus.xlsx](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/verzamelbestanden/verwerkt_alle_gebiedsniveaus.xlsx). Voor bovengemeentelijke niveaus kan je vertrekken van de afzonderlijke kerntabel excel files en van de shape van de gemeente. 
   - Exporteer deze verrijkte versie van de sectoren naar een nieuwe shapefile om er vlot mee te kunnen werken
   - Gebruik de GDAL-functie _Samensmelten_ om de statsec die een gemeenschappelijke gebiedscode hebben op het nieuwe niveau tot één object te versmelten.
   - Opgelet: bij deze operatie ontstaan soms artefacten; verdwaalde stukjes grens zonder betekenis. Dit kan je vermijden mits een goede cleaning van je basislaag. Gebruik je een nieuwe basislaag, controleer dan eens of ze goed is door eerst naar gewest samen te smelten en dan te controleren op artefacten._
@@ -54,7 +54,7 @@ Opgelet: soms is het nodig om niet enkel NAAR je gebiedsniveau te aggregeren, ma
 
 Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, en lezen zij die in in Swing. OPGELET: in onze gebiedsdefinitie bestanden gebruiken we "naam_kort", wat door Swing niet herkend wordt. Ofwaal dus manueel dit aanpassen in de Excel files, ofwel Richard er nog eens aan herinneren dit aan te passen vóór upload.
 We moeten vervolgens nog enkele stappen uitvoeren:
-- de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen. Zet het eerste jaar op 1970 en het laatste jaartal op 2050.
+- de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen. Zet het laatste jaartal op het huidige jaar + 1.
 - kiezen op kaart updaten (enkel indien wijzigingen in de gebiedsniveaus die daar gebruikt worden)
 - de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
 - nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo)

@@ -70,30 +70,7 @@ Om data die op sectorniveau ingeladen wordt op de nieuwe gemeenten te kunnen ton
 
 Uitzondering: data die niet aggregeerbaar is. Dit moest altijd al op meerdere gebiedsniveaus ingelezen worden. Zie daarvoor het volgende stukje.
 
-Hoe omgaan met meerdere gebieden onbekend op het statistische sectorniveau voor fusiegemeenten?
-- Oplossing 1: Lees de data in op het gebied onbekend van de gemeente met het gootste inwonersaantal
-- 
-  N.B. de sectorcodes onbekend die je mag negeren, bestaan telkens uit de NIScode + ZZZZ, dus bv. voor Borbseek is dit 11007ZZZZ
 
- gemeentecode2024 | naam gemeenten 2024 | gemeentecode en naam fusie | naam grootste gemeente2024 | code gebied onbekend statsec
--- | -- | -- | -- | -- 
-11002 - 11007 | Antwerpen - Borsbeek | 11002 Antwerpen | Antwerpen | 11002ZZZZ
-23023 - 23024 - 23032 | Galmaarden - Gooik - Herne | 23106 Pajottegem | Gooik | 23024ZZZZ
-37012 - 37018 | Ruiselede - Wingene | 37021 Wingene | Wingene | 37018ZZZZ
-37007 - 37015 | Meulebeke - Tielt | 37022 Tielt | Tielt | 37015ZZZZ
-44012 - 44048 | De Pinte - Nazareth | 44086 Nazareth-De Pinte | Nazareth | 44048ZZZZ
-44034 - 44073 | Lochristi - Wachtebeke | 44087 Lochristi | Lochristi | 44034ZZZZ
-46014 - 44045 | Lokeren- Moerbeke | 46029 Lokeren | Lokeren | 46014ZZZZ
-44040 - 44043 | Melle - Merelbeke | 44088 Merelbeke-Melle | Merelbeke | 44043ZZZZ
-46003 - 46013 - 11056 | Beveren - Kruibeke - Zwijndrect | 46030 Beveren-Kruibeke-Zwijndrecht | Beveren | 46003ZZZZ
-73006 - 73032 | Bilzen - Hoeselt | 73110 Bilzen-Hoeselt | Bilzen | 73006ZZZZ
-73009 - 73083 | Borgloon - Tongeren | 73111 Tongeren-Borgloon | Tongeren | 73083ZZZZ
-71069 - 71057 | Ham - Tessenderlo | 71071 Tessenderlo-Ham | Tessenderlo | 71057ZZZZ
-71022 - 73040 | Hasselt - Kortessem | 71072 Hasselt | Hasselt | 71022ZZZZ
-
-- Oplossing 2: Lees de data die je normal gezien zou inlezen op het gebied onbekend van de statistische sectoren voor de fusiegemeenten in als missing. Hierdoor hoef je geen gebied onbekend te kiezen. Lees dan wel de correcte cijfers in op gemeenteniveau.
-
-Op deelgemeente- en wijkniveau werden de gebieden onbekend reeds geharmoniseerd.
 
 **GEMEENTENIVEAU**
 
@@ -106,18 +83,16 @@ Deze heeft uiteraard nog geen data. We voorzien een aggregatietabel van de oude 
 Tot 1 januari houden we de nieuwe gemeenten deels achter de schermen. Op 1 januari draaien we de rollen om. Dan kunnen we achter de schermen nog steeds de oude gemeenten laten zien.
 
 **PROVINCIENIVEAU**
-
 Zwijndrecht behoorde voor de fusies tot de provincie Antwerpen. Na de fusie behoort de fusiegemeente Beveren-Kruibeke-Zwijndrecht tot de provincie Oost-Vlaanderen. Hierdoor werd er een nieuw provincieniveau gemaakt. Het oude blijft bestaan onder provincie2024.
 
 **Impact op databeheer**
+Naar databeheer is er dus bijna geen probleem.
 
 - data op sectorniveau blijft ongewijzigd
 - data die op het oude gemeenteniveau wordt geleverd kan nog steeds ingelezen worden op `gemeente_2024`
 - data die op het nieuwe gemeenteniveau wordt geleverd kan gewoon ingelezen worden door te werken met `gemeente`
 
-Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren. Let op met gemiddelden die aggregeren. Hierdoor wordt het verkeerde gemiddelde berekend omdat hij de gemeenten die nu leeg zijn, wel meerekent. Vermijdt dit door de mogelijkheid tot aggregeren even af te zetten totdat je data hebt voor de nieuwe gemeenten (of andere niveaus) of door de oude data te laten staan en niet opnieuw in te laden of gebruik een voetnoot:
-- De gegevens van de gemeenten moeten ingeladen worden met geolevel gemeente2024 omdat het nog om de oude gemeenten gaan. Om toch een waarde voor stad Antwerpen te hebben wordt dit cijfer nog eens apart ingeladen met geolevel gemeente. In de voetnoot wordt vermeld dat bij het cijfer van Antwerpen Borsbeek niet is meegeteld.
-- De gegevens van de provincies en arrondissementen moeten ingeladen worden met geolevel provincie2024 en arrondissement2024 want het gaat nog om de oude provincies en arrondissementen. Om de cijfers toch te tonen als provincie of arrondissement wordt aangeduid, worden ze nogmaals ingeladen maar met geolevel provincie en arrondissement. Er staat dan een voetnoot bij om ervoor te waarschuwen dat het om de oude provincies en arrondissementen gaat.
+Uitzondering blijft niet-aggregeerbare data. Denk bijvoorbeeld aan een mediaan inkomen. Hiervoor moet de leverancier aangepaste cijfers opleveren. Om de meeste problemen op te lossen, exporteren we deze data uit het oude gemeenteniveau en lezen ze manueel in op het nieuwe gemeenteniveau. De nieuw ontstane gemeenten blijven dus leeg, tot de dataleverancier hier een historiek voor kan aanleveren. Let op met gemiddelden die aggregeren. Hierdoor wordt het verkeerde gemiddelde berekend omdat hij de gemeenten die nu leeg zijn, wel meerekent. Vermijdt dit door de mogelijkheid tot aggregeren even af te zetten totdat je data hebt voor de nieuwe gemeenten of door de oude data te laten staan en niet opnieuw in te laden. 
 
 Let ook op met waarden die door de data-leverancier gecensureerd worden (-99997), deze tellen immers niet op binnen PinC. Wanneer je een dergelijke missing hebt voor bv. Borsbeek, dan zal je in de nieuwe fusiegemeente Antwerpen ook nog steeds deze missing zien staan, ook al heeft de voormalige gemeente Antwerpen wel cijfers. 
 

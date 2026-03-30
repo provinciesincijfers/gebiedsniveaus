@@ -66,7 +66,8 @@ We moeten vervolgens nog enkele stappen uitvoeren:
 - zet de shapefile van de wijken ook in de map onder 'gemeente_statsec_wijken'
 - bij nieuwe wijken slaan we gaten in niet-aggregeerbare data. We kijken even of hier een nieuwe versie van gemaakt kan worden (bv. eenvoudig voor rijksregister). Geef dit door aan wie data op dit niveau verwerkt (Rudy, Filip, Hanne). Aanvulling: bij een nieuwe update gaat het ook mis voor de wijken die niet werden aangepast. Laad dus steeds de data volledig opnieuw in. 
 - breng de organisaties die ons volgen op de hoogte van nieuwe wijken (Opgroeien, IMA, Arvastat, VGC, HOPLR). De laatste mail gewoonlijk te vinden met onderwerp "update gemeentegedragen wijken"
-- indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden
+- indien er nieuwe wijken zijn, doe een update van [de record op metadata.vlaanderen.be](https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadraf/73354ce0-7940-447c-8fec-b4f672abb837) te updaten, zodat dit ook op Geopunt zichtbaar is. Enkel het versienummer van de Release en de publicatiedatum moeten aangepast worden.
+- Aanpassingen aan gebiedsniveaus altijd aan iedereen laten weten. Hard ingelezen data wordt immers verwijderd. 
 
 ## Hiërarchie
 

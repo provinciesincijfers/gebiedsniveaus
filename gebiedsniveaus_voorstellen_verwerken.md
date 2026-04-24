@@ -56,9 +56,9 @@ Dan laten we aan ABF weten dat er nieuwe gebiedsniveau informatie klaar staat, e
 We moeten vervolgens nog enkele stappen uitvoeren:
 - de [uploadfiles](https://github.com/provinciesincijfers/gebiedsniveaus/tree/master/data_voor_swing/uploadfiles) zelf opladen. Zet het laatste jaartal op het huidige jaar + 1.
 - kiezen op kaart updaten (enkel indien wijzigingen in de gebiedsniveaus die daar gebruikt worden)
-- de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. 
-- nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo)
-- bij Geolevels: vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan.
+- de metadata op https://provincies.incijfers.be/info/9900_gebiedsniveaus.html aanvullen. **Update** sinds 24/04/2026 moet je de meta invullen bij de beschrijving van het gebiedsniveau in de tabel met Geolevels. 
+- nieuwe gebiedsniveaus toevoegen aan het rapport met [meer info over een gebied](https://provincies.incijfers.be/databank/jivereportcontents.ashx?report=gebiedsinfo). **Update** dit rapport zal niet meer bestaan na overschakeling naar de nieuwe Viewer. 
+- bij Geolevels: vul de velden InfoURL en Reportcode nog aan met de juiste verwijzingen en pas je (indien nodig) de sequencenr aan. **Update** enkel het laatste (sequence nr) zal nog nodig zijn. 
 - bij AccesGroups>Extern>Geolevels verschuif je het geolevel van 'not visible' naar 'visible'.
 - Voeg nieuwe gebiedsniveaus toe aan de juiste open data accessgroups.
 - de update aanvullen in het [logboek](https://vlbr.sharepoint.com/:x:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/General/2024%20LOGBOEK%20vanaf%20juni%202024.xlsx?d=w5635d830d5fe4aacbf95c83d7e401f66&csf=1&web=1&e=r950Jt)

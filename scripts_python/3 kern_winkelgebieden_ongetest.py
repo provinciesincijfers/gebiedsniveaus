@@ -1,64 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-
-This is a temporary script file.
+Locatus gebiedsniveaus verwerking
 """
-
-# ============================================================
-# Encoding: windows-1252
-#
-# VOORBEREIDING BUITEN DIT SCRIPT
-# haal de winkelgebieden en kernwinkelgebieden af van Teams:
-# https://vlbr.sharepoint.com/:f:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/Ruwe%20data/Locatus%20(detailhandelspanden)/Geografische%20lagen
-#
-# OPMERKINGEN.
-# om de gebiedscode en naam van het gebied als indicator (dus v9900_gebiedscode etc)
-# goed te krijgen, moet ook script 4 gedraaid worden.
-#
-# de dummy-gebiedsniveau introduceren een extra stap tussen de (K)WG en de gemeente.
-# Dit om te voorkomen dat de (onvolledige!) data geaggregeerd zou worden
-# naar gemeenteniveau.
-#
-# OPMERKING: het huidige script veronderstelt dat je een bestand krijgt waarin
-# de winkelpunten al gekoppeld zijn aan de wgb en aan de gemeente
-# (hier bijvoorbeeld punten_verrijkt_poging2.dbf).
-#
-# (ik denk dat Joost met de zin hierboven: 'nog niet aan de gemeente gekoppeld'
-# bedoeld)
-#
-# Je kan de nood aan zo'n bestand vermijden door in de plaats in GIS gewoon
-# een spatial join te doen van de wgb met gemeentegrenzen, gebruik makende van
-# "largest overlap" om toe te kennen aan gemeente,
-# dan vervalt een deel van het script (aangeduid in het script).
-#
-# OPGELET: als je de namen uit de DBF van de shapefile zou ophalen,
-# dan gaan speciale tekens kapot zijn.
-#
-# je kan dit normaal gezien omzeilen door de shapefile in QGIS op te slaan
-# als CSV (hier wgb_naam_ansi.csv).
-# Behoud enkel de indicatoren die je nodig hebt.
-# Zorg dat je de juiste indicatornamen hieronder in dit script definieert.
-#
-# ============================================================
 
 import pandas as pd
 import numpy as np
 from dbfread import DBF
+from pathlib import Path
 
 # ============================================================
-# BEGIN: WINKELGEBIEDEN INLEZEN
+# FUNCTIES
+# ============================================================
+
+def truncate_name(series, max_len=50):
+    series = series.str.strip()
+    mask = series.str.len() > max_len
+    series.loc[mask] = series.loc[mask].str[:max_len-3] + "..."
+    return series
+
+# ============================================================
+# PADEN
 # ============================================================
 
 base_path_input = Path("C://temp//locatus_gebiedsniveaus//2026")
-input_path_wgb = base_path_input / "wgb_naam_ansi_2.csv"
-# input_path_toevoegen gemeente = base_path_input / 
 
+# ============================================================
+# WINKELGEBIEDEN INLEZEN
+# ============================================================
 
-base_path_output = 
-
-
-# GET DATA /TYPE=TXT
 winkelgebied = pd.read_csv(
     r"C:\temp\locatus_gebiedsniveaus\2025\wgb_naam_ansi_2.csv",
     sep=",",
@@ -66,7 +35,6 @@ winkelgebied = pd.read_csv(
     encoding="windows-1252"
 )
 
-# rename variables
 winkelgebied = winkelgebied.rename(columns={
     "WINKELGEBI": "winkelgebied",
     "WINKELGE_1": "short name",
@@ -74,47 +42,30 @@ winkelgebied = winkelgebied.rename(columns={
     "WINKELGE_3": "WINKELGEBIEDSTYPERING"
 })
 
-# sort cases winkelgebied (a)
 winkelgebied = winkelgebied.sort_values("winkelgebied")
 
 # ============================================================
-# BEGIN toevoegen gemeente
-# niet nodig als je de gemeente al gekoppeld hebt via GIS
+# GEMEENTE TOEVOEGEN
 # ============================================================
 
-# GET TRANSLATE /TYPE=DBF
 punten = pd.DataFrame(iter(DBF(
     r"C:\temp\locatus_gebiedsniveaus\2023\levering 20230401\punten_verrijkt_poging2.dbf",
     encoding="latin1"
 )))
 
-# rename variables
 punten = punten.rename(columns={
     "WINKELGEBI": "winkelgebied",
     "CS01012020": "statsec"
 })
 
-# SELECT IF (winkelgebied ~= 0)
 punten = punten[punten["winkelgebied"] != 0]
-
-# ============================================================
-# statsec -> gemeente
-# ============================================================
 
 statsec_gemeente = pd.read_excel(
     r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\statsec_gemeente.xlsx",
     sheet_name="statsec_gemeente"
 )
 
-punten = punten.merge(
-    statsec_gemeente,
-    on="statsec",
-    how="left"
-)
-
-# ============================================================
-# aanmaken lijst combinaties van wgb met gemeente
-# ============================================================
+punten = punten.merge(statsec_gemeente, on="statsec", how="left")
 
 winkelgebied_gemeente = (
     punten
@@ -123,15 +74,9 @@ winkelgebied_gemeente = (
     .rename(columns={"size": "combi"})
 )
 
-# SELECT IF (gemeente > 0)
 winkelgebied_gemeente = winkelgebied_gemeente[
     winkelgebied_gemeente["gemeente"] > 0
 ]
-
-# ============================================================
-# DIT IS NIET MEER NODIG INDIEN JE MET LARGEST OVERLAP ZOU WERKEN
-# Identify Duplicate Cases
-# ============================================================
 
 winkelgebied_gemeente = (
     winkelgebied_gemeente
@@ -140,10 +85,6 @@ winkelgebied_gemeente = (
     [["winkelgebied", "gemeente"]]
 )
 
-# ============================================================
-# MATCH FILES winkelgebied <- gemeente
-# ============================================================
-
 winkelgebied = winkelgebied.merge(
     winkelgebied_gemeente,
     on="winkelgebied",
@@ -151,11 +92,7 @@ winkelgebied = winkelgebied.merge(
 )
 
 # ============================================================
-# EINDE toevoegen gemeente
-# ============================================================
-
-# ============================================================
-# swing aggregatietabel
+# AGGREGATIES WINKELGEBIED
 # ============================================================
 
 agg_wgb = (
@@ -167,21 +104,40 @@ agg_wgb = (
 agg_wgb = agg_wgb.rename(columns={"winkelgebied": "winkelgebied_dummy"})
 agg_wgb = agg_wgb.drop(columns="size")
 
+# dummy 1 → gemeente
 agg_wgb.to_excel(
     r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy_gemeente.xlsx",
     index=False
 )
 
+# dummy 1 → dummy 2
+wg_dummy_map = winkelgebied[["winkelgebied"]].copy()
+wg_dummy_map = wg_dummy_map.rename(columns={"winkelgebied": "winkelgebied_dummy"})
+wg_dummy_map["winkelgebied_dummy2"] = wg_dummy_map["winkelgebied_dummy"]
+
+wg_dummy_map.to_excel(
+    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy_winkelgebied_dummy2.xlsx",
+    index=False
+)
+
+# dummy 2 → gemeente
+agg_wgb_dummy2 = agg_wgb.rename(columns={
+    "winkelgebied_dummy": "winkelgebied_dummy2"
+})
+
+agg_wgb_dummy2.to_excel(
+    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy2_gemeente.xlsx",
+    index=False
+)
+
 # ============================================================
-# BEGIN namen aanmaken
+# NAMEN WINKELGEBIED
 # ============================================================
 
-# rename variables
 winkelgebied = winkelgebied.rename(columns={
     "winkelgebied": "gebiedscode"
 })
 
-# gemeente naam ophalen
 gemeente_df = pd.read_excel(
     r"C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx",
     sheet_name="gemeente"
@@ -198,7 +154,9 @@ winkelgebied = winkelgebied.merge(
     how="left"
 )
 
-# string naam
+# truncate short name
+winkelgebied["short name"] = truncate_name(winkelgebied["short name"])
+
 winkelgebied["name"] = (
     winkelgebied["gemeente_naam"].str.strip()
     + " - "
@@ -208,15 +166,8 @@ winkelgebied["name"] = (
     + ")"
 )
 
-# sort cases gemeente_naam (a)
 winkelgebied = winkelgebied.sort_values("gemeente_naam")
-
-# compute volgnr=$casenum
 winkelgebied["sequence nr"] = np.arange(1, len(winkelgebied) + 1)
-
-# ============================================================
-# gebiedsdefinities winkelgebied
-# ============================================================
 
 gebiedsniveau = winkelgebied[[
     "sequence nr", "geoitem code", "short name", "name"
@@ -233,20 +184,7 @@ gebiedsniveau.to_excel(
 )
 
 # ============================================================
-# dummy aggregatie winkelgebied -> winkelgebied_dummy
-# ============================================================
-
-dummy_map = winkelgebied[["geoitem code"]].copy()
-dummy_map = dummy_map.rename(columns={"geoitem code": "winkelgebied"})
-dummy_map["winkelgebied_dummy"] = dummy_map["winkelgebied"]
-
-dummy_map.to_excel(
-    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_winkelgebied_dummy.xlsx",
-    index=False
-)
-
-# ============================================================
-# labels uploadbestand
+# LABELS
 # ============================================================
 
 labels = winkelgebied.rename(columns={
@@ -264,7 +202,6 @@ labels = labels[[
 labels["geolevel"] = "winkelgebied"
 labels["period"] = 1970
 
-# recode v1601_label_wgb_hoofdtype
 labels["v1601_label_wgb_hoofdtype"] = labels["v1601_label_wgb_hoofdtype"].map({
     "Centraal": 1,
     "Ondersteunend": 2,
@@ -280,7 +217,6 @@ labels.to_excel(
 # KERNWINKELGEBIEDEN
 # ============================================================
 
-# GET TRANSLATE /TYPE=DBF
 kernwinkelgebied = pd.DataFrame(iter(DBF(
     r"C:\temp\locatus_gebiedsniveaus\2025\kernwinkelgebieden_2024_def.dbf",
     encoding="latin1"
@@ -292,7 +228,6 @@ kernwinkelgebied = kernwinkelgebied.rename(columns={
     "GEMEENTE": "gemeente_naam"
 })
 
-# naamcorrecties
 kernwinkelgebied["naam"] = (
     kernwinkelgebied["naam"]
     .str.replace("+Â®", "é", regex=False)
@@ -300,17 +235,13 @@ kernwinkelgebied["naam"] = (
     .str.replace("Ãš", "é", regex=False)
 )
 
-# gemeente code ophalen
 kernwinkelgebied = kernwinkelgebied.merge(
     gemeente_df,
     on="gemeente_naam",
     how="left"
 )
 
-# ============================================================
-# dummy aggregatie kernwinkelgebied
-# ============================================================
-
+# aggregatie dummy 1 → gemeente
 agg_kwg = (
     kernwinkelgebied
     .groupby(["kernwinkelgebied", "gemeente"], as_index=False)
@@ -325,13 +256,37 @@ agg_kwg.to_excel(
     index=False
 )
 
+# dummy 1 → dummy 2
+kwg_dummy_map = kernwinkelgebied[["kernwinkelgebied"]].copy()
+kwg_dummy_map = kwg_dummy_map.rename(columns={
+    "kernwinkelgebied": "kernwinkelgebied_dummy"
+})
+kwg_dummy_map["kernwinkelgebied_dummy2"] = kwg_dummy_map["kernwinkelgebied_dummy"]
+
+kwg_dummy_map.to_excel(
+    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy_kernwinkelgebied_dummy2.xlsx",
+    index=False
+)
+
+# dummy 2 → gemeente
+agg_kwg_dummy2 = agg_kwg.rename(columns={
+    "kernwinkelgebied_dummy": "kernwinkelgebied_dummy2"
+})
+
+agg_kwg_dummy2.to_excel(
+    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy2_gemeente.xlsx",
+    index=False
+)
+
 # ============================================================
-# namen kernwinkelgebied
+# NAMEN KERNWINKELGEBIED
 # ============================================================
 
 kernwinkelgebied["short name"] = kernwinkelgebied["naam"].str.replace(
     "^KWG ", "", regex=True
 )
+
+kernwinkelgebied["short name"] = truncate_name(kernwinkelgebied["short name"])
 
 kernwinkelgebied["name"] = (
     kernwinkelgebied["gemeente_naam"].str.strip()
@@ -357,18 +312,5 @@ kwg_out.to_excel(
 )
 
 # ============================================================
-# dummy aggregatie kernwinkelgebied -> kernwinkelgebied_dummy
-# ============================================================
-
-kwg_dummy = kwg_out.drop(columns=["sequence nr", "short name", "name"])
-kwg_dummy = kwg_dummy.rename(columns={"geoitem code": "kernwinkelgebied"})
-kwg_dummy["kernwinkelgebied_dummy"] = kwg_dummy["kernwinkelgebied"]
-
-kwg_dummy.to_excel(
-    r"C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_kernwinkelgebied_dummy.xlsx",
-    index=False
-)
-
-# ============================================================
-# EINDE SCRIPT
+# EINDE
 # ============================================================

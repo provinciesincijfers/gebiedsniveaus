@@ -48,7 +48,9 @@ files = [
     ('kerntypering.xlsx', 'kerntypering'),
     ('kern.xlsx', 'kern'),
     ('igs.xlsx', 'igs'),
-    ('gezondheidsmakers.xlsx', 'gezondheidsmakers')
+    ('gezondheidsmakers.xlsx', 'gezondheidsmakers'),
+    ('energiehuis.xlsx', 'energiehuis'),
+    ('economische_subregio.xlsx', 'economische_subregio')
 ]
 
 # Functie om één bestand in te lezen en voor te bereiden
@@ -60,7 +62,7 @@ def read_and_prepare(file_name, geolevel):
         raise FileNotFoundError(f"Bestand niet gevonden: {file_path}")
     
     # Excel inlezen, eerste sheet
-    df = pd.read_excel(file_path, sheet_name=0)
+    df = pd.read_excel(file_path, sheet_name=0, dtype=str)
     
     # Kolomnamen normaliseren: lowercase en trim spaties
     df.columns = [col.strip().lower() for col in df.columns]
@@ -81,7 +83,16 @@ def read_and_prepare(file_name, geolevel):
     df['geolevel'] = geolevel
     
     # Trimmen van strings in geoitem
-    df['geoitem'] = df['geoitem'].astype(str).str.strip()
+    # Speciale behandeling enkel voor winkelgebied
+    if geolevel == 'winkelgebied':
+        df['geoitem'] = (
+            pd.to_numeric(df['geoitem'], errors='coerce')
+            .round()
+            .astype('Int64')
+            .astype(str)
+        )
+    else:
+        df['geoitem'] = df['geoitem'].astype(str).str.strip()
     
     # Nieuwe variabelen toevoegen zoals in SPSS
     df['v9900_gebiedscode'] = df['geoitem']

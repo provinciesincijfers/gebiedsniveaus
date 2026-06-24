@@ -96,9 +96,9 @@ master = pd.read_excel(
 # Statsec - Ggw7
 master = merge_mapping(
     master,
-    base_path_input / "statsec_ggw7_readonly.xlsx",
+    base_path_input / "statsec_ggw7readonly.xlsx",
     merge_on="statsec",
-    select_cols=["statsec", "ggw7"],
+    select_cols=["statsec", "ggw7", "ggw7_naam"],
 )
 
 
@@ -220,7 +220,7 @@ master = merge_mapping(
     base_path_input / "gemeente_woonmaatschappij.xlsx",
     merge_on="gemeente", 
     select_cols=["gemeente", "woonmaatschappij", "Name woonmaatschappij"],
-    new_names={"Name woonmaatschappij": "woonmaatschappij_naam"}
+    new_names={"Name woonmaatschappij": "werkingsgebied_woonmaatschappij_naam"}
 )
 
 
@@ -281,6 +281,25 @@ master = merge_mapping(
     select_cols=["gemeente", "igs", "Name igs"],
     new_names={"Name igs": "igs_naam"}
 )
+
+# Gemeente - werkingsgebied energiehuis
+master = merge_mapping(
+    master,
+    base_path_input / "gemeente_energiehuis.xlsx",
+    merge_on="gemeente",
+    select_cols=["gemeente", "werkingsgebied energiehuis", "Name werkingsgebied energiehuis"],
+    new_names={"Name werkingsgebied energiehuis": "werkingsgebied_energiehuis_naam"}
+)
+
+# Gemeente - economische subregio
+master = merge_mapping(
+    master,
+    base_path_input / "gemeente_ecsubregio.xlsx",
+    merge_on="gemeente",
+    select_cols=["gemeente", "economische subregio", "Name economische subregio"],
+    new_names={"Name economische subregio": "ec_subregio_naam"}
+)
+
 
 # =========================
 # OUTPUTS

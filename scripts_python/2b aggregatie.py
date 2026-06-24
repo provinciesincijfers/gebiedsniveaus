@@ -18,6 +18,7 @@ import pandas as pd
 # na run script:
 # maak de dummybestanden aan voor statsec(2024) > provincie(2024), fo_gem > gewest en elantw > elz
 # en verwijder de rechstreekse aggregatie
+# wijken worden aangemaakt in het script van de wijken.
 
 
 # =========================
@@ -99,6 +100,10 @@ output_path_agg_streek_prov = base_path_output_agg / "streekwerking_provincie.xl
 output_path_agg_gem_igs = base_path_output_agg / "gemeente_igs.xlsx"
 output_path_agg_igs_gewest = base_path_output_agg / "igs_gewest.xlsx"
 output_path_agg_treggem_treg = base_path_output_agg / "treg_gem_treg.xlsx"
+output_path_agg_gem_energ = base_path_output_agg / "gemeente_energiehuis.xlsx"
+output_path_agg_energ_prov = base_path_output_agg / "energiehuis_provincie.xlsx"
+output_path_agg_gem_ecsub = base_path_output_agg / "gemeente_economische_subregio.xlsx"
+output_path_agg_ecsub_prov = base_path_output_agg / "economische_subregio_provincie.xlsx"
 
 # =========================
 # Inlezen basisbestand
@@ -169,7 +174,7 @@ jobs_2024 = [
     ("arrondiss2024","provincie2024", output_path_agg_arro24_prov24, None),
     ("statsec2024", "kern", output_path_agg_statsec2024_kern, None),
     ("statsec2024", "kerntypering", output_path_agg_statsec2024_kerntypering, None),
-    ("statsec2024", "woningmarkt", output_path_agg_statsec2024_woningmarkt, None),
+    ("statsec2024", "woningmarkt", output_path_agg_statsec2024_woningmarkt, None)
     #("woningmarkt", "gewest",         output_path_agg_woningmarkt_gewest,  "woningmarkt"),
     #("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
     # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
@@ -225,7 +230,11 @@ jobs = [
   # ("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
   # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
   # ("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),
-    ("TREG_gem",     "TREG",          output_path_agg_treggem_treg,        "TREG_gem")
+    ("TREG_gem",     "TREG",          output_path_agg_treggem_treg,        "TREG_gem"),
+    ("gemeente", "werkingsgebied energiehuis", output_path_agg_gem_energ,  "werkingsgebied energiehuis"),
+    ("werkingsgebied energiehuis", "provincie", output_path_agg_energ_prov, "werkingsgebied energiehuis"),
+    ("gemeente", "economische subregio", output_path_agg_gem_ecsub,         "economische subregio"),
+    ("economische subregio", "provincie", output_path_agg_ecsub_prov,       "economische subregio")
 ]
 
 

@@ -1,4 +1,4 @@
-* Encoding: windows-1252.
+* Encoding: UTF-8.
 
 * VOORBEREIDING BUITEN DIT SCRIPT
 * haal de winkelgebieden en kernwinkelgebieden af van Teams: https://vlbr.sharepoint.com/:f:/r/teams/DA-Interprovincialewerking/Gedeelde%20documenten/Ruwe%20data/Locatus%20(detailhandelspanden)/Geografische%20lagen?csf=1&web=1&e=2YW8Ga
@@ -20,7 +20,7 @@ PRESERVE.
 SET DECIMAL DOT.
 
 GET DATA  /TYPE=TXT
-  /FILE="C:\temp\locatus_gebiedsniveaus\2025\wgb_naam_ansi_2.csv"
+  /FILE="C:\temp\locatus_gebiedsniveaus\2026\shapes winkelgebieden/wgb_naam_ansi.csv"
   /DELIMITERS=","
   /QUALIFIER='"'
   /ARRANGEMENT=DELIMITED
@@ -46,7 +46,7 @@ sort cases  winkelgebied (a).
 
 
 
-* BEGIN toevoegen gemeente: niet nodig als je het zelf de gemeente al gekoppeld hebt aan de winkelpunten en winkelgebieden. Het volgende deel in het script veronderstelt immers dat je zelf d egeografische analyse hebt gemaakt (Filip doet dit nu)
+* BEGIN toevoegen gemeente: niet nodig als je zelf de gemeente al gekoppeld hebt aan de winkelpunten en winkelgebieden. Het volgende deel in het script veronderstelt immers dat je zelf de geografische analyse hebt gemaakt (Filip doet dit nu)
 * we kennen het toe aan de gemeente op basis van de winkel-data. Niet geografisch, omdat er soms stukjes op een andere gemeente liggen.
 * we verwijderen wel wat "verdwaalde winkels" die dubbels veroorzaken.
 GET TRANSLATE
@@ -148,15 +148,16 @@ dataset close winkelgebiedgemeente.
 * EINDE toevoegen gemeente.
 
 * swing aggregatietabel.
+*chatgpt: dummy2 ipv dummy.
 DATASET DECLARE agg1.
 AGGREGATE
   /OUTFILE='agg1'
   /BREAK=winkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
-rename variables winkelgebied=winkelgebied_dummy.
+rename variables winkelgebied=winkelgebied_dummy2.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy2_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -171,9 +172,14 @@ dataset close agg1.
 * BEGIN namen aanmaken.
 rename variables winkelgebied=gebiedscode.
 rename variables winkelge_1=naam_kort.
+
+*chatgpt.
+ IF CHAR.LENGTH(naam_kort) > 50 naam_kort = CONCAT(CHAR.SUBSTR(naam_kort,1,47),"...").
+EXECUTE.
+
 rename variables winkelge_2=winkelgebiedshoofdtype.
 rename variables winkelge_3=WINKELGEBIEDSTYPERING.
-rename variables gemeentenaam = gemeente_naam.
+rename variables naam = gemeente_naam.
 
 * naam van de gemeente ophalen: NIET NODIG als de namen al in de file staan. Zorg er wel voor dat de variabele de correcte naam heeft
 
@@ -203,7 +209,7 @@ MATCH FILES /FILE=*
 EXECUTE.
 DATASET CLOSE gemeentenaam.
 
-
+* einde toevoegen gemeentenaam
 
 string naam (a150).
 compute naam=concat(ltrim(rtrim(gemeente_naam))," - ",ltrim(rtrim(naam_kort))," (",ltrim(rtrim(winkelgebiedshoofdtype)),")").
@@ -236,10 +242,37 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefiniti
   /CELLS=VALUES
 /replace.
 
+*to do (niet in chat gpt: output dummy2.
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\winkelgebied_dummy2.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
 delete variables volgnr naam_kort naam.
 rename variables gebiedscode=winkelgebied.
 compute winkelgebied_dummy=winkelgebied.
+
 SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_winkelgebied_dummy.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
+
+
+*to do (niet in chat gpt: winkelgebied_dummy naar dummy2.
+delete variables winkelgebied.
+
+*chatgpt.
+compute winkelgebied_dummy2=winkelgebied_dummy.
+EXECUTE.
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\winkelgebied_dummy_winkelgebied_dummy2.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -257,7 +290,7 @@ rename variables WINKELGEBIEDSTYPERING=v1601_label_wgb_type.
 match files
 /file=*
 /keep=geoitem
-v1601_label_wgb_hoofdtype
+v1601_label_wgb_hoofdtype.
 string geolevel (a12).
 compute geolevel="winkelgebied".
 * dit mag op 1970 staan omdat het periode-onafhankelijke info is.
@@ -302,25 +335,24 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\uploadfiles\wgb
 
 
 * kernwinkelgebieden.
-*check of de namen nog kloppen die in het bestand zouden moeten zitten
+*check of de namen nog kloppen die in het bestand zouden moeten zitten, eventueel gemeente koppelen (code en naam)
 
 GET TRANSLATE
-  FILE='C:\temp\locatus_gebiedsniveaus\2025\kernwinkelgebieden_2024_def.dbf'
+  FILE='C:\temp\locatus_gebiedsniveaus\2026\shapes kernwinkelgebieden\2.koppel_gemeente/kernwinkelgebieden_2026_def.dbf'
   /TYPE=DBF /MAP .
 DATASET NAME kernwinkelgebied WINDOW=FRONT.
 dataset close winkelgebied.
 match files
 /file=*
-/keep=kwg_id naam gemeente.
-rename variables kwg_id=kernwinkelgebied.
-rename variables gemeente=gemeente_naam.
+/keep=kernwinkelgebied kwg_naam gemeente gemeente_n.
+rename variables gemeente_n=gemeente_naam.
 sort cases  gemeente_naam (a).
 
-compute naam=replace(naam,"+®","é").
-compute naam=replace(naam,"_","-").
-compute naam=replace(naam,"Ú","é").
+compute kwg_naam=replace(kwg_naam,"+®","é").
+compute kwg_naam=replace(kwg_naam,"_","-").
+compute kwg_naam=replace(kwg_naam,"Ú","é").
 
-* code van de gemeente ophalen.
+* code van de gemeente ophalen. (als die er nog niet inzit, anders mag je dit stuk skippen.
 GET DATA
   /TYPE=XLSX
   /FILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\gemeente.xlsx'
@@ -348,15 +380,17 @@ MATCH FILES /FILE=*
 EXECUTE.
 DATASET CLOSE gemeentenaam.
 
+*einde toevoegen gemeente. 
+
 DATASET DECLARE agg1.
 AGGREGATE
   /OUTFILE='agg1'
   /BREAK=kernwinkelgebied gemeente
   /N_BREAK=N.
 dataset activate agg1.
-rename variables kernwinkelgebied = kernwinkelgebied_dummy.
+rename variables kernwinkelgebied = kernwinkelgebied_dummy2.
 delete variables n_break.
-SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy_gemeente.xlsx'
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy2_gemeente.xlsx'
   /TYPE=XLS
   /VERSION=12
   /MAP
@@ -373,8 +407,9 @@ rename variables kernwinkelgebied=gebiedscode.
 
 
 string naam_kort (a45).
-compute naam_kort=naam.
+compute naam_kort=kwg_naam.
 if char.index(naam,"KWG ")=1 naam_kort=char.substr(naam_kort,5,100).
+if char.length(naam_kort) > 50 naam_kort = concat(char.substr(naam_kort,1,47),"...").
 EXECUTE.
 RENAME VARIABLES naam=naam_orig.
 string naam (a150).
@@ -407,6 +442,13 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefiniti
   /CELLS=VALUES
 /replace.
 
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\gebiedsdefinities\kernwinkelgebied_dummy2.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
 
 * dummy aggregatie.
 delete variables volgnr naam_kort naam.
@@ -420,6 +462,18 @@ SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabel
   /CELLS=VALUES
 /replace.
 
+delete variables kernwinkelgebied.
 
+*chatgpt.
+compute kernwinkelgebied_dummy2=kernwinkelgebied_dummy.
+EXECUTE.
+
+SAVE TRANSLATE OUTFILE='C:\github\gebiedsniveaus\data_voor_swing\aggregatietabellen\kernwinkelgebied_dummy_kernwinkelgebied_dummy2.xlsx'
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /FIELDNAMES VALUE=NAMES
+  /CELLS=VALUES
+/replace.
 
 

@@ -223,7 +223,7 @@ master = merge_mapping(
     base_path_input / "gemeente_woonmaatschappij.xlsx",
     merge_on="gemeente", 
     select_cols=["gemeente", "woonmaatschappij", "Name woonmaatschappij"],
-    new_names={"Name woonmaatschappij": "woonmaatschappij_naam"}
+    new_names={"Name woonmaatschappij": "werkingsgebied_woonmaatschappij_naam"}
 )
 
 
@@ -273,6 +273,25 @@ master = merge_mapping(
     merge_on="statsec2024",
     select_cols=["statsec2024", "woningmarkt", "Name woningmarkt"],
     new_names={"Name woningmarkt": "woningmarkt_naam"}
+)
+
+# Gemeente - werkingsgebied energiehuis
+master = merge_mapping(
+    master,
+    base_path_input / "gemeente_energiehuis.xlsx",
+    merge_on="gemeente",
+    select_cols=["gemeente", "werkingsgebied energiehuis", "Name werkingsgebied energiehuis"],
+    new_names={"Name werkingsgebied energiehuis": "werkingsgebied_energiehuis_naam"}
+)
+
+
+# Gemeente - economische subregio
+master = merge_mapping(
+    master,
+    base_path_input / "gemeente_ecsubregio.xlsx",
+    merge_on="gemeente",
+    select_cols=["gemeente", "economische subregio", "Name economische subregio"],
+    new_names={"Name economische subregio": "ec_subregio_naam"}
 )
 
 # =========================

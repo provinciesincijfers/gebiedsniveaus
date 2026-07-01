@@ -96,7 +96,7 @@ master = pd.read_excel(
 # Statsec - Ggw7
 master = merge_mapping(
     master,
-    base_path_input / "statsec_ggw7readonly.xlsx",
+    base_path_input / "statsec_ggw7_readonly.xlsx",
     merge_on="statsec",
     select_cols=["statsec", "ggw7", "ggw7_naam"],
 )

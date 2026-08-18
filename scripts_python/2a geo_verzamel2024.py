@@ -266,14 +266,6 @@ master = merge_mapping(
     new_names={"Name kerntypering": "kerntypering_naam"}
 )
 
-# Statsec2024 - woningmarkt
-master = merge_mapping(
-    master,
-    base_path_input / "statsec2024_woningmarkt.xlsx",
-    merge_on="statsec2024",
-    select_cols=["statsec2024", "woningmarkt", "Name woningmarkt"],
-    new_names={"Name woningmarkt": "woningmarkt_naam"}
-)
 
 # Gemeente - werkingsgebied energiehuis
 master = merge_mapping(

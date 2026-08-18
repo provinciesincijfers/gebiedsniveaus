@@ -263,6 +263,7 @@ master = merge_mapping(
     new_names={"Name kerntypering": "kerntypering_naam"}
 )
 
+"""
 # Statsec - Woningmarkt
 master = merge_mapping(
     master,
@@ -271,7 +272,6 @@ master = merge_mapping(
     select_cols=["statsec", "woningmarkt", "Name woningmarkt"],
     new_names={"Name woningmarkt": "woningmarkt_naam"}
 )
-"""
 
 # Gemeente - IGS
 master = merge_mapping(

@@ -45,8 +45,6 @@ output_path_agg_gem24_prov24 = base_path_output_agg / "gemeente2024_provincie202
 output_path_agg_arro24_prov24 = base_path_output_agg / "arrondiss2024_provincie2024.xlsx"
 output_path_agg_statsec2024_kern = base_path_output_agg / "statsec2024_kern.xlsx"
 output_path_agg_statsec2024_kerntypering = base_path_output_agg / "statsec2024_kerntypering.xlsx"
-output_path_agg_statsec2024_woningmarkt = base_path_output_agg / "statsec2024_woningmarkt.xlsx"
-output_path_agg_woningmarkt_gewest = base_path_output_agg / "woningmarkt_gewest.xlsx"
 output_path_agg_kerntyp_gewest = base_path_output_agg / "kerntypering_gewest.xlsx"
 output_path_agg_kern_kerntyp = base_path_output_agg / "kern_kerntypering.xlsx"
 output_path_agg_kern_gewest = base_path_output_agg / "kern_gewest.xlsx"
@@ -90,8 +88,8 @@ output_path_agg_elzantw_elz = base_path_output_agg / "elzantw_elz.xlsx"
 output_path_agg_statsec_prov = base_path_output_agg / "statsec_provincie.xlsx"
 output_path_agg_gem_streek = base_path_output_agg / "gemeente_streekwerking.xlsx"
 output_path_agg_streek_prov = base_path_output_agg / "streekwerking_provincie.xlsx"
-# output_path_agg_statsec_woningmarkt = base_path_output_agg / "statsec_woningmarkt.xlsx"
-# output_path_agg_woningmarkt_gewest = base_path_output_agg / "woningmarkt_gewest.xlsx"
+output_path_agg_statsec_woningmarkt = base_path_output_agg / "statsec_woningmarkt.xlsx"
+output_path_agg_woningmarkt_gewest = base_path_output_agg / "woningmarkt_gewest.xlsx"
 # output_path_agg_statsec_kerntyp = base_path_output_agg / "statsec_kerntypering.xlsx"
 # output_path_agg_kerntyp_gewest = base_path_output_agg / "kerntypering_gewest.xlsx"
 # output_path_agg_statsec_kern = base_path_output_agg / "statsec_kern.xlsx"
@@ -174,8 +172,6 @@ jobs_2024 = [
     ("arrondiss2024","provincie2024", output_path_agg_arro24_prov24, None),
     ("statsec2024", "kern", output_path_agg_statsec2024_kern, None),
     ("statsec2024", "kerntypering", output_path_agg_statsec2024_kerntypering, None),
-    ("statsec2024", "woningmarkt", output_path_agg_statsec2024_woningmarkt, None)
-    #("woningmarkt", "gewest",         output_path_agg_woningmarkt_gewest,  "woningmarkt"),
     #("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
     # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
      #("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),
@@ -221,12 +217,12 @@ jobs = [
     ("statsec",     "provincie",      output_path_agg_statsec_prov,        "statsec"),
     ("gemeente",    "streekwerking",  output_path_agg_gem_streek,          "streekwerking"),
     ("streekwerking","provincie",     output_path_agg_streek_prov,         "streekwerking"),
-  # ("statsec",     "woningmarkt",    output_path_agg_statsec_woningmarkt, "woningmarkt"),
+    ("statsec",     "woningmarkt",    output_path_agg_statsec_woningmarkt, "woningmarkt"),
   # ("statsec",     "kerntypering",   output_path_agg_statsec_kerntyp,     "kerntypering"),
   # ("statsec",     "kern",           output_path_agg_statsec_kern,        "kern"),
     ("gemeente",    "igs",            output_path_agg_gem_igs,             "igs"),
     ("igs",         "gewest",        output_path_agg_igs_gewest,          "igs"),
-  # ("woningmarkt", "gewest",         output_path_agg_woningmarkt_gewest,  "woningmarkt"),
+    ("woningmarkt", "gewest",         output_path_agg_woningmarkt_gewest,  "woningmarkt"),
   # ("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
   # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
   # ("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),

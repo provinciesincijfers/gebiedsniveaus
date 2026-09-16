@@ -248,32 +248,14 @@ master = merge_mapping(
 )
 
 
-# Statsec2024 - kern
-master = merge_mapping(
-    master,
-    base_path_input / "statsec2024_kern.xlsx",
-    merge_on="statsec2024",
-    select_cols=["statsec2024", "kern", "Name kern"],
-    new_names={"Name kern": "kern_naam"}
-)
-
-# Statsec2024 - kerntypering
-master = merge_mapping(
-    master,
-    base_path_input / "statsec2024_kerntypering.xlsx",
-    merge_on="statsec2024",
-    select_cols=["statsec2024", "kerntypering", "Name kerntypering"],
-    new_names={"Name kerntypering": "kerntypering_naam"}
-)
-
 
 # Gemeente - werkingsgebied energiehuis
 master = merge_mapping(
     master,
     base_path_input / "gemeente_energiehuis.xlsx",
     merge_on="gemeente",
-    select_cols=["gemeente", "werkingsgebied energiehuis", "Name werkingsgebied energiehuis"],
-    new_names={"Name werkingsgebied energiehuis": "werkingsgebied_energiehuis_naam"}
+    select_cols=["gemeente", "energiehuis", "Name energiehuis"],
+    new_names={"Name energiehuis": "energiehuis_naam"}
 )
 
 
@@ -282,8 +264,8 @@ master = merge_mapping(
     master,
     base_path_input / "gemeente_ecsubregio.xlsx",
     merge_on="gemeente",
-    select_cols=["gemeente", "economische subregio", "Name economische subregio"],
-    new_names={"Name economische subregio": "ec_subregio_naam"}
+    select_cols=["gemeente", "economische_subregio", "Name economische_subregio"],
+    new_names={"Name economische_subregio": "ec_subregio_naam"}
 )
 
 # =========================

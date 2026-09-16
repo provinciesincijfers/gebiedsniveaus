@@ -15,8 +15,8 @@ input_path = base_path / "kerntabellen//gemeente_energiehuis.xlsx"
 output_path = base_path / "data_voor_swing//gebiedsdefinities//energiehuis.xlsx"
 
 # Laad Excel-bestand
-col_names = ['gemeente', 'Name gemeente', 'werkingsgebied energiehuis', 'Name werkingsgebied energiehuis']
-dtypes = {'gemeente':'Int64', 'Name gemeente': 'string', 'werkingsgebied energiehuis':'string', 'Name werkingsgebied energiehuis':'string'} 
+col_names = ['gemeente', 'Name gemeente', 'energiehuis', 'Name energiehuis']
+dtypes = {'gemeente':'Int64', 'Name gemeente': 'string', 'energiehuis':'string', 'Name energiehuis':'string'} 
 # Mocht het niveau letters hebben (bv. zzzz), dan string
 
 df = pd.read_excel(
@@ -26,13 +26,13 @@ df = pd.read_excel(
 )
 
 # Groepeer (AGGREGATE-equivalent)
-df_grouped = df.groupby(['werkingsgebied energiehuis', 'Name werkingsgebied energiehuis']).size().reset_index(name='aantal_gebieden')
+df_grouped = df.groupby(['energiehuis', 'Name energiehuis']).size().reset_index(name='aantal_gebieden')
 
 # Datasetbewerking
 df_grouped = df_grouped.drop(columns=['aantal_gebieden'])
 df_grouped = df_grouped.rename(columns={
-    'werkingsgebied energiehuis': 'geoitem code',
-    'Name werkingsgebied energiehuis': 'short name'
+    'energiehuis': 'geoitem code',
+    'Name energiehuis': 'short name'
 })
 df_grouped['name'] = df_grouped['short name']
 

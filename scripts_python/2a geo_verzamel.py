@@ -243,7 +243,7 @@ master = merge_mapping(
     new_names={"Name gebied streekwerking": "gebied_streekwerking_naam"}
 )
 
-"""
+
 # Statsec - Kern
 master = merge_mapping(
     master,
@@ -263,7 +263,6 @@ master = merge_mapping(
     new_names={"Name kerntypering": "kerntypering_naam"}
 )
 
-"""
 # Statsec - Woningmarkt
 master = merge_mapping(
     master,
@@ -287,8 +286,8 @@ master = merge_mapping(
     master,
     base_path_input / "gemeente_energiehuis.xlsx",
     merge_on="gemeente",
-    select_cols=["gemeente", "werkingsgebied energiehuis", "Name werkingsgebied energiehuis"],
-    new_names={"Name werkingsgebied energiehuis": "werkingsgebied_energiehuis_naam"}
+    select_cols=["gemeente", "energiehuis", "Name energiehuis"],
+    new_names={"Name energiehuis": "energiehuis_naam"}
 )
 
 # Gemeente - economische subregio
@@ -296,8 +295,8 @@ master = merge_mapping(
     master,
     base_path_input / "gemeente_ecsubregio.xlsx",
     merge_on="gemeente",
-    select_cols=["gemeente", "economische subregio", "Name economische subregio"],
-    new_names={"Name economische subregio": "ec_subregio_naam"}
+    select_cols=["gemeente", "economische_subregio", "Name economische_subregio"],
+    new_names={"Name economische_subregio": "ec_subregio_naam"}
 )
 
 

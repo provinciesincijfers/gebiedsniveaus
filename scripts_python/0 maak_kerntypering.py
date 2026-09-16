@@ -12,7 +12,7 @@ from pathlib import Path
 # Definieer paden
 base_path = Path("C://github//gebiedsniveaus//")
 input_path = base_path / "kerntabellen//statsec_kerntypering.xlsx"
-output_path = base_path / "data_voor_swing//gebiedsdef_testpython//kerntypering.xlsx"
+output_path = base_path / "data_voor_swing//gebiedsdefinities//kerntypering.xlsx"
 
 # Laad Excel-bestand
 col_names = ['statsec', 'Name statsec', 'kerntypering', 'Name kerntypering']

@@ -15,8 +15,8 @@ input_path = base_path / "kerntabellen//gemeente_ecsubregio.xlsx"
 output_path = base_path / "data_voor_swing//gebiedsdefinities//economische_subregio.xlsx"
 
 # Laad Excel-bestand
-col_names = ['gemeente', 'Name gemeente', 'economische subregio', 'Name economische subregio']
-dtypes = {'gemeente':'Int64', 'Name gemeente': 'string', 'economische subregio':'string', 'Name economische subregio':'string'} 
+col_names = ['gemeente', 'Name gemeente', 'economische_subregio', 'Name economische_subregio']
+dtypes = {'gemeente':'Int64', 'Name gemeente': 'string', 'economische_subregio':'string', 'Name economische_subregio':'string'} 
 # Mocht het niveau letters hebben (bv. zzzz), dan string
 
 df = pd.read_excel(
@@ -26,13 +26,13 @@ df = pd.read_excel(
 )
 
 # Groepeer (AGGREGATE-equivalent)
-df_grouped = df.groupby(['economische subregio', 'Name economische subregio']).size().reset_index(name='aantal_gebieden')
+df_grouped = df.groupby(['economische_subregio', 'Name economische_subregio']).size().reset_index(name='aantal_gebieden')
 
 # Datasetbewerking
 df_grouped = df_grouped.drop(columns=['aantal_gebieden'])
 df_grouped = df_grouped.rename(columns={
-    'economische subregio': 'geoitem code',
-    'Name economische subregio': 'short name'
+    'economische_subregio': 'geoitem code',
+    'Name economische_subregio': 'short name'
 })
 df_grouped['name'] = df_grouped['short name']
 

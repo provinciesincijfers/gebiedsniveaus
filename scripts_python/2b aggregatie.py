@@ -90,11 +90,12 @@ output_path_agg_gem_streek = base_path_output_agg / "gemeente_streekwerking.xlsx
 output_path_agg_streek_prov = base_path_output_agg / "streekwerking_provincie.xlsx"
 output_path_agg_statsec_woningmarkt = base_path_output_agg / "statsec_woningmarkt.xlsx"
 output_path_agg_woningmarkt_gewest = base_path_output_agg / "woningmarkt_gewest.xlsx"
-# output_path_agg_statsec_kerntyp = base_path_output_agg / "statsec_kerntypering.xlsx"
-# output_path_agg_kerntyp_gewest = base_path_output_agg / "kerntypering_gewest.xlsx"
-# output_path_agg_statsec_kern = base_path_output_agg / "statsec_kern.xlsx"
-# output_path_agg_kern_kerntyp = base_path_output_agg / "kern_kerntypering.xlsx"
-# output_path_agg_kern_gewest = base_path_output_agg / "kern_gewest.xlsx"
+output_path_agg_statsec_kerntyp = base_path_output_agg / "statsec_kerntypering.xlsx"
+output_path_agg_kerntyp_gewest = base_path_output_agg / "kerntypering_gewest.xlsx"
+output_path_agg_statsec_kern = base_path_output_agg / "statsec_kern.xlsx"
+output_path_agg_kern_kerntyp = base_path_output_agg / "kern_kerntypering.xlsx"
+output_path_agg_kern_woningmarkt = base_path_output_agg / "kern_woningmarkt.xlsx"
+output_path_agg_kern_gewest = base_path_output_agg / "kern_gewest.xlsx"
 output_path_agg_gem_igs = base_path_output_agg / "gemeente_igs.xlsx"
 output_path_agg_igs_gewest = base_path_output_agg / "igs_gewest.xlsx"
 output_path_agg_treggem_treg = base_path_output_agg / "treg_gem_treg.xlsx"
@@ -170,11 +171,6 @@ jobs_2024 = [
     ("gemeente2024", "elz", output_path_agg_gem24_elz, None),  
     ("gemeente2024", "provincie2024", output_path_agg_gem24_prov24, None),
     ("arrondiss2024","provincie2024", output_path_agg_arro24_prov24, None),
-    ("statsec2024", "kern", output_path_agg_statsec2024_kern, None),
-    ("statsec2024", "kerntypering", output_path_agg_statsec2024_kerntypering, None),
-    #("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
-    # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
-     #("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),
 ]   
 
 
@@ -218,19 +214,20 @@ jobs = [
     ("gemeente",    "streekwerking",  output_path_agg_gem_streek,          "streekwerking"),
     ("streekwerking","provincie",     output_path_agg_streek_prov,         "streekwerking"),
     ("statsec",     "woningmarkt",    output_path_agg_statsec_woningmarkt, "woningmarkt"),
-  # ("statsec",     "kerntypering",   output_path_agg_statsec_kerntyp,     "kerntypering"),
-  # ("statsec",     "kern",           output_path_agg_statsec_kern,        "kern"),
+    ("statsec",     "kerntypering",   output_path_agg_statsec_kerntyp,     "kerntypering"),
+    ("statsec",     "kern",           output_path_agg_statsec_kern,        "kern"),
     ("gemeente",    "igs",            output_path_agg_gem_igs,             "igs"),
     ("igs",         "gewest",        output_path_agg_igs_gewest,          "igs"),
     ("woningmarkt", "gewest",         output_path_agg_woningmarkt_gewest,  "woningmarkt"),
-  # ("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
-  # ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
-  # ("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),
+    ("kerntypering","gewest",         output_path_agg_kerntyp_gewest,      "kerntypering"),
+    ("kern",        "kerntypering",   output_path_agg_kern_kerntyp,        "kern"),
+    ("kern",        "woningmarkt",   output_path_agg_kern_woningmarkt,        "kern"),
+    ("kern",        "gewest",         output_path_agg_kern_gewest,         "kern"),
     ("TREG_gem",     "TREG",          output_path_agg_treggem_treg,        "TREG_gem"),
-    ("gemeente", "werkingsgebied energiehuis", output_path_agg_gem_energ,  "werkingsgebied energiehuis"),
-    ("werkingsgebied energiehuis", "provincie", output_path_agg_energ_prov, "werkingsgebied energiehuis"),
-    ("gemeente", "economische subregio", output_path_agg_gem_ecsub,         "economische subregio"),
-    ("economische subregio", "provincie", output_path_agg_ecsub_prov,       "economische subregio")
+    ("gemeente", "energiehuis", output_path_agg_gem_energ,                  "energiehuis"),
+    ("energiehuis", "provincie", output_path_agg_energ_prov,                "energiehuis"),
+    ("gemeente", "economische_subregio", output_path_agg_gem_ecsub,         "economische_subregio"),
+    ("economische_subregio", "provincie", output_path_agg_ecsub_prov,       "economische_subregio")
 ]
 
 

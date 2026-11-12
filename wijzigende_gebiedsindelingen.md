@@ -5,7 +5,7 @@ Af en toe wijzigen de basisindelingen die we gebruiken. Dat is met name het geva
 Als algemeen principe geldt:
 We wijzigen de code van het gebiedsniveau van de oude versie. Daarbij geven we een achtervoegsel dat aangeeft wanneer de indeling ophield te bestaan op deze manier. Dus de gebiedsniveaucode `gemeente` blijft steeds verwijzen naar "de huidige gemeenten". De "oude" gemeenten blijven raadpleegbaar via `gemeente2024`.
 
-Let op: Statbel wijzigt de NIScode van het gebied onbekend bij fusiegemeenten NIET. Zij blijven de oude code gebruiken. Wij doen dit niet en gebruiken de nieuwe NIS code voor gebied onbekend. Voor een conversietabel van hun codes naar de onze (oud > nieuw), klik [hier](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/conversie_niscodes_fusies.xlsx)
+Let op: Statbel wijzigt de NIScode van het gebied onbekend bij fusiegemeenten NIET. Zij blijven de oude code gebruiken. Wij doen dit niet en gebruiken de nieuwe NIS code voor gebied onbekend. Voor een conversietabel van hun codes naar de onze (oud > nieuw), klik [hier](https://github.com/provinciesincijfers/gebiedsniveaus/blob/master/conversie_niscodes_fusies.xlsx).
 
 Er zijn ook steeds frequentere wijzigingen in de geometrie van de gebieden. Dit heeft voor provincies.incijfers.be weinig impact. Wel kan dit aanleiding geven tot de nood om bepaalde geografische berekeningen opnieuw uit te voeren. Dit gebeurt echter achter de schermen.
 
